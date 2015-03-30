@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gepinstall type="plugin">
+	<nom>livretScolaire</nom>
+	<creationDate>02 2015</creationDate>
+	<auteur>M. Bouguin</auteur>
+	<licence>GNU/GPL</licence>
+	<auteurCourriel> </auteurCourriel>
+	<auteurSite> </auteurSite>
+	<version>1.0.0</version>
+	<versiongepi>1.6.6</versiongepi>
+	<description>Export vers le livret scolaire dématérialisé de lycée</description>
+	<installation>
+		<requetes>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_series` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_mef` varchar(50) NOT NULL DEFAULT '' COMMENT 'code MEF des séries concernées',
+			  UNIQUE KEY `code_mef` (`code_mef`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_engagements` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves ayant des engagement',
+			  `code_engagement` ENUM ('C', 'V', 'A', 'E', 'S'),
+			  UNIQUE KEY `engagement` (`code_ine` , `code_engagement`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_engage_autre` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves ayant des engagements',
+			  `engagement` varchar(300) NOT NULL DEFAULT '' COMMENT 'description de l\'engagement',
+			  UNIQUE KEY `eleve` (`code_ine`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_examen` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves',
+			  `avis` ENUM ('T', 'F', 'A', 'D') COMMENT 'avis pour le BAC',
+			  UNIQUE KEY `eleve` (`code_ine`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_investissement` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves',
+			  `annee` varchar(4) NOT NULL DEFAULT '' COMMENT 'année de l\'avis',
+			  `date` date NOT NULL COMMENT 'date de l\'avis',
+			  `nom` varchar(50) NOT NULL DEFAULT '' COMMENT 'nom de la personne qui rédige l\'avis',
+			  `prenom` varchar(50) NOT NULL DEFAULT '' COMMENT 'prénom de la personne qui rédige l\'avis',
+			  `avis` varchar(50) NOT NULL DEFAULT '' COMMENT 'avis sur l\'investissement',
+			  UNIQUE KEY `eleve` (`code_ine`,`annee`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
+		</requetes>
+	</installation>
+	<desinstallation>
+		<requetes>
+			<requete>
+			   DROP TABLE `plugin_lsl_series`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_engagements`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_engage_autre`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_examen`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_investissement`;
+			</requete>
+		</requetes>
+	</desinstallation>
+		
+	<administration>
+			<fichier>
+				<nomfichier autorisation="A">index.php</nomfichier>
+			</fichier>
+		<menu>
+			<item autorisation="A" titre="Livret scolaire" description="Livret scolaire dématérialisé de lycée">index.php</item>
+		</menu>
+	</administration>
+</gepinstall>
