@@ -21,6 +21,15 @@
 			  PRIMARY KEY (`id`)
 			) ;
 			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_correspondances` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_niveau` varchar(10) NOT NULL DEFAULT '' COMMENT 'code du niveau et de la série',
+			  `code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
+			  UNIQUE KEY `correspondance` (`code_niveau`,`code_competences`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
 		    <!--
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_series` (
@@ -78,6 +87,9 @@
 			<requete>
 			   DROP TABLE `plugin_lsl_competences`;
 			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_correspondances`;
+			</requete>
 		    <!--
 			<requete>
 			   DROP TABLE `plugin_lsl_series`;
@@ -100,10 +112,10 @@
 		
 	<administration>
 			<fichier>
-				<nomfichier autorisation="A">index.php</nomfichier>
+				<nomfichier autorisation="A-P-C-S">index.php</nomfichier>
 			</fichier>
 		<menu>
-			<item autorisation="A" titre="Livret scolaire" description="Livret scolaire dématérialisé de lycée">index.php</item>
+			<item autorisation="A-P-C-S" titre="Livret scolaire" description="Livret scolaire dématérialisé de lycée">index.php</item>
 		</menu>
 	</administration>
 </gepinstall>
