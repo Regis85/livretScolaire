@@ -18,16 +18,26 @@
 			  `code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
 			  `texte_competences` varchar(250) NOT NULL DEFAULT '' COMMENT 'Descriptif des compétences',
 			  UNIQUE KEY `code_competences` (`code_competences`),
-			  PRIMARY KEY (`id`)
+			  PRIMARY KEY (`id`) COMMENT 'liste des competences'
 			) ;
 			</requete>
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_correspondances` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
-			  `code_niveau` varchar(10) NOT NULL DEFAULT '' COMMENT 'code du niveau et de la série',
+			  `code_niveau` varchar(10) NOT NULL DEFAULT '' COMMENT 'code du niveau et de la serie',
 			  `code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
 			  UNIQUE KEY `correspondance` (`code_niveau`,`code_competences`),
-			  PRIMARY KEY (`id`)
+			  PRIMARY KEY (`id`) COMMENT 'correspondances code_competences → série + niveau'
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_eval_app` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `matiere` varchar(50) NOT NULL DEFAULT '' COMMENT 'code matiere',
+			  `prof` varchar(50) NOT NULL DEFAULT '' COMMENT 'login du prof',
+			  `appreciation` varchar(300) NOT NULL DEFAULT '' COMMENT 'appreciation du prof',
+			  `id_APB` int(11) COMMENT 'Lien vers la matiere dans APB',
+			  PRIMARY KEY (`id`) COMMENT 'appréciation annuelle des professeurs'
 			) ;
 			</requete>
 		    <!--
@@ -89,6 +99,9 @@
 			</requete>
 			<requete>
 			   DROP TABLE `plugin_lsl_correspondances`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_eval_app`;
 			</requete>
 		    <!--
 			<requete>

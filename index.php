@@ -46,7 +46,17 @@ include("verification_autorisations.inc.php");
 // si l'appel se fait avec passage de paramètre alors test du token
 if ((function_exists("check_token")) && ((count($_POST)<>0) || (count($_GET)<>0))) check_token();
 
-// debug_var();
+
+//recherche de l'utilisateur avec propel
+$utilisateur = UtilisateurProfessionnelPeer::getUtilisateursSessionEnCours();
+if ($utilisateur == null) {
+	header("Location: ../../logout.php?auto=1");
+	die();
+}
+
+
+
+debug_var();
 
 //********************************************
 //**************** Constantes *****************
@@ -72,37 +82,52 @@ $titre_page = "Livret scolaire";
 $tbs_librairies[]= "script.js";
    
 require_once("../../lib/header.inc.php");
-//**************** FIN EN-TETE *************
-$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
-$uploadFichier = isset($_POST['uploadFichier']) ? $_POST['uploadFichier'] : NULL ;
 
-if ($creeFichier) {
-	//**************************************************
-	//********* Création du fichier de données *********
-	//**************************************************
+
+//**************** en administrateur *************
+if ($utilisateur->getStatut()=="professeur") {
 	
-	if (!isset($_POST['classes']) or !count($_POST['classes'])){
-		echo "<p class='center rouge grand'>Vous devez choisir au moins une classe </p>";
-		include_once "afficheAccueil.php";
-	} else {
-		$selectClasses = $_POST['classes'];
-		include_once "creeFichier.php";
+} elseif ($utilisateur->getStatut()=="scolarite") {
+	
+} elseif ($utilisateur->getStatut()=="cpe") {
+	
+} elseif ($utilisateur->getStatut()=="administrateur") {
+
+
+	//**************** FIN EN-TETE *************
+	$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
+	$uploadFichier = isset($_POST['uploadFichier']) ? $_POST['uploadFichier'] : NULL ;
+
+	if ($creeFichier) {
+		//**************************************************
+		//********* Création du fichier de données *********
+		//**************************************************
+
+		if (!isset($_POST['classes']) or !count($_POST['classes'])){
+			echo "<p class='center rouge grand'>Vous devez choisir au moins une classe </p>";
+			include_once "afficheAccueil.php";
+		} else {
+			$selectClasses = $_POST['classes'];
+			include_once "creeFichier.php";
+			//**************** extraire les données **************** 
+			include_once "afficheExtract.php";
+		}
+
+	} else if ($uploadFichier) {
+		//********************************************************
+		//********* Téléchargement du fichier de données *********
+		//********************************************************
+		include_once "upload.php";
 		//**************** extraire les données **************** 
-		include_once "afficheExtract.php";
+		include_once "afficheAccueil.php";
+
+	} else {
+		include_once "afficheAccueil.php";
 	}
 
-} else if ($uploadFichier) {
-	//********************************************************
-	//********* Téléchargement du fichier de données *********
-	//********************************************************
-	include_once "upload.php";
-	//**************** extraire les données **************** 
-	include_once "afficheAccueil.php";
-	
-} else {
-	include_once "afficheAccueil.php";
-}
 
+
+}
 
 //**************** Pied de page *****************
 require_once("../../lib/footer.inc.php");
