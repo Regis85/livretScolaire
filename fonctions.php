@@ -3,7 +3,7 @@
 
 
 
-// Renvoie la deuxième partie de l'année au format complet (2009/2010)
+// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10)
 function apb_annee($_annee) {
 	//$expl = preg_split("/[^0-9]/", $_annee);
 	$expl = preg_split("/[^0-9]/", $_annee);
@@ -45,6 +45,7 @@ function classesConcernees($annee, $classes) {
 		$whereClasse .= " id ='".$key."' ";
 	}
 	$whereClasse .= ")";
+		
 	$sql= "SELECT id,nom_court,nom_complet,login_pp,niveau,annee,annee-1 AS anneelsl,decoupage,id_structure_sconet,libelle_mef,traitee "
 	   . "FROM `plugin_archAPB_classes` "
 	   . "WHERE annee = ".$annee
@@ -250,3 +251,53 @@ function extraitClasses($anneeSolaire) {
 	//echo "<br />".$sql;
 	return $resultchargeDB;		
 }
+
+function chercheClassesProf($login, $annee = NULL) {
+	//$login="fcoutaud";
+	global $mysqli;
+	// `plugin_archAPB_profs` login →
+	// login_prof → `plugin_archAPB_matieres` → id_gepi
+	// code_service → `plugin_archAPB_notes` → ine
+	// ine → `plugin_archAPB_eleves` → id_classe 
+	// id → `plugin_archAPB_classes`
+	
+	
+	$sql = "SELECT DISTINCT c.* "
+	   . "FROM `plugin_archAPB_classes` AS c , plugin_archAPB_eleves AS e, `plugin_archAPB_notes` AS n, `plugin_archAPB_matieres` AS m, `plugin_archAPB_profs` AS p "
+	   . "WHERE c.id = e.id_classe "
+	   . "AND e.ine = n.ine "
+	   . "AND n.code_service = m.id_gepi "
+	   . "AND m.login_prof = '".$login."' ";
+	if ($annee) {
+		$sql .= "AND c.annee= '".$annee."' ";
+	}
+	
+	$sql = "SELECT DISTINCT c.* "
+	   . "FROM `plugin_archAPB_classes` AS c ";
+	$sql .= "INNER JOIN `plugin_archAPB_eleves` AS e ON c.id = e.id_classe ";
+	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON n.ine = e.ine  ";
+	$sql .= "INNER JOIN `plugin_archAPB_matieres` AS m ON n.code_service = m.id_gepi ";
+	$sql .= "WHERE m.login_prof = '".$login."' ";
+	if ($annee) {
+		$sql .= "AND c.annee= '".$annee."' ";
+	}
+	
+	
+	$sql = "SELECT DISTINCT m.* "
+	   . "FROM `plugin_archAPB_matieres` AS m ";
+	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON m.id_gepi = n.code_service  ";
+	
+	
+	$sql .= "WHERE m.login_prof = '".$login."' ";
+	if ($annee) {
+		$sql .= "AND m.annee= '".$annee."' ";
+	}
+	
+	
+		
+	echo "<br />".$sql."<br />";	
+	
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;		
+}
+

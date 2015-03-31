@@ -28,6 +28,7 @@ $APBinstalle = APBinstalle();
 
 $competences = extraitCompetences();
 $classes = extraitClasses($anneeSolaire);
+//$correspondances = extraitCorrespondances($anneeSolaire);
 
 if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 ?>

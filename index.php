@@ -86,6 +86,7 @@ require_once("../../lib/header.inc.php");
 
 //**************** en administrateur *************
 if ($utilisateur->getStatut()=="professeur") {
+	require_once("afficheProf.php");
 	
 } elseif ($utilisateur->getStatut()=="scolarite") {
 	
