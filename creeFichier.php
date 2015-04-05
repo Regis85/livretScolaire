@@ -19,21 +19,27 @@ while($eleve = $eleves2->fetch_object()){
 	//$newElv->addAttribute('prenom', $eleve->prenom);
 	
 	// récupérer les engagements
-	/*
 	$listeEngagements = engagementsEleve($eleve->ine);
-	$engagementAutre = engagementAutreEleve($eleve->ine);
-	
-	if(($listeEngagements->num_rows > 0) || ($engagementAutre->num_rows > 0)) {
+	//$engagementAutre = engagementAutreEleve($eleve->ine);
+	//if(($listeEngagements->num_rows > 0) || ($engagementAutre->num_rows > 0)) {
+	if(($listeEngagements->num_rows > 0)) {
 		$engagements = $newElv->addChild('engagements');
-		while ($listeEngagement = $listeEngagements->fetch_object()){
-			$newEngagement = $engagements->addChild('engagement');
-			$newEngagement->addAttribute('code',$listeEngagement->code_engagement );
-		}
-		while ($autre = $engagementAutre->fetch_object()){
-			$newEngagement = $engagements->addChild('engagement-autre',$autre->engagement);
+		if(($listeEngagements->num_rows > 0)) {
+			while ($engagement = $listeEngagements->fetch_object()){	
+				$os=array(1,2,3,4,5);
+				if (in_array($engagement->id_engagement, $os)){
+					// echo '<br />'.$engagement->id_engagement. " ".$engagement->code." ".$engagement->no_gep ;
+					$newEngagement = $engagements->addChild('engagement');
+					$newEngagement->addAttribute('code',$engagement->code );
+				} else {
+					$description=$engagement->description;
+					$description = substr($description,0,300);						
+					// echo '<br />engagement autre '.$engagement->id_engagement. " ".$description ;
+					$newEngagement = $engagements->addChild('engagement-autre',$description);
+				}
+			}
 		}
 	}
-	*/
 	
 	// récupérer l'avis d"examen
 	/*

@@ -95,16 +95,20 @@ function anneesEleve($ine) {
 	return $resultchargeDB;	
 }
 
+/**
+ * Retourne les engagements d'un élève
+ * 
+ * @global object $mysqli connexion à la base
+ * @param text $ine INE de l'élève
+ * @return object les engagements trouvés pour l'élève
+ */
 function engagementsEleve($ine) {
 	global $mysqli;
-	$sql= "SELECT * FROM `plugin_lsl_engagements` WHERE `code_ine` LIKE '".$ine."'";
-	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB;	
-}
-
-function engagementAutreEleve($ine) {
-	global $mysqli;
-	$sql= "SELECT * FROM `plugin_lsl_engage_autre` WHERE `code_ine` LIKE '".$ine."'";
+	$sql= "SELECT en.* , eg.code , eg.description ,  ev.`no_gep` FROM `engagements_user` AS en "
+	   . "INNER JOIN `engagements` AS eg ON eg.`id` = en.`id_engagement` "
+	   . "INNER JOIN `eleves` AS ev ON ev.`login` = en.`login` "
+	   . " WHERE ev.`no_gep` LIKE '".$ine."' ";		
+	//echo "<br />".$sql." ";
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;	
 }
