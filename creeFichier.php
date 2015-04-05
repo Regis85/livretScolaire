@@ -126,8 +126,18 @@ while($eleve = $eleves2->fetch_object()){
 					$structureEvaluation ->close();
 					
 					// TODO récupérer l'appréciation annuelle
-					// $appAnnuelle="";
-					// $newEval->addChild('annuelle', $appAnnuelle);
+					$appAnnuelle="";
+					// echo $annee->annee." - ".$evaluation->code_service." - ".$eleve->ine." - ";
+					$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
+					if (!$appAnnuelle) {
+						$newMessage = $eleve->nom." ".$eleve->prenom;
+						$newMessage .= " n'a pas d'appréciation pour la matière ".$evaluation->code_service;
+						$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
+						$messages[] = $newMessage;
+					}
+					// echo $appAnnuelle."<br />";
+					
+					$newEval->addChild('annuelle', $appAnnuelle);
 
 					$Periodiques = $newEval->addChild('periodiques');
 					$moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
@@ -171,3 +181,16 @@ while($eleve = $eleves2->fetch_object()){
 echo $dirTemp."essai.xml";
    
 $sxe->asXML($dirTemp."essai.xml");
+
+
+if (isset($messages)) {
+	foreach ($messages as $message) {
+?>
+<p class="center rouge " >
+	<?php echo $message; ?>
+</p>
+<?php		
+	}
+	unset ($message);
+}
+
