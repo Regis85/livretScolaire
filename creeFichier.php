@@ -184,13 +184,24 @@ $sxe->asXML($dirTemp."essai.xml");
 
 
 if (isset($messages)) {
+?>
+<h2 class="center grand bold rouge" 
+	onclick="bascule('messages')" 
+	style="cursor:pointer"
+	title="Cliquez pour déplier/plier">
+	<?php echo count($messages); ?> erreur<?php if(count($messages) > 1) echo "s"; ?>
+</h2>
+<block id="messages" style="display:none;">
+<?php	
 	foreach ($messages as $message) {
 ?>
-<p class="center rouge " >
+<p class="center rouge ">
 	<?php echo $message; ?>
 </p>
 <?php		
-	}
+	} ?>
+</block>
+<?php
 	unset ($message);
 }
 
