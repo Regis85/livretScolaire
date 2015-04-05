@@ -128,6 +128,7 @@
 	<administration>
 			<fichier>
 				<nomfichier autorisation="A-P-C-S">index.php</nomfichier>
+				<nomfichier autorisation="A">telecharge.php</nomfichier>
 			</fichier>
 		<menu>
 			<item autorisation="A-P-C-S" titre="Livret scolaire" description="Livret scolaire dématérialisé de lycée">index.php</item>

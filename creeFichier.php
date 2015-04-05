@@ -178,9 +178,11 @@ while($eleve = $eleves2->fetch_object()){
 	$annees->close();
 }
 
-echo $dirTemp."essai.xml";
+
+$nomFichier = "LSL_".date("d-m-Y_H:i").".xml";
+//echo $dirTemp.$nomFichier;
    
-$sxe->asXML($dirTemp."essai.xml");
+$sxe->asXML($dirTemp.$nomFichier);
 
 
 if (isset($messages)) {
@@ -189,7 +191,7 @@ if (isset($messages)) {
 	onclick="bascule('messages')" 
 	style="cursor:pointer"
 	title="Cliquez pour déplier/plier">
-	<?php echo count($messages); ?> erreur<?php if(count($messages) > 1) echo "s"; ?>
+	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) echo "s"; ?> manquante<?php if(count($messages) > 1) echo "s"; ?>
 </h2>
 <block id="messages" style="display:none;">
 <?php	
@@ -204,4 +206,14 @@ if (isset($messages)) {
 <?php
 	unset ($message);
 }
+
+// On crée un lien pour télécharger le fichier
+ ?>
+<p>
+	<a class="bold"  href='../temp/<?php echo $dirTemp ; ?><?php echo $nomFichier; ?>?<?php echo add_token_in_url() ; ?>' target='_blank'>
+		Récupérer le fichier XML
+	</a>
+	(<em>effectuer un clic-droit/enregistrer la cible</em>)
+</p>
+
 
