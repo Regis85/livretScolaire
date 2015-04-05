@@ -114,7 +114,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">	
 		<table class="boireaus sortable resizable"
 			   id="tableClasses"
-			   style="display:none;">
+			   >
 			<tr>
 				<th>
 					nom_court

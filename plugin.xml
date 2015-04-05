@@ -33,10 +33,12 @@
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_eval_app` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
-			  `matiere` varchar(50) NOT NULL DEFAULT '' COMMENT 'code matiere',
+			  `annee` smallint(6) NOT NULL DEFAULT '' COMMENT 'année',
 			  `prof` varchar(50) NOT NULL DEFAULT '' COMMENT 'login du prof',
+			   `eleve` VARCHAR( 50 )  NOT NULL DEFAULT '' COMMENT 'login de l\'élève',
 			  `appreciation` varchar(300) NOT NULL DEFAULT '' COMMENT 'appreciation du prof',
-			  `id_APB` int(11) COMMENT 'Lien vers la matiere dans APB',
+			  `id_APB` int(11) COMMENT 'code matiere dans APB',
+			  UNIQUE KEY `matiere` ( `annee` , `id_APB` , `eleve` )
 			  PRIMARY KEY (`id`) COMMENT 'appréciation annuelle des professeurs'
 			) ;
 			</requete>

@@ -1,10 +1,14 @@
 <?php
 
-
-
-
-// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10)
+// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10 ou 2009-2010 …)
 function apb_annee($_annee) {
+	//$expl = preg_split("/[^0-9]/", $_annee);
+	$expl = preg_split("/[^0-9]/", $_annee);
+	return $expl[0];
+}
+
+// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10 ou 2009-2010 …)
+function lsl_annee($_annee) {
 	//$expl = preg_split("/[^0-9]/", $_annee);
 	$expl = preg_split("/[^0-9]/", $_annee);
 	return $expl[0];
@@ -243,6 +247,13 @@ function extraitCompetences() {
 	return $resultchargeDB;		
 }
 
+/**
+ * Extrait les classes présentes dans APB à partir d'une année
+ * 
+ * @global object $mysqli connexion à la base
+ * @param text $anneeSolaire année sur 4 caractères
+ * @return object enregistrements de plugin_archAPB_classes
+ */
 function extraitClasses($anneeSolaire) {
 	global $mysqli;
 	$anneeAPB = $anneeSolaire+1;
@@ -252,52 +263,169 @@ function extraitClasses($anneeSolaire) {
 	return $resultchargeDB;		
 }
 
+/**
+ * Extrait les classes présentes dans APB à partir d'une année, pour un prof
+ * 
+ * @global object $mysqli connexion à la base
+ * @param text $login login de l'enseignant, % pour tous
+ * @param text $annee année sur 4 caractères
+ * @return object enregistrements de plugin_archAPB_classes
+ */
 function chercheClassesProf($login, $annee = NULL) {
 	//$login="fcoutaud";
+	//$login="%";
 	global $mysqli;
-	// `plugin_archAPB_profs` login →
-	// login_prof → `plugin_archAPB_matieres` → id_gepi
-	// code_service → `plugin_archAPB_notes` → ine
-	// ine → `plugin_archAPB_eleves` → id_classe 
-	// id → `plugin_archAPB_classes`
-	
-	
-	$sql = "SELECT DISTINCT c.* "
-	   . "FROM `plugin_archAPB_classes` AS c , plugin_archAPB_eleves AS e, `plugin_archAPB_notes` AS n, `plugin_archAPB_matieres` AS m, `plugin_archAPB_profs` AS p "
-	   . "WHERE c.id = e.id_classe "
-	   . "AND e.ine = n.ine "
-	   . "AND n.code_service = m.id_gepi "
-	   . "AND m.login_prof = '".$login."' ";
-	if ($annee) {
-		$sql .= "AND c.annee= '".$annee."' ";
-	}
-	
 	$sql = "SELECT DISTINCT c.* "
 	   . "FROM `plugin_archAPB_classes` AS c ";
-	$sql .= "INNER JOIN `plugin_archAPB_eleves` AS e ON c.id = e.id_classe ";
-	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON n.ine = e.ine  ";
-	$sql .= "INNER JOIN `plugin_archAPB_matieres` AS m ON n.code_service = m.id_gepi ";
-	$sql .= "WHERE m.login_prof = '".$login."' ";
+	$sql .= "INNER JOIN `plugin_archAPB_eleves` AS e ON (c.id = e.id_classe AND c.annee = e.annee) ";
+	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON (n.ine = e.ine AND n.annee  = e.annee) ";
+	$sql .= "INNER JOIN `plugin_archAPB_matieres` AS m ON (n.code_service = m.id_gepi AND m.annee  = n.annee) ";
+	$sql .= "WHERE m.login_prof LIKE '".$login."' ";
 	if ($annee) {
-		$sql .= "AND c.annee= '".$annee."' ";
+		$sql .= "AND c.annee LIKE '".$annee."' ";
 	}
-	
-	
-	$sql = "SELECT DISTINCT m.* "
-	   . "FROM `plugin_archAPB_matieres` AS m ";
-	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON m.id_gepi = n.code_service  ";
-	
-	
-	$sql .= "WHERE m.login_prof = '".$login."' ";
-	if ($annee) {
-		$sql .= "AND m.annee= '".$annee."' ";
-	}
-	
-	
-		
-	echo "<br />".$sql."<br />";	
-	
+	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
 }
+
+/**
+ * 
+ * @global object $mysqli connexion à la base
+ * @param array $classesChoisies
+ * @param text $login
+ * @return object
+ */
+function chercheElevesProf($classesChoisies, $login, $annee) {	
+	global $mysqli;
+	$sql = "SELECT DISTINCT e.* "
+	   . "FROM `plugin_archAPB_eleves` AS e ";
+	$sql .= "INNER JOIN `plugin_archAPB_classes` AS c ON (c.id = e.id_classe AND c.annee = e.annee) ";
+	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON (n.ine = e.ine AND n.annee  = e.annee) ";
+	$sql .= "INNER JOIN `plugin_archAPB_matieres` AS m ON (n.code_service = m.id_gepi AND m.annee  = n.annee) ";
+	$sql .= "WHERE m.login_prof LIKE '".$login."' ";
+	$sql .= "AND n.annee = '".$annee."' ";
+	$sql .= "AND (";
+	$join= "";
+	//while ($classeActive = $classesChoisies->fetch_object()) {	
+	foreach ($classesChoisies as $key=>$classeActive) {
+		$sql .= $join."e.id_classe  = ".$key." ";
+		$join= "OR ";
+	}
+	$sql .= ") ";
+	$sql .= "ORDER BY e.`id_classe` ASC , e.`nom` ASC , e.`prenom` ASC  ";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;		
+}
+
+function chercheNotes($eleve,$prof,$annee) {
+	global $mysqli;
+	$sql = "SELECT DISTINCT n.* "
+	   . "FROM `plugin_archAPB_notes` AS n ";
+	$sql .= "INNER JOIN  `plugin_archAPB_matieres` AS m ON (n.code_service = m.id_gepi AND m.annee  = n.annee) ";
+	$sql .= "WHERE m.login_prof LIKE '".$prof."' ";
+	$sql .= "AND n.ine = '".$eleve."' ";
+	$sql .= "AND n.annee = '".$annee."' ";
+	
+	$sql .= "ORDER BY n.code_service ASC , n.trimestre ASC  ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;		
+}
+
+/**
+ * Recherche le nombre maximum de périodes de notes 
+ * 
+ * @global object $mysqli connexion à la base
+ * @param text $eleve ine de l'élève, rien si on veut tous les élèves
+ * @return int nombre maxi de périodes de notes
+ */
+function maxTrimNotes($eleve=NULL) {
+	global $mysqli;
+	$sql = "SELECT MAX(trimestre) as trimestre FROM `plugin_archAPB_notes` ";
+	if ($eleve) {
+		$sql = "WHERE ine = '".$eleve."' ";	
+	}
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	return $resultchargeDB->fetch_object()->trimestre;		
+}	
+
+
+function afficheAppreciationMatiere($ine) {	
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_eval_app` AS a ";
+	$sql .= "WHERE a.ine = '".$ine."' ";
+	$sql .= "AND a.annee =  '".$annee."'";
+	$sql .= "AND a.annee =  '".$annee."'";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;		
+}
+
+function getMatiere($code, $annee) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_archAPB_matieres`  ";
+	$sql .= "WHERE id_gepi = '".$code."' ";
+	$sql .= "AND  annee  = '".$annee."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB->fetch_object()->libelle_sconet;	
+}
+
+function getAppreciationProf($eleve, $code, $annee) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_eval_app`  ";
+	$sql .= "WHERE id_APB = '".$code."' ";
+	$sql .= "AND annee = '".$annee."' ";
+	$sql .= "AND eleve = '".$eleve."' ";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	$retour = "";
+	if ($resultchargeDB->num_rows) {
+		$result = $resultchargeDB->fetch_object();
+		$retour = $result->appreciation;
+	}
+	return $retour;
+}
+
+function setAppreciationProf($eleve, $code, $annee, $appreciation, $prof) {
+	global $mysqli;
+	$sql = "INSERT INTO `plugin_lsl_eval_app` (`id` ,`annee` ,`prof` ,`appreciation` ,`id_APB` ,`eleve`) "
+	   . "VALUES (NULL , '".$annee."', '".$prof."', '".$appreciation."', '".$code."', '".$eleve."') "
+	   . "ON DUPLICATE KEY UPDATE `appreciation` = '".$appreciation."' ";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+}
+
+function getLoginProfAppreciation($eleve, $code, $annee) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_eval_app`  ";
+	$sql .= "WHERE id_APB = '".$code."' ";
+	$sql .= "AND annee = '".$annee."' ";
+	$sql .= "AND eleve = '".$eleve."' ";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	$retour = "";
+	if ($resultchargeDB->num_rows) {
+		$result = $resultchargeDB->fetch_object();
+		$retour = $result->prof;
+	}
+	return $retour;
+}
+
+function getUtilisateur($login) {
+	global $mysqli;
+	$sql = "SELECT * FROM `utilisateurs` WHERE login = '".$login."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB->fetch_object();	
+}
+
 
