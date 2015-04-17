@@ -237,7 +237,8 @@ function enseignants($annee, $code_service) {
 
 function APBinstalle() {
 	global $mysqli;
-	$sql = "SELECT * FROM `plugins` WHERE nom = 'archivageAPB'";
+	//$sql = "SELECT * FROM `plugins` WHERE nom = 'archivageAPB'";
+	$sql = "SHOW TABLES LIKE 'plugin_archAPB_classes'";
 	$resultchargeDB = $mysqli->query($sql);		
 	//echo "<br />".$sql;
 	return $resultchargeDB;	

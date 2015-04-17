@@ -45,9 +45,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 <p class="center rouge grand bold" >
 	Vous devez avoir effectué les extractions pour APB avant d'utiliser ce plugin
 </p>
-	<?php
-}
-?>
+
 <fieldset>
 	<legend>Télécharger les compétences</legend>
 	Chaque ligne du fichier doit contenir 2 colonnes séparées par un point virgule : CODE_COMPETENCE ; LIBELLE_COMPETENCE
@@ -104,7 +102,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 
 <fieldset>
 	<legend>Liste des classes <?php echo $anneeSolaire; ?>/<?php echo $anneeSolaire+1; ?></legend>
-	<?php if ($classes->num_rows) { ?>
+	<?php if ($classes && $classes->num_rows) { ?>
 	<p title="Cliquez pour afficher/masquer le tableau"
 		   onclick="bascule('tableClasses');"
 		   class="center grand bold"
@@ -175,7 +173,11 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			
 		</table>
 	
-	<?php } ?>
+	<?php } else if ($classes) { ?>
+		<p class="rouge bold">Aucune classe trouvée, avez-vous bien fait les extractions APB ? </p>
+<?php } else  { ?>
+		<p class="rouge bold">Erreur lors de l'extraction des classes, le plugin APB est-il bien installé ? </p>
+<?php } ?>
 	
 
 		<p>
@@ -185,3 +187,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		</p>
 	</form>
 </fieldset>
+
+	<?php
+}
+?>

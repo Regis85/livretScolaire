@@ -84,6 +84,9 @@ $tbs_librairies[]= "script.js";
    
 require_once("../../lib/header.inc.php");
 
+//**************** Vérifier la présence d'APB *************
+
+
 
 //**************** en administrateur *************
 if ($utilisateur->getStatut()=="professeur") {
