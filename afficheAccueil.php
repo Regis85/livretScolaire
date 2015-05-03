@@ -47,10 +47,10 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 </p>
 
 <fieldset>
-	<legend>Télécharger les compétences</legend>
+	<legend>Télécharger les définitions des compétences</legend>
 	Chaque ligne du fichier doit contenir 2 colonnes séparées par un point virgule : CODE_COMPETENCE ; LIBELLE_COMPETENCE
 	<br />
-	La première ligne n'est pas traitée
+	La première ligne n'est pas traitée. Vous pouvez voir les compétences déjà saisies en cliquand sur <span style="cursor:pointer" onclick="bascule('tableCompetences');">Tableau des compétences</span>
 	<br /><br />
 	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">
 	<?php // <form action="upload.php" method="post" enctype="multipart/form-data"> ?>
