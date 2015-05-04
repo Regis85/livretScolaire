@@ -175,17 +175,13 @@ while($eleve = $eleves2->fetch_object()){
 			}
 			$newEvaluations->close();			
 		}
-		//$getNiveau->close();		
 	}
-	//$engagementAutre->close();
-	//$listeEngagements->close();
-	//$avisEleve->close();
-	//$investissements->close();
 	$annees->close();
 }
 
-
-$nomFichier = "LSL_".date("d-m-Y_H:i").".xml";
+$extension=".txt";
+$extension="";
+$nomFichier = "LSL_".date("d-m-Y_H:i").".xml".$extension;
 //echo $dirTemp.$nomFichier;
    
 $sxe->asXML($dirTemp.$nomFichier);
@@ -216,10 +212,10 @@ if (isset($messages)) {
 // On crée un lien pour télécharger le fichier
  ?>
 <p>
-	<a class="bold"  href='../temp/<?php echo $dirTemp ; ?><?php echo $nomFichier; ?>?<?php echo add_token_in_url() ; ?>' target='_blank'>
+	<a class="bold"  href='../temp/<?php echo $dirTemp ; ?><?php echo $nomFichier; ?>' target='_blank'>
 		Récupérer le fichier XML
 	</a>
-	(<em>effectuer un clic-droit/enregistrer la cible</em>)
+	(<em>effectuer un clic-droit/enregistrer la cible puis supprimez l'extention .txt</em>)
 </p>
 
 
