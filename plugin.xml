@@ -13,6 +13,15 @@
 	<installation>
 		<requetes>
 			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_droit` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `droit` varchar(25) NOT NULL DEFAULT '' COMMENT 'Définition du droit',
+			  `ouvert` varchar(1) NOT NULL DEFAULT 'n' COMMENT 'Droit ouvert',
+			  UNIQUE KEY `droit` (`droit`),
+			  PRIMARY KEY (`id`) COMMENT 'liste des droits du plugin Livrer Scolaire'
+			) ;
+			</requete>
+			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_competences` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
 			  `code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
@@ -96,6 +105,9 @@
 	</installation>
 	<desinstallation>
 		<requetes>
+			<requete>
+			   DROP TABLE `plugin_lsl_droit`;
+			</requete>
 			<requete>
 			   DROP TABLE `plugin_lsl_competences`;
 			</requete>

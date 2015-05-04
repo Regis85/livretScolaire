@@ -433,4 +433,26 @@ function getUtilisateur($login) {
 	return $resultchargeDB->fetch_object();	
 }
 
+function lsl_getDroit($droit) {
+	global $mysqli;
+	$retour = FALSE;
+	$sql = "SELECT * FROM `plugin_lsl_droit` WHERE droit = '".$droit."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	if ($resultchargeDB->num_rows) {
+		$droitRetour = $resultchargeDB->fetch_object();
+		if ($droitRetour->ouvert == "y") {
+			$retour = TRUE;
+		}
+	}	
+	return $retour;	
+}
 
+function lsl_enregistreDroits($droit , $valeur) {
+	global $mysqli;
+	$sql = "INSERT INTO `plugin_lsl_droit` (`id` ,`droit` ,`ouvert`) "
+	   . "VALUES (NULL , '".$droit."', '".$valeur."') "
+	   . "ON DUPLICATE KEY UPDATE `ouvert` = '".$valeur."' ";	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+}

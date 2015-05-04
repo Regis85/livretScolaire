@@ -52,7 +52,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<br />
 	La première ligne n'est pas traitée. Vous pouvez voir les compétences déjà saisies en cliquand sur <span style="cursor:pointer" onclick="bascule('tableCompetences');">Tableau des compétences</span>
 	<br /><br />
-	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">
+	<form method="post" action="index.php" id="form_LSL_competences" enctype="multipart/form-data">
 	<?php // <form action="upload.php" method="post" enctype="multipart/form-data"> ?>
 		<p>
 			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
@@ -111,7 +111,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		il y a <?php echo $classes->num_rows ?> classes pour <?php echo $anneeSolaire; ?>/<?php echo $anneeSolaire+1; ?>
 	</p>
 	
-	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">	
+	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">	
 		<table class="boireaus sortable resizable"
 			   id="tableClasses"
 			   >
@@ -178,8 +178,6 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 <?php } else  { ?>
 		<p class="rouge bold">Erreur lors de l'extraction des classes, le plugin APB est-il bien installé ? </p>
 <?php } ?>
-	
-
 		<p>
 			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
 			Créer le fichier
@@ -191,3 +189,29 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<?php
 }
 ?>
+<fieldset>
+	<legend>Modules ouverts</legend>
+	<form method="post" action="index.php" id="form_LSL_ouvert" enctype="multipart/form-data">
+		<p>
+			Saisie des appréciations
+			<input type="checkbox" 
+				   name="droitAppreciation" 
+				   <?php if (lsl_getDroit('droitAppreciation')) {echo " checked='checked' ";} ?>
+					  />
+		</p>
+		<p>
+			Saisie des compétences
+			<input type="checkbox" 
+				   name="droitCompetences" 
+				   <?php if (lsl_getDroit('droitCompetences')) {echo " checked='checked' ";} ?>
+				   disabled="disabled"
+					  />
+		</p>
+		<p>
+			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<button name="sauveDroits" id="sauveDroits" value="oui" >
+				Enregistrer les droits
+			</button>
+		</p>
+	</form>
+</fieldset>

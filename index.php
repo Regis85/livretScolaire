@@ -102,6 +102,7 @@ if ($utilisateur->getStatut()=="professeur") {
 	//**************** FIN EN-TETE *************
 	$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
 	$uploadFichier = isset($_POST['uploadFichier']) ? $_POST['uploadFichier'] : NULL ;
+	$saveDroits = isset($_POST['sauveDroits']) ? $_POST['sauveDroits'] : NULL ;
 
 	if ($creeFichier) {
 		//**************************************************
@@ -126,6 +127,10 @@ if ($utilisateur->getStatut()=="professeur") {
 		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";
 
+	} else if ($saveDroits) {
+		include_once "saveDroits.php";
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
 	} else {
 		include_once "afficheAccueil.php";
 	}
@@ -134,7 +139,7 @@ if ($utilisateur->getStatut()=="professeur") {
 
 }
 
-debug_var();
+//debug_var();
 //**************** Pied de page *****************
 require_once("../../lib/footer.inc.php");
 //**************** Fin de pied de page *****************

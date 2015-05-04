@@ -238,12 +238,16 @@ if(isset($_POST['appEleves'])) {
 		<?php	} ?>
 		</td>
 		<td style="text-align: left;">
+		<?php if (lsl_getDroit('droitAppreciation')) { ?>
 			<textarea rows="4" cols="70"  
 					  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>]"
 					  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>"
 					  maxlength="300"
 					  style="text-align: left;"
-					  /><?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?></textarea>
+					  />
+						  <?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?>
+			</textarea>
+		<?php	} ?>
 			<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeChoisie)); ?>
 			<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
 		</td>
