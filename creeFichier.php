@@ -179,9 +179,9 @@ while($eleve = $eleves2->fetch_object()){
 	$annees->close();
 }
 
-$extension=".txt";
+//$extension=".txt";
 $extension="";
-$nomFichier = "LSL_".date("d-m-Y_H:i").".xml".$extension;
+$nomFichier = "LSL_".date("d-m-Y_H:i").".xml1".$extension;
 //echo $dirTemp.$nomFichier;
    
 $sxe->asXML($dirTemp.$nomFichier);
@@ -215,7 +215,7 @@ if (isset($messages)) {
 	<a class="bold"  href='../temp/<?php echo $dirTemp ; ?><?php echo $nomFichier; ?>' target='_blank'>
 		Récupérer le fichier XML
 	</a>
-	(<em>effectuer un clic-droit/enregistrer la cible puis supprimez l'extention .txt</em>)
+	(<em>effectuer un clic-droit/enregistrer la cible [vous pouvez supprimer le 1 de l'extension]</em>)
 </p>
 
 
