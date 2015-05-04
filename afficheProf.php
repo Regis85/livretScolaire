@@ -205,6 +205,7 @@ if(isset($_POST['appEleves'])) {
 						?>
 		</td>
 		<td style="text-align: left;">
+		<?php if (lsl_getDroit('droitAppreciation')) { ?>
 			<textarea rows="4" cols="70"  
 					  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>]"
 					  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>"
@@ -213,6 +214,7 @@ if(isset($_POST['appEleves'])) {
 					  /><?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?></textarea>
 			<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeChoisie)); ?>
 			<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
+		<?php } ?>
 		</td>
 	</tr>
 	<tr class="lig<?php echo $cpt; ?>">
@@ -247,9 +249,9 @@ if(isset($_POST['appEleves'])) {
 					  />
 						  <?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?>
 			</textarea>
-		<?php	} ?>
 			<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeChoisie)); ?>
 			<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
+		<?php	} ?>
 		</td>
 	</tr>
 		<?php	$cpt *= -1; ?>
