@@ -5,7 +5,7 @@ Ce plugin est destiné à créer, en association avec le plugin_APB, un fichier 
 
 Après avoir effectué les extractions pour APB, vous pouvez (pourrez) générer un fichier .xml importable dans LSL (au 5 avril 2015, le plugin n'a pas encore été validé pour pouvoir être utilisé)
 
-Coté enseignants → le plugin permet de saisir les appréciations années
+Coté enseignants → le plugin permet de saisir les appréciations années si le module est activé par l'administrateur
 
 Coté administrateur → le plugin permet de créer le fichier
                     → le plugin affiche les appréciations années manquantes
