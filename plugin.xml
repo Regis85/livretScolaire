@@ -33,11 +33,15 @@
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_correspondances` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
-			  `code_niveau` varchar(10) NOT NULL DEFAULT '' COMMENT 'code du niveau et de la serie',
-			  `code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
-			  UNIQUE KEY `correspondance` (`code_niveau`,`code_competences`),
-			  PRIMARY KEY (`id`) COMMENT 'correspondances code_competences → série + niveau'
-			) ;
+			  `MEF` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF du niveau et de la serie',
+			  `Code_competences` varchar(10) NOT NULL DEFAULT '' COMMENT 'code MEF des compétences',
+			   `Modalite` ENUM('S', 'F', 'O') NOT NULL  COMMENT 'Matière obligatoire ou pas', 
+			   `Matiere` varchar(50) NOT NULL DEFAULT '' COMMENT 'Code Matière BCN' , 
+			   `Note` ENUM('y', 'n') NOT NULL  COMMENT 'note obligatoire ou pas' , 
+			   `Appreciation` ENUM('y', 'n') NOT NULL  COMMENT 'appréciation obligatoire ou pas' , 
+			  UNIQUE KEY `correspondance` (`MEF`,`code_competences`),
+			  PRIMARY KEY (`id`)  COMMENT 'correspondances code_competences → série + niveau'
+			) ENGINE=MyISAM ;
 			</requete>
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_eval_app` (

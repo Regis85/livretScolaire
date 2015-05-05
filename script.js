@@ -26,3 +26,10 @@ function DecocheColonneSelect($max) {
 		}
 	}
 }
+
+function afficheCompetences($code) {
+   alert("competences_"+$code);
+   
+   $competences = document.getElementById("competences_"+$code).value;
+   alert($competences);
+}
