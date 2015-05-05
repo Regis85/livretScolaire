@@ -44,12 +44,15 @@ $target_dir = $dirTemp;
 //echo $_FILES["fileToUpload"]["name"];
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-if ($_FILES["fileToUpload"]['type'] != "text/csv") {
+if ($_FILES["fileToUpload"]['type'] != "text/csv" 
+   && ($_FILES["fileToUpload"]['type'] != "application/csv-tab-delimited-table")) {
 ?>
 <p class="center rouge grand ">
 	<?php echo basename($_FILES["fileToUpload"]["name"]); ?>
 	<?php $uploadOk = 0; ?>
 	→ Vous devez importer un fichier csv
+	<br />
+	Votre fichier est de type <?php echo $_FILES["fileToUpload"]['type']; ?>
 </p>
 <?php
 	
