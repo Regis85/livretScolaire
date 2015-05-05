@@ -1,7 +1,7 @@
 # livretScolaire
 plugin Livret Scolaire de Lycée
 
-Ce plugin est destiné à créer, en association avec le pligin_APB, un fichier à importer dans LSL (Livret Scolaire de Lycée dématérialisé)
+Ce plugin est destiné à créer, en association avec le plugin_APB, un fichier à importer dans LSL (Livret Scolaire de Lycée dématérialisé)
 
 Après avoir effectué les extractions pour APB, vous pouvez (pourrez) générer un fichier .xml importable dans LSL (au 5 avril 2015, le plugin n'a pas encore été validé pour pouvoir être utilisé)
 
