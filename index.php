@@ -103,14 +103,19 @@ if ($utilisateur->getStatut()=="professeur") {
 	$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
 	$uploadFichier = isset($_POST['uploadFichier']) ? $_POST['uploadFichier'] : NULL ;
 	$saveDroits = isset($_POST['sauveDroits']) ? $_POST['sauveDroits'] : NULL ;
+	$ouvreProfs = isset($_POST['ouvertsProfs']) ? $_POST['ouvertsProfs'] : NULL ;
 
 	if ($creeFichier) {
 		//**************************************************
 		//********* Création du fichier de données *********
 		//**************************************************
 
-		if (!isset($_POST['classes']) or !count($_POST['classes'])){
-			echo "<p class='center rouge grand'>Vous devez choisir au moins une classe </p>";
+		if (!isset($_POST['classes']) or !count($_POST['classes'])){ 
+?>
+<p class='center rouge grand bold'>
+	Vous devez choisir au moins une classe
+</p>
+<?php
 			include_once "afficheAccueil.php";
 		} else {
 			$selectClasses = $_POST['classes'];
@@ -131,7 +136,12 @@ if ($utilisateur->getStatut()=="professeur") {
 		include_once "saveDroits.php";
 		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";
+	} else if ($ouvreProfs) {
+		include_once "saveOuvreProfs.php";
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
 	} else {
+		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";
 	}
 
@@ -139,7 +149,7 @@ if ($utilisateur->getStatut()=="professeur") {
 
 }
 
-//debug_var();
+debug_var();
 //**************** Pied de page *****************
 require_once("../../lib/footer.inc.php");
 //**************** Fin de pied de page *****************

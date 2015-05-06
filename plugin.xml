@@ -9,7 +9,7 @@
 	<auteurSite> </auteurSite>
 	<version>1.0.0</version>
 	<versiongepi>1.6.6</versiongepi>
-	<description>Export vers le livret scolaire dématérialisé de lycée</description>
+	<description>Livret scolaire lycée</description>
 	<installation>
 		<requetes>
 			<requete>
@@ -53,6 +53,15 @@
 			  `id_APB` int(11) COMMENT 'code matiere dans APB',
 			  UNIQUE KEY `matiere` ( `annee` , `id_APB` , `eleve` ),
 			  PRIMARY KEY (`id`) COMMENT 'appréciation annuelle des professeurs'
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_classes_ouvertes` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			   `classe` smallint(5) NOT NULL COMMENT 'id de la classe dans APB',
+			   `ouvert` ENUM('y', 'n')  NOT NULL  COMMENT 'ouvert ou pas à la saisie par les profs' , 
+			  UNIQUE KEY `classe` ( `classe` ),
+			  PRIMARY KEY (`id`) COMMENT 'classes ouvertes aux saisies par les professeurs'
 			) ;
 			</requete>
 		    <!--
@@ -120,6 +129,9 @@
 			</requete>
 			<requete>
 			   DROP TABLE `plugin_lsl_eval_app`;
+			</requete>
+			<requete>
+			   DROP TABLE `plugin_lsl_classes_ouvertes`;
 			</requete>
 		    <!--
 			<requete>

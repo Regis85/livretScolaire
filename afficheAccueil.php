@@ -36,14 +36,17 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 ?>
 
 <p class="center rouge grand bold" >
-	Vous devez avoir installé et ouvert le plugin APB avant d'utiliser ce plugin
+	Vous devez avoir installé et ouvert le plugin APB avant d'utiliser ce plugin.
 </p>
 	<?php
 } else {
 ?>	
 
-<p class="center rouge grand bold" >
-	Vous devez avoir effectué les extractions pour APB avant d'utiliser ce plugin
+<p class="center rouge grand" >
+	Les données utilisées sont celles du plugin APB.
+	<br />
+	Vous devez avoir effectué les extractions du 3<sup>ème</sup> trimestre 
+	avant de créer le fichier .xml à importer dans LSL.
 </p>
 
 <fieldset <?php if (!lsl_getDroit('droitCompetences')) { ?> 
@@ -171,29 +174,48 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<legend>Liste des classes <?php echo $anneeSolaire; ?>/<?php echo $anneeSolaire+1; ?></legend>
 	<?php if ($classes && $classes->num_rows) { ?>
 	<p title="Cliquez pour afficher/masquer le tableau"
-		   onclick="bascule('tableClasses');"
-		   class="center grand bold"
-			   style="cursor:pointer" 
+	   onclick="bascule('tableClasses');"
+	   class="center grand bold"
+	   style="cursor:pointer" 
 	   >
-		il y a <?php echo $classes->num_rows ?> classes pour <?php echo $anneeSolaire; ?>/<?php echo $anneeSolaire+1; ?>
+		Il y a <?php echo $classes->num_rows ?> classes pour <?php echo $anneeSolaire; ?>/<?php echo $anneeSolaire+1; ?>.
+		
 	</p>
-	
+		
 	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">	
+		<p class="center">
+			<button type="button" 
+					onclick="bascule('tableClasses');" 
+					title="Cliquez pour afficher/masquer le tableau" >
+				afficher/masquer le tableau
+			</button>
+			<button name="ouvertsProfs" 
+					id="ouvertsProfs" 
+					value="1" 
+					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
+				Ouvrir les classes aux enseignants
+			</button>
+		</p>
+	
 		<table class="boireaus sortable resizable"
 			   id="tableClasses"
 			   >
 			<tr>
 				<th>
-					nom_court
+					nom court
 				</th>
 				<th>
-					nom_complet
+					nom complet
 				</th>
 				<th>
 					niveau
 				</th>
-				<th>
-					sélectionner
+				<th title="Sélectionner les classes à extraire dans le fichier .xml pour LSL" 
+					style="cursor:pointer" >
+					<span onclick="getElementById('creeFichier').validate()">
+						à extraire
+					</span>
+					
 						<img src='../../images/enabled.png' 
 							 class='icone15' 
 							 title='Cocher toutes les classes'
@@ -205,6 +227,21 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 							 title='Décocher toutes les classes'
 							 style="cursor:pointer"
 							 onclick="DecocheColonneSelect(<?php echo $classes->num_rows ?>)"  />
+				</th>
+				<th style="cursor:pointer" 
+					title="Sélectionner les classes à ouvrir à la saisie par les enseignants" >
+					saisie en profs
+						<img src='../../images/enabled.png' 
+							 class='icone15' 
+							 title='Cocher toutes les classes'
+							 style="cursor:pointer"
+							 onclick="CocheProfSelect(<?php echo $classes->num_rows ?>)" />
+					/
+						<img src='../../images/disabled.png' 
+							 class='icone15' 
+							 title='Décocher toutes les classes'
+							 style="cursor:pointer"
+							 onclick="DecocheProfSelect(<?php echo $classes->num_rows ?>)"  />
 				</th>
 			</tr>
 	<?php 
@@ -227,7 +264,17 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 					<input type="checkbox" 
 						   name="classes[<?php echo $obj->id; ?>]" 
 						   id="classe_<?php echo $id; ?>" />
-					<?php echo $obj->id; ?>
+					<?php //echo $obj->id; ?>
+				</td>
+				<td>
+					<input type="checkbox" 
+						   name="classe_prof[<?php echo $obj->id; ?>]" 
+						   id="classe_prof_<?php echo $id; ?>" 
+						   <?php if (lsl_get_ouvert_prof($obj->id)){ ?>
+						   checked="checked"
+						   <?php } ?>
+ <?php // TODO enregistrer automatiquement lors du click grace à une bascule ?>
+						   />
 				</td>
 			
 			</tr>
@@ -245,10 +292,15 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 <?php } else  { ?>
 		<p class="rouge bold">Erreur lors de l'extraction des classes, le plugin APB est-il bien installé ? </p>
 <?php } ?>
-		<p>
+		<p class="center" style="margin-top:1em;">			
 			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-			Créer le fichier
-			<input type="submit" name="creeFichier" id="creeFichier" />
+			<button type="submit" 
+					name="creeFichier" 
+					id="creeFichier" 
+					value="1"
+					title="Créer le fichier .xml à importer dans LSL">
+				Créer le fichier .xml
+			</button>			
 		</p>
 	</form>
 </fieldset>

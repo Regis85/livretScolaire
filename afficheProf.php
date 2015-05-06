@@ -28,19 +28,22 @@
 $annee = NULL;
 
 
-$anneeChoisie = isset($_POST['choixAnnee']) ? $_POST['choixAnnee'] : (isset($_SESSION['choixAnnee']) ? $_SESSION['choixAnnee'] : NULL );
+//$anneeChoisie = isset($_POST['choixAnnee']) ? $_POST['choixAnnee'] : (isset($_SESSION['choixAnnee']) ? $_SESSION['choixAnnee'] : NULL );
+if ($_POST['choixClasses'] && !isset($_POST['classes'])) {
+	unset($_SESSION['classes']);
+}
 $classesChoisies = isset($_POST['classes']) ? $_POST['classes'] : (isset($_SESSION['classes']) ? $_SESSION['classes'] : NULL) ;
    
 $anneeLSL = lsl_annee(getSettingValue("gepiYear"));
 
 $anneeAPB = $anneeLSL+1;
 
-if(!$anneeChoisie) {
+//if(!$anneeChoisie) {
 	$anneeChoisie = $anneeAPB;
-}
+// }
 $anneeLSLChoisie = $anneeChoisie -1;
 
-$_SESSION['choixAnnee'] = $anneeChoisie;
+// $_SESSION['choixAnnee'] = $anneeChoisie;
 $_SESSION['classes'] = $classesChoisies;
 // echo $anneeLSL."/".$anneeAPB." année choisie : ".($anneeChoisie-1)."/".$anneeChoisie;
 // echo $_SESSION['LSL_choixAnnee']."-".$_SESSION['classes'];
@@ -70,7 +73,7 @@ if(isset($_POST['appEleves'])) {
 <fieldset>
 	<legend>Liste des classes <?php echo $anneeLSLChoisie; ?>/<?php echo $anneeChoisie; ?></legend>
 	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">	
-		
+<?php 	/*	 ?>
 		<p>
 			<select name="choixAnnee" id="choixAnnee" onchange="submit()">
 				<?php 
@@ -85,16 +88,16 @@ if(isset($_POST['appEleves'])) {
 				<?php }	?>
 			</select>
 		</p>
-
+<?php */	 ?>
 <?php if($classesProf->num_rows) {?>
 		<table class="boireaus sortable resizable"
 					   id="tableClasses">
 			<tr>
 				<th>
-					id
+					nom court
 				</th>
 				<th>
-					nom court
+					nom complet
 				</th>
 				<th>
 					Sélectionner
@@ -114,13 +117,15 @@ if(isset($_POST['appEleves'])) {
 			<?php
 				$cpt =1;
 				$id =1;
-				while ($classeProf = $classesProf->fetch_object()){ ?>
+				while ($classeProf = $classesProf->fetch_object()){ 
+					if (lsl_get_ouvert_prof($classeProf->id)) { ?>
 			<tr class="lig<?php echo $cpt; ?>">
 				<td>
-					<?php  echo $classeProf->id; ?>
+					<?php  //echo $classeProf->id; ?>
+					<?php  echo $classeProf->nom_court; ?>
 				</td>
 				<td>
-					<?php  echo $classeProf->nom_court; ?>
+					<?php  echo $classeProf->nom_complet; ?>
 				</td>
 				<td>
 					<input type="checkbox" 
@@ -129,24 +134,25 @@ if(isset($_POST['appEleves'])) {
 						   <?php if (isset($_SESSION['classes'][$classeProf->id])) echo "checked = 'checked'"  ?>
 						   
 						   />
-					<?php echo $classeProf->id; ?>
+					<?php //echo $classeProf->id; ?>
 
 				</td>
 			</tr>
-
-
 			 <?php
-				$cpt*=-1;
-				$id++;
+						$cpt*=-1;
+						$id++;
+					}
 				} ?>
 		</table>
 
 <?php } ?>
 
 
-		<p>
+		<p style="margin-top:1em;">
 			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-			<input type="submit" name="choixClasses" id="choixClasses" value="Sélectionner" />
+			<button name="choixClasses" id="choixClasses" value="Sélectionner" >
+				Afficher les élèves des classes sélectionnées
+			</button>
 		</p>
 	</form>
 </fieldset>
@@ -155,7 +161,7 @@ if(isset($_POST['appEleves'])) {
 <?php if($classesChoisies) {?>
 
 	<?php  if($elevesChoisis) {?>
-<fieldset>
+<fieldset class="margin-top:1em">
 	<legend>Élèves</legend>
 <form method="post" action="index.php" id="form_elv" enctype="multipart/form-data">	
 <table class="boireaus sortable resizable"
@@ -163,7 +169,7 @@ if(isset($_POST['appEleves'])) {
 	   >
 	<tr>
 		<th>
-			id classe
+			Classe
 		</th>
 		<th>
 			Nom Prénom
@@ -179,7 +185,7 @@ if(isset($_POST['appEleves'])) {
 		<?php while ($elvChoisi = $elevesChoisis->fetch_object()){?>
 	<tr class="lig<?php echo $cpt; ?>">
 		<td>
-			<?php echo $elvChoisi->id_classe; ?>
+			<?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?>
 		</td>
 		<td style="text-align: left;">
 			<?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?> 
@@ -197,10 +203,7 @@ if(isset($_POST['appEleves'])) {
 					//on change de matière
 					
 					if (0 != $moyenne) {
-					//on change vraiment de matière
-						// On ferme la case
-						// On entre l'appréciation
-						// On crée une autre ligne
+					//on change vraiment de matière, on ferme la case, on entre l'appréciation, on crée une autre ligne
 						echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." ";
 						?>
 		</td>
@@ -218,7 +221,7 @@ if(isset($_POST['appEleves'])) {
 		</td>
 	</tr>
 	<tr class="lig<?php echo $cpt; ?>">
-		<td><?php echo $elvChoisi->id_classe; ?></td>
+		<td><?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?></td>
 		<td style="text-align: left;"><?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?></td>
 		<td style="text-align: left;">
 		<?php	
@@ -258,8 +261,10 @@ if(isset($_POST['appEleves'])) {
 		<?php } ?>
 	
 </table>
-	<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-	<input type="submit" name="appEleves" id="appEleves" value="Enregistrer" />
+	<p class="center">
+		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+		<input style="margin-top:1em;" type="submit" name="appEleves" id="appEleves" value="Enregistrer" />
+	</p>	
 	</form>
 </fieldset>
 

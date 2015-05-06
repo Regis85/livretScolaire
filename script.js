@@ -1,4 +1,5 @@
 
+
 function bascule(elem)
 {
    etat=document.getElementById(elem).style.display;
@@ -23,6 +24,23 @@ function DecocheColonneSelect($max) {
 	for (var k=1;k<=$max;k++) {
 		if(document.getElementById('classe_'+k)){
 			document.getElementById('classe_'+k).checked = false;
+		}
+	}
+}
+
+function CocheProfSelect($max) {
+	for (var i=1;i<=$max;i++) {
+		if(document.getElementById('classe_prof_'+i)){
+			document.getElementById('classe_prof_'+i).checked = true;
+		}
+	}
+}
+
+
+function DecocheProfSelect($max) {
+	for (var k=1;k<=$max;k++) {
+		if(document.getElementById('classe_prof_'+k)){
+			document.getElementById('classe_prof_'+k).checked = false;
 		}
 	}
 }

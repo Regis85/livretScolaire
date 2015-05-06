@@ -456,3 +456,36 @@ function lsl_enregistreDroits($droit , $valeur) {
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);
 }
+
+function lsl_enregistre_ouvert_prof($classe , $valeur) {
+	global $mysqli;
+	$sql = "INSERT INTO `plugin_lsl_classes_ouvertes` (`id` ,`classe` ,`ouvert`) "
+	   . "VALUES (NULL , '".$classe."', '".$valeur."') "
+	   . "ON DUPLICATE KEY UPDATE `ouvert` = '".$valeur."' ";	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	
+}
+
+function lsl_get_ouvert_prof($classe) {
+	global $mysqli;
+	$retour = FALSE;
+	$sql = "SELECT * FROM `plugin_lsl_classes_ouvertes` WHERE `classe` = '".$classe."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	if ($resultchargeDB->num_rows) {
+		$droitRetour = $resultchargeDB->fetch_object();
+		if ($droitRetour->ouvert == "y") {
+			$retour = TRUE;
+		}
+	}
+	
+	return $retour;	
+}
+
+function cherche_classe_APB($id, $annee) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_archAPB_classes` WHERE `id` = '".$id."' AND `annee` = '".$annee."' ";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB->fetch_object();	
+}
