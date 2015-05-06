@@ -21,39 +21,24 @@
 * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-// chercher dans `plugin_archAPB_profs` le numero de prof à partir de son login 
-// puis chercher s'il a des notes dans `plugin_archAPB_notes`
-// puis chercher les classes à partir des INE 
-// au besoin limiter les élèves aux classes choisies
 $annee = NULL;
 
+if (isset($_GET['classe'])) {unset($_SESSION['classes']);}
 
-//$anneeChoisie = isset($_POST['choixAnnee']) ? $_POST['choixAnnee'] : (isset($_SESSION['choixAnnee']) ? $_SESSION['choixAnnee'] : NULL );
-if ($_POST['choixClasses'] && !isset($_POST['classes'])) {
-	unset($_SESSION['classes']);
-}
-$classesChoisies = isset($_POST['classes']) ? $_POST['classes'] : (isset($_SESSION['classes']) ? $_SESSION['classes'] : NULL) ;
-   
+// on passe par un tableau, reste 
+$classesChoisies = isset($_GET['classe']) ? $_GET['classe'] : (isset($_SESSION['classes']) ? $_SESSION['classes'] : NULL) ;
+
 $anneeLSL = lsl_annee(getSettingValue("gepiYear"));
+$anneeAPB = $anneeAPB = $anneeLSL+1;
 
-$anneeAPB = $anneeLSL+1;
-
-//if(!$anneeChoisie) {
-	$anneeChoisie = $anneeAPB;
-// }
-$anneeLSLChoisie = $anneeChoisie -1;
-
-// $_SESSION['choixAnnee'] = $anneeChoisie;
 $_SESSION['classes'] = $classesChoisies;
-// echo $anneeLSL."/".$anneeAPB." année choisie : ".($anneeChoisie-1)."/".$anneeChoisie;
-// echo $_SESSION['LSL_choixAnnee']."-".$_SESSION['classes'];
 
 //===== Recherche des classes =====
-$classesProf = chercheClassesProf($_SESSION['login'], $anneeChoisie);
+$classesProf = chercheClassesProf($_SESSION['login'], $anneeAPB);
 
 //===== Recherche des élèves =====
 if ($classesChoisies) {
-	$elevesChoisis = chercheElevesProf($classesChoisies, $_SESSION['login'], $anneeChoisie);
+	$elevesChoisis = chercheElevesProf($classesChoisies, $_SESSION['login'], $anneeAPB);
 }
 
 //===== Recherche des notes =====
@@ -63,208 +48,134 @@ if(isset($_POST['appEleves'])) {
 			$clefs = explode ("_",$key) ;
 			setAppreciationProf($clefs[0], $clefs[1], $clefs[2], $value, $_SESSION['login']);
 		}
-		
 	}
-	
 }
-
 
 ?>
 <fieldset>
-	<legend>Liste des classes <?php echo $anneeLSLChoisie; ?>/<?php echo $anneeChoisie; ?></legend>
-	<form method="post" action="index.php" id="form_LSL" enctype="multipart/form-data">	
-<?php 	/*	 ?>
-		<p>
-			<select name="choixAnnee" id="choixAnnee" onchange="submit()">
-				<?php 
-				$cpt = 0;
-				for($cpt = 0;$cpt<10;$cpt++) {
-				?>
-				<option value="<?php echo $anneeAPB-$cpt; ?>"
-						<?php if ($anneeAPB-$cpt == $anneeChoisie) echo " selected = 'selected'" ; ?> >
-					<?php echo $anneeAPB-$cpt; ?>
-				</option>
-				
-				<?php }	?>
-			</select>
-		</p>
-<?php */	 ?>
-<?php if($classesProf->num_rows) {?>
-		<table class="boireaus sortable resizable"
-					   id="tableClasses">
-			<tr>
-				<th>
-					nom court
-				</th>
-				<th>
-					nom complet
-				</th>
-				<th>
-					Sélectionner
-					<img src='../../images/enabled.png' 
-						 class='icone15' 
-						 title='Cocher toutes les classes'
-						 style="cursor:pointer"
-						 onclick="CocheColonneSelect(<?php echo $classesProf->num_rows ?>)" />
-				/
-					<img src='../../images/disabled.png' 
-						 class='icone15' 
-						 title='Décocher toutes les classes'
-						 style="cursor:pointer"
-						 onclick="DecocheColonneSelect(<?php echo $classesProf->num_rows ?>)"  />
-				</th>
-			</tr>
-			<?php
-				$cpt =1;
-				$id =1;
-				while ($classeProf = $classesProf->fetch_object()){ 
-					if (lsl_get_ouvert_prof($classeProf->id)) { ?>
-			<tr class="lig<?php echo $cpt; ?>">
-				<td>
-					<?php  //echo $classeProf->id; ?>
-					<?php  echo $classeProf->nom_court; ?>
-				</td>
-				<td>
-					<?php  echo $classeProf->nom_complet; ?>
-				</td>
-				<td>
-					<input type="checkbox" 
-						   name="classes[<?php echo $classeProf->id; ?>]" 
-						   id="classe_<?php echo $id; ?>"
-						   <?php if (isset($_SESSION['classes'][$classeProf->id])) echo "checked = 'checked'"  ?>
-						   
-						   />
-					<?php //echo $classeProf->id; ?>
-
-				</td>
-			</tr>
-			 <?php
-						$cpt*=-1;
-						$id++;
-					}
-				} ?>
-		</table>
-
-<?php } ?>
-
-
-		<p style="margin-top:1em;">
-			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-			<button name="choixClasses" id="choixClasses" value="Sélectionner" >
-				Afficher les élèves des classes sélectionnées
-			</button>
-		</p>
-	</form>
+	<legend>Liste des classes <?php echo $anneeLSL; ?>/<?php echo $anneeAPB; ?></legend>
+<?php
+if($classesProf->num_rows) {	
+	while ($classeProf = $classesProf->fetch_object()){ 
+		if (lsl_get_ouvert_prof($classeProf->id)) { ?>
+	<p>
+		<a href="?classe[<?php echo $classeProf->id; ?>]=on<?php echo add_token_in_url(); ?>">
+			<?php echo $classeProf->nom_complet; ?>
+		</a>		
+	</p>
+<?php		}
+	}
+}
+?>	
 </fieldset>
-
 
 <?php if($classesChoisies) {?>
 
 	<?php  if($elevesChoisis) {?>
 <fieldset class="margin-top:1em">
 	<legend>Élèves</legend>
-<form method="post" action="index.php" id="form_elv" enctype="multipart/form-data">	
-<table class="boireaus sortable resizable"
-	   id="tableEleves"
-	   >
-	<tr>
-		<th>
-			Classe
-		</th>
-		<th>
-			Nom Prénom
-		</th>
-		<th>
-			Notes
-		</th>
-		<th>
-			Appréciation (prof)
-		</th>
-	</tr>
-		<?php $cpt=1;?>
-		<?php while ($elvChoisi = $elevesChoisis->fetch_object()){?>
-	<tr class="lig<?php echo $cpt; ?>">
-		<td>
-			<?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?>
-		</td>
-		<td style="text-align: left;">
-			<?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?> 
-		</td>
-		<td style="text-align: left;">
-		<?php
-			$notes = chercheNotes($elvChoisi->ine,$_SESSION['login'],$anneeChoisie);
-			if($notes) {?>
-			<?php 
-				$exMatiere = "";
-				$moyenne = 0;
-				$nbNotes = 0; 
-			while ($noteActive = $notes->fetch_object()) {
-				if ($exMatiere != $noteActive->code_service) {
-					//on change de matière
-					
-					if (0 != $moyenne) {
-					//on change vraiment de matière, on ferme la case, on entre l'appréciation, on crée une autre ligne
-						echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." ";
-						?>
-		</td>
-		<td style="text-align: left;">
-		<?php if (lsl_getDroit('droitAppreciation')) { ?>
-			<textarea rows="4" cols="70"  
-					  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>]"
-					  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>"
-					  maxlength="300"
-					  style="text-align: left;"
-					  /><?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?></textarea>
-			<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeChoisie)); ?>
-			<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
-		<?php } ?>
-		</td>
-	</tr>
-	<tr class="lig<?php echo $cpt; ?>">
-		<td><?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?></td>
-		<td style="text-align: left;"><?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?></td>
-		<td style="text-align: left;">
-		<?php	
-						
-						//echo $moyenne;
+	<form method="post" action="index.php" id="form_elv" enctype="multipart/form-data">	
+		<table class="boireaus sortable resizable"
+			   id="tableEleves"
+			   >
+			<tr>
+				<th>
+					Classe
+				</th>
+				<th>
+					Nom Prénom
+				</th>
+				<th>
+					Notes
+				</th>
+				<th>
+					Appréciation (prof)
+				</th>
+			</tr>
+				<?php $cpt=1;?>
+				<?php while ($elvChoisi = $elevesChoisis->fetch_object()){?>
+			<tr class="lig<?php echo $cpt; ?>">
+				<td>
+					<?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?>
+				</td>
+				<td style="text-align: left;">
+					<?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?> 
+				</td>
+				<td style="text-align: left;">
+				<?php
+					$notes = chercheNotes($elvChoisi->ine,$_SESSION['login'],$anneeAPB);
+					if($notes) {?>
+					<?php 
 						$exMatiere = "";
 						$moyenne = 0;
-						$nbNotes = 0;
+						$nbNotes = 0; 
+					while ($noteActive = $notes->fetch_object()) {
+						if ($exMatiere != $noteActive->code_service) {
+							//on change de matière
+
+							if (0 != $moyenne) {
+							//on change vraiment de matière, on ferme la case, on entre l'appréciation, on crée une autre ligne
+								echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." ";
+								?>
+				</td>
+				<td style="text-align: left;">
+				<?php if (lsl_getDroit('droitAppreciation')) { ?>
+					<textarea rows="4" cols="70"  
+							  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeAPB; ?>]"
+							  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeAPB; ?>"
+							  maxlength="300"
+							  style="text-align: left;"
+							  /><?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeAPB); ?></textarea>
+					<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeAPB)); ?>
+					<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
+				<?php } ?>
+				</td>
+			</tr>
+			<tr class="lig<?php echo $cpt; ?>">
+				<td><?php echo cherche_classe_APB($elvChoisi->id_classe, $anneeAPB)->nom_court; ?></td>
+				<td style="text-align: left;"><?php echo $elvChoisi->nom; ?> <?php echo $elvChoisi->prenom; ?></td>
+				<td style="text-align: left;">
+				<?php	
+
+								//echo $moyenne;
+								$exMatiere = "";
+								$moyenne = 0;
+								$nbNotes = 0;
+							}
+
+							echo " ".getMatiere($noteActive->code_service,$anneeAPB)." "; 
+						}
+						$nbNotes++;
+						$moyenne += floatval($noteActive->moyenne);
+						echo "-".$noteActive->moyenne."-";
+						$exMatiere = $noteActive->code_service;
 					}
-					
-					echo " ".getMatiere($noteActive->code_service,$anneeChoisie)." "; 
-				}
-				$nbNotes++;
-				$moyenne += floatval($noteActive->moyenne);
-				echo "-".$noteActive->moyenne."-";
-				$exMatiere = $noteActive->code_service;
-			}
-			echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." "; ?>
-		<?php	} ?>
-		</td>
-		<td style="text-align: left;">
-		<?php if (lsl_getDroit('droitAppreciation')) { ?>
-			<textarea rows="4" cols="70"  
-					  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>]"
-					  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeChoisie; ?>"
-					  maxlength="300"
-					  style="text-align: left;"
-					  />
-						  <?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeChoisie); ?>
-			</textarea>
-			<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeChoisie)); ?>
-			<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
-		<?php	} ?>
-		</td>
-	</tr>
-		<?php	$cpt *= -1; ?>
-		<?php } ?>
-	
-</table>
-	<p class="center">
-		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-		<input style="margin-top:1em;" type="submit" name="appEleves" id="appEleves" value="Enregistrer" />
-	</p>	
+					echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." "; ?>
+				<?php	} ?>
+				</td>
+				<td style="text-align: left;">
+				<?php if (lsl_getDroit('droitAppreciation')) { ?>
+					<textarea rows="4" cols="70"  
+							  name="app[<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeAPB; ?>]"
+							  id="app_<?php echo $elvChoisi->ine; ?>_<?php echo $exMatiere ?>_<?php echo $anneeAPB; ?>"
+							  maxlength="300"
+							  style="text-align: left;"
+							  />
+								  <?php echo getAppreciationProf($elvChoisi->ine, $exMatiere, $anneeAPB); ?>
+					</textarea>
+					<?php $prof = getUtilisateur(getLoginProfAppreciation($elvChoisi->ine, $exMatiere, $anneeAPB)); ?>
+					<?php if ($prof) {echo " (".$prof->nom." ".$prof->prenom.")";} ?>
+				<?php	} ?>
+				</td>
+			</tr>
+				<?php	$cpt *= -1; ?>
+				<?php } ?>
+
+		</table>
+		<p class="center">
+			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<input style="margin-top:1em;" type="submit" name="appEleves" id="appEleves" value="Enregistrer" />
+		</p>	
 	</form>
 </fieldset>
 
