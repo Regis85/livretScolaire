@@ -71,8 +71,11 @@ $dirTemp .= get_user_temp_directory()."/";
 
 include_once "fonctions.php";
 
-$anneeSolaire=  apb_annee(getSettingValue("gepiYear"));
+//$anneeSolaire=  apb_annee(getSettingValue("gepiYear"));
 //echo $anneeSolaire;
+$anneeSolaire = $anneeLSL = lsl_annee(getSettingValue("gepiYear"));
+$anneeAPB = $anneeAPB = $anneeLSL+1;
+
 //********************************************
 //******************* TODO *******************
 //********************************************
@@ -96,6 +99,7 @@ if ($utilisateur->getStatut()=="professeur") {
 	require_once("afficheProf.php");
 	
 } elseif ($utilisateur->getStatut()=="scolarite") {
+	require_once("afficheScolarite.php");	
 	
 } elseif ($utilisateur->getStatut()=="cpe") {
 	

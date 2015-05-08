@@ -28,9 +28,6 @@ if (isset($_GET['classe'])) {unset($_SESSION['classes']);}
 // on passe par un tableau, reste 
 $classesChoisies = isset($_GET['classe']) ? $_GET['classe'] : (isset($_SESSION['classes']) ? $_SESSION['classes'] : NULL) ;
 
-$anneeLSL = lsl_annee(getSettingValue("gepiYear"));
-$anneeAPB = $anneeAPB = $anneeLSL+1;
-
 $_SESSION['classes'] = $classesChoisies;
 
 //===== Recherche des classes =====
