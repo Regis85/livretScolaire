@@ -119,19 +119,19 @@
 	<desinstallation>
 		<requetes>
 			<requete>
-			   DROP TABLE `plugin_lsl_droit`;
+			   DROP TABLE IF EXISTS `plugin_lsl_droit`;
 			</requete>
 			<requete>
-			   DROP TABLE `plugin_lsl_competences`;
+			   DROP TABLE IF EXISTS `plugin_lsl_competences`;
 			</requete>
 			<requete>
-			   DROP TABLE `plugin_lsl_correspondances`;
+			   DROP TABLE IF EXISTS `plugin_lsl_correspondances`;
 			</requete>
 			<requete>
-			   DROP TABLE `plugin_lsl_eval_app`;
+			   DROP TABLE IF EXISTS `plugin_lsl_eval_app`;
 			</requete>
 			<requete>
-			   DROP TABLE `plugin_lsl_classes_ouvertes`;
+			   DROP TABLE IF EXISTS `plugin_lsl_classes_ouvertes`;
 			</requete>
 		    <!--
 			<requete>
