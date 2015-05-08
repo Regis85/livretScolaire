@@ -218,6 +218,9 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 					nom complet
 				</th>
 				<th>
+					Lycée
+				</th>
+				<th>
 					niveau
 				</th>
 				<th style="cursor:pointer" 
@@ -259,13 +262,29 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		$id =1;
 		while ($obj = $classes->fetch_object()) {
 	?>
-			<tr class="lig<?php echo $cpt; ?>">
-			
+			<tr class="lig<?php echo $cpt; ?>">			
 				<td>
 					<?php echo $obj->nom_court; ?>
 				</td>
 				<td>
 					<?php echo $obj->nom_complet; ?>
+				</td>
+				<td>
+					<select name="lycee[<?php echo $obj->id; ?>]" id="lycee_<?php echo $id; ?>" >
+						<option value="g" 
+							<?php if ('g' == lsl_get_type_lycee($obj->id)) { echo "selected = 'selected' ";} ?> >
+							général
+						</option>
+						<option value="t" 
+							<?php if ('t' == lsl_get_type_lycee($obj->id)) { echo "selected = 'selected' ";} ?> >
+							technologique
+						</option>
+						<option value="p" 
+							<?php if ('p' == lsl_get_type_lycee($obj->id)) { echo "selected = 'selected' ";} ?> >
+							professionnel
+						</option>
+					</select>
+					
 				</td>
 				<td>
 					<?php echo $obj->niveau; ?>

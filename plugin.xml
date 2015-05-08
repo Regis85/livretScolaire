@@ -59,9 +59,23 @@
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_classes_ouvertes` (
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
 			   `classe` smallint(5) NOT NULL COMMENT 'id de la classe dans APB',
-			   `ouvert` ENUM('y', 'n')  NOT NULL  COMMENT 'ouvert ou pas à la saisie par les profs' , 
+			   `ouvert` ENUM('y', 'n')  NOT NULL  COMMENT 'ouvert ou pas à la saisie par les profs' ,
+			   `type` ENUM('g', 't', 'p')  NOT NULL  COMMENT 'lycée g → général , t → technique, p → professionnel' ,
 			  UNIQUE KEY `classe` ( `classe` ),
 			  PRIMARY KEY (`id`) COMMENT 'classes ouvertes aux saisies par les professeurs'
+			) ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_avis_annuelle` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves',
+			  `avis` ENUM ('T', 'F', 'A', 'D') DEFAULT NULL COMMENT 'avis pour le BAC',
+			  `appreciation` varchar(300) COMMENT 'appréciation annuelle des élèves',
+			  `annee` varchar(4) NOT NULL DEFAULT '' COMMENT 'annee LSL de l\'appréciation',
+			  `login` varchar(50) COMMENT 'Login de l\'appréciateur',
+			   `date` date COMMENT 'date de  l\'appréciation',
+			  UNIQUE KEY `eleve` (`code_ine`, `annee`),
+			  PRIMARY KEY (`id`)
 			) ;
 			</requete>
 		    <!--
@@ -87,15 +101,6 @@
 			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
 			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves ayant des engagements',
 			  `engagement` varchar(300) NOT NULL DEFAULT '' COMMENT 'description de l\'engagement',
-			  UNIQUE KEY `eleve` (`code_ine`),
-			  PRIMARY KEY (`id`)
-			) ;
-			</requete>
-			<requete>
-			   CREATE TABLE IF NOT EXISTS `plugin_lsl_examen` (
-			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
-			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves',
-			  `avis` ENUM ('T', 'F', 'A', 'D') COMMENT 'avis pour le BAC',
 			  UNIQUE KEY `eleve` (`code_ine`),
 			  PRIMARY KEY (`id`)
 			) ;
@@ -133,6 +138,12 @@
 			<requete>
 			   DROP TABLE IF EXISTS `plugin_lsl_classes_ouvertes`;
 			</requete>
+			<requete>
+			   DROP TABLE IF EXISTS `plugin_lsl_avis_annuelle`;
+			</requete>
+			<requete>
+			   DROP TABLE IF EXISTS `plugin_lsl_investissement`;
+			</requete>
 		    <!--
 			<requete>
 			   DROP TABLE `plugin_lsl_series`;
@@ -142,9 +153,6 @@
 			</requete>
 			<requete>
 			   DROP TABLE `plugin_lsl_engage_autre`;
-			</requete>
-			<requete>
-			   DROP TABLE `plugin_lsl_examen`;
 			</requete>
 			<requete>
 			   DROP TABLE `plugin_lsl_investissement`;

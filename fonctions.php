@@ -482,11 +482,11 @@ function lsl_enregistreDroits($droit , $valeur) {
 	$resultchargeDB = $mysqli->query($sql);
 }
 
-function lsl_enregistre_ouvert_prof($classe , $valeur) {
+function lsl_enregistre_ouvert_prof($classe , $valeur , $type) {
 	global $mysqli;
-	$sql = "INSERT INTO `plugin_lsl_classes_ouvertes` (`id` ,`classe` ,`ouvert`) "
-	   . "VALUES (NULL , '".$classe."', '".$valeur."') "
-	   . "ON DUPLICATE KEY UPDATE `ouvert` = '".$valeur."' ";	
+	$sql = "INSERT INTO `plugin_lsl_classes_ouvertes` (`id` ,`classe` ,`ouvert`,`type`) "
+	   . "VALUES (NULL , '".$classe."', '".$valeur."', '".$type."') "
+	   . "ON DUPLICATE KEY UPDATE `ouvert` = '".$valeur."' , `type` = '".$type."' ";	
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);
 	
@@ -548,8 +548,7 @@ function cherche_classe_scolarite($annee) {
 
 function chercheElevesClasse($classeChoisie, $annee) {	
 	global $mysqli;
-	$sql = "SELECT DISTINCT e.* "
-	   . "FROM `plugin_archAPB_eleves` AS e ";
+	$sql = "SELECT DISTINCT e.* FROM `plugin_archAPB_eleves` AS e ";
 	$sql .= "INNER JOIN `plugin_archAPB_classes` AS c ON (c.id = e.id_classe AND c.annee = e.annee) ";
 	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON (n.ine = e.ine AND n.annee  = e.annee) ";
 	$sql .= "AND n.annee = '".$annee."' ";
@@ -560,4 +559,54 @@ function chercheElevesClasse($classeChoisie, $annee) {
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
 }
+
+function lsl_get_type_lycee($classe) {	
+	global $mysqli;
+	$retour = "";
+	$sql = "SELECT type FROM plugin_lsl_classes_ouvertes WHERE classe = '".$classe."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	if ($resultchargeDB->num_rows)
+		$retour = $resultchargeDB->fetch_object()->type;
+	return $retour;		
+}
+
+function LSL_enregistre_avis_BAC($eleve, $anneeLSL, $avis,$login=NULL,  $appreciation=NULL, $date=NULL) {		
+	global $mysqli;
+	if ($avis =='') {$avis  = NULL; }
+	if ($avis) {
+		$sql = "INSERT INTO `plugin_lsl_avis_annuelle` (`id` ,`code_ine` ,`avis` ,`appreciation`,`annee`,`login`,`date`) "
+		   . "VALUES (NULL ,'".$eleve."','".$avis."','".$appreciation."','".$anneeLSL."','".$login."','".$date."') "
+	       . "ON DUPLICATE KEY UPDATE `avis`='".$avis."' ";	
+	} elseif ($appreciation) {
+		$sql = "INSERT INTO `plugin_lsl_avis_annuelle` (`id` ,`code_ine` ,`avis` ,`appreciation`,`annee`,`login`,`date`) "
+		   . "VALUES (NULL ,'".$eleve."','".$avis."','".$appreciation."','".$anneeLSL."','".$login."','".$date."') "
+	       . "ON DUPLICATE KEY UPDATE `appreciation`='".$appreciation."',`login`='".$login."',`date`='".$date."' ";		
+	}
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	
+}
+
+function LSL_get_avis_BAC($eleve, $anneeLSL) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_avis_annuelle` "
+	   . "WHERE `annee` = '".$anneeLSL."' "
+	   . "AND `code_ine` = '".$eleve."' ";
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);
+	return $resultchargeDB->fetch_object();		
+}
+
+function LSL_enregistre_avis_general_annee() {		
+	global $mysqli;
+}
+
+function getAppreciationAnnee($eleve, $anneeLSL) {		
+	global $mysqli;
+	$retour = 'Appreciation annuelle …';
+	return $retour;		
+}
+
+
 
