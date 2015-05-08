@@ -81,6 +81,9 @@ $anneeSolaire=  apb_annee(getSettingValue("gepiYear"));
 //**************** EN-TETE *****************
 $titre_page = "Livret scolaire";
 $tbs_librairies[]= "script.js";
+
+if (!suivi_ariane($_SERVER['PHP_SELF'],"Livret scolaire"))
+   echo "erreur lors de la création du fil d'ariane";
    
 require_once("../../lib/header.inc.php");
 
