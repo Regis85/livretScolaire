@@ -48,6 +48,7 @@ $cpt = 0;
 <?php 
 if ($classeChoisie) {
 ?>
+<<<<<<< HEAD
 	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">
 		
 	<p style="text-align: center; margin-top: 1em;">
@@ -65,6 +66,9 @@ if ($classeChoisie) {
 			<?php echo cherche_classe_APB($classeChoisie, $anneeAPB)->niveau ; ?>
 			<?php $_SESSION["LSL_classe_scolarite"] = cherche_classe_APB($classeChoisie, $anneeAPB)->id; ?>
 		</caption>
+=======
+	<table class="boireaus">
+>>>>>>> création de la page scolarité
 		<tr>
 			<th>
 				Nom Prénom
@@ -83,6 +87,7 @@ $cpt=1;
 			<td style="text-align: left;">
 				<?php echo $eleve->nom; ?> <?php echo $eleve->prenom; ?>
 			</td>
+<<<<<<< HEAD
 			<td>
 
 <?php if ('terminale' == cherche_classe_APB($classeChoisie, $anneeAPB)->niveau) { 
@@ -155,6 +160,11 @@ if ('p' == lsl_get_type_lycee($classeChoisie)) { ?>
 						 */ ?>
 				<?php echo LSL_get_avis_general_annee($eleve->ine, $anneeLSL); ?>
 				<?php /*</textarea>	 */ ?>	
+=======
+			</td>
+			<td>
+			<td>
+>>>>>>> création de la page scolarité
 			</td>
 		</tr>
 <?php 
@@ -173,6 +183,7 @@ $cpt*=-1;
 }
 ?>
 	</form>
+
 </fieldset>
 
 <fieldset>

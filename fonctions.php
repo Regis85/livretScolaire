@@ -623,3 +623,29 @@ function LSL_get_avis_general_annee($eleve, $anneeLSL) {
 
 
 
+function cherche_classe_scolarite($annee) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_archAPB_classes` AS c "
+	   . "INNER JOIN `plugin_lsl_classes_ouvertes` AS o "
+	   . "ON (c.id = o.classe) "
+	   . "WHERE `annee` = '".$annee."' "
+	   . "AND o.ouvert='y' ";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;	
+}
+
+function chercheElevesClasse($classeChoisie, $annee) {	
+	global $mysqli;
+	$sql = "SELECT DISTINCT e.* "
+	   . "FROM `plugin_archAPB_eleves` AS e ";
+	$sql .= "INNER JOIN `plugin_archAPB_classes` AS c ON (c.id = e.id_classe AND c.annee = e.annee) ";
+	$sql .= "INNER JOIN `plugin_archAPB_notes` AS n ON (n.ine = e.ine AND n.annee  = e.annee) ";
+	$sql .= "AND n.annee = '".$annee."' ";
+	$sql .= "AND (e.id_classe  = ".$classeChoisie.") ";
+	$sql .= "ORDER BY e.`id_classe` ASC , e.`nom` ASC , e.`prenom` ASC  ";
+	
+	//echo "<br />".$sql."<br />";
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB;		
+}
+
