@@ -23,10 +23,15 @@
 
 $annee = NULL;
 
+if (isset($_GET['pp'])) {
+	unset($_SESSION['classes']);
+}
+
 if (isset($_GET['classe'])) {unset($_SESSION['classes']);}
 
 // on passe par un tableau, reste 
 $classesChoisies = isset($_GET['classe']) ? $_GET['classe'] : (isset($_SESSION['classes']) ? $_SESSION['classes'] : NULL) ;
+$classePP = isset($_GET['pp']) ? $_GET['pp'] : NULL ;
 
 $_SESSION['classes'] = $classesChoisies;
 
@@ -36,6 +41,10 @@ $classesProf = chercheClassesProf($_SESSION['login'], $anneeAPB);
 //===== Recherche des élèves =====
 if ($classesChoisies) {
 	$elevesChoisis = chercheElevesProf($classesChoisies, $_SESSION['login'], $anneeAPB);
+}
+if ($classePP) {
+	$classe[$classePP] = 'on';
+	$elevesChoisis = chercheElevesProf($classe, $_SESSION['login'], $anneeAPB);
 }
 
 //===== Recherche des notes =====
@@ -62,8 +71,8 @@ if($classesProf->num_rows) {
 	</p>
 <?php if ($classeProf->login_pp == $_SESSION['login']){  ?>
 	<p>
-		<a href="?pp=<?php echo $classeProf->id; ?>=<?php echo $classeProf->id; ?><?php echo add_token_in_url(); ?>">
-			<?php echo $classeProf->nom_complet; ?> Appréciation générale
+		<a href="?pp=<?php echo $classeProf->id; ?><?php echo add_token_in_url(); ?>">
+			<?php echo $classeProf->nom_complet; ?> Appréciation générale annuelle
 		</a>
 	</p>
 <?php } ?>
@@ -76,8 +85,8 @@ if($classesProf->num_rows) {
 <?php if($classesChoisies) {?>
 
 	<?php  if($elevesChoisis) {?>
-<fieldset class="margin-top:1em">
-	<legend>Élèves</legend>
+<fieldset>
+	<legend>Élèves → appréciations annuelle dans les matières</legend>
 	<form method="post" action="index.php" id="form_elv" enctype="multipart/form-data">	
 		<table class="boireaus sortable resizable"
 			   id="tableEleves"
@@ -185,6 +194,109 @@ if($classesProf->num_rows) {
 
 	<?php } ?>
 
-<?php }
+<?php } ?>
 
+
+<?php if($classePP) {?>
+<fieldset>
+	<legend><?php echo cherche_classe_APB($classePP, $anneeAPB)->nom_complet ?> → appréciations générale annuelle</legend>
+	<form method="post" action="index.php" id="form_pp" enctype="multipart/form-data">
+		
+<?php if (lsl_getDroit('avisBacPP')) { ?>
+		<p style="text-align: center; margin-top: 1em;">
+			<?php if (function_exists("add_token_field")) {echo add_token_field();} ?>
+			<button name="enregistre" value="y" >
+				Enregistrer
+			</button>
+		</p>
+<?php } ?>
+		
+		<table class="boireaus">
+			<tr>
+				<th>Nom Prénom</th>
+				<th>Avis examen</th>
+				<th>Avis annuel</th>
+			</tr>
+<?php $cpt=1;?>
+<?php while ($eleve = $elevesChoisis->fetch_object()){ ?>
+			
+			<tr class="lig<?php echo $cpt; ?>">
+				<td style="text-align: left;"><?php echo $eleve->nom; ?> <?php echo $eleve->prenom; ?></td>
+				<td>
+<?php if ('terminale' == cherche_classe_APB($classePP, $anneeAPB)->niveau) { 
+	if (lsl_getDroit('avisBacPP')) { ?>
+				
+				<select name="avis[<?php echo $eleve->ine; ?>]">
+					<option value='' >
+						Choisissez un avis...
+					</option>
+					<option value="T" 
+							<?php if (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL)) && ('T' === LSL_get_avis_BAC($eleve->ine, $anneeLSL)->avis)) {  ?> 
+							selected="selected"
+							<?php }  ?> >
+						Très favorable
+					</option>
+					<option value="F"
+							<?php if (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL)) && ('F' == LSL_get_avis_BAC($eleve->ine, $anneeLSL)->avis)) {  ?> 
+							selected="selected"
+							<?php }  ?> >
+						Favorable
+					</option>
+<?php 
+if ('p' == lsl_get_type_lycee($classeChoisie)) { ?>
+					<option value="A"
+							<?php if (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL)) && ('A' === LSL_get_avis_BAC($eleve->ine, $anneeLSL)->avis))  {  ?> 
+							selected="selected"
+							<?php } ?> >
+						Assez favorable
+					</option>	
+<?php } ?>
+					<option value="D"
+							<?php if (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL)) && ('D' === LSL_get_avis_BAC($eleve->ine, $anneeLSL)->avis))  {  ?> 
+							selected="selected"
+							<?php } ?> >
+						Doit faire ses preuves
+					</option>
+				</select>
+				
+<?php }  elseif (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL))) {
+	$avisBac =  LSL_get_avis_BAC($eleve->ine, $anneeLSL);
+	switch ($avisBac->avis) {
+	case "T" :
+		echo 'Très favorable';
+		break;
+	case "F" :
+		echo 'Favorable';
+		break;
+	case "A" :
+		echo 'Assez favorable';
+		break;
+	case "D" :
+		echo 'Doit faire ses preuves';
+		break;
+	default:
+		echo '<span style="background:red;color:black;">&nbsp;&nbsp;non saisi&nbsp;&nbsp;</span>';
+	} 
+} else {
+	echo '<span style="background:red;color:black;">&nbsp;&nbsp;non saisi&nbsp;&nbsp;</span>';
+}	?>	
+<?php }	?>			
+				</td>
+				<td></td>
+			</tr>
+<?php	$cpt *= -1; ?>
+<?php } ?>
+		</table>
+		
+<?php if (lsl_getDroit('avisBacPP')) { ?>
+		<p style="text-align: center; margin-top: 1em;">
+			<button name="enregistre" value="y" >
+				Enregistrer
+			</button>
+		</p>
+<?php } ?>
+		
+	</form>	
+</fieldset>
+<?php }
 

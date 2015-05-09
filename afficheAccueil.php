@@ -389,10 +389,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<input type="checkbox" 
 				   name="avisBacPP" 
 				   id="avisBacPP"
-				   <?php if (lsl_getDroit('avisBacScolarite')) {echo " checked='checked' ";} ?>
-				   disabled="disabled"
+				   <?php if (lsl_getDroit('avisBacPP')) {echo " checked='checked' ";} ?>
 					  />
-			<span style='color:red'>non encore implémenté...</span>
 		</p>
 		<p>
 			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
