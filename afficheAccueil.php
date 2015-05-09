@@ -189,6 +189,16 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 					title="Cliquez pour afficher/masquer le tableau" >
 				afficher/masquer le tableau
 			</button>
+		</p>
+		<p class="center" style="margin-top:.5em;">
+			<button type="submit" 
+					name="creeFichier" 
+					id="creeFichier" 
+					value="1"
+					title="Créer le fichier .xml à importer dans LSL">
+				Créer le fichier .xml
+			</button>
+			&nbsp;
 			<button name="ouvertsProfs" 
 					id="ouvertsProfs" 
 					value="1" 
@@ -300,7 +310,14 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 					value="1"
 					title="Créer le fichier .xml à importer dans LSL">
 				Créer le fichier .xml
-			</button>			
+			</button>	
+			&nbsp;		
+			<button name="ouvertsProfs" 
+					id="ouvertsProfs" 
+					value="1" 
+					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
+				Ouvrir les classes aux enseignants
+			</button>
 		</p>
 	</form>
 </fieldset>
