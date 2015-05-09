@@ -573,7 +573,6 @@ function lsl_get_type_lycee($classe) {
 
 function LSL_enregistre_avis_BAC($eleve, $anneeLSL, $avis,$login=NULL,  $appreciation=NULL, $date=NULL) {		
 	global $mysqli;
-	if ($avis =='') {$avis  = NULL; }
 	if ($avis) {
 		$sql = "INSERT INTO `plugin_lsl_avis_annuelle` (`id` ,`code_ine` ,`avis` ,`appreciation`,`annee`,`login`,`date`) "
 		   . "VALUES (NULL ,'".$eleve."','".$avis."','".$appreciation."','".$anneeLSL."','".$login."','".$date."') "
@@ -582,10 +581,16 @@ function LSL_enregistre_avis_BAC($eleve, $anneeLSL, $avis,$login=NULL,  $appreci
 		$sql = "INSERT INTO `plugin_lsl_avis_annuelle` (`id` ,`code_ine` ,`avis` ,`appreciation`,`annee`,`login`,`date`) "
 		   . "VALUES (NULL ,'".$eleve."','".$avis."','".$appreciation."','".$anneeLSL."','".$login."','".$date."') "
 	       . "ON DUPLICATE KEY UPDATE `appreciation`='".$appreciation."',`login`='".$login."',`date`='".$date."' ";		
+	} elseif ($avis=='') {
+		$avis  = NULL;
+		$sql = "INSERT INTO `plugin_lsl_avis_annuelle` (`id` ,`code_ine` ,`avis` ,`appreciation`,`annee`,`login`,`date`) "
+		   . "VALUES (NULL ,'".$eleve."','".$avis."','".$appreciation."','".$anneeLSL."','".$login."','".$date."') "
+	       . "ON DUPLICATE KEY UPDATE `avis`='".$avis."' ";	
 	}
 	//echo "<br />".$sql."<br />";
-	$resultchargeDB = $mysqli->query($sql);
-	
+	if (isset($sql)) {
+		$resultchargeDB = $mysqli->query($sql);
+	}
 }
 
 function LSL_get_avis_BAC($eleve, $anneeLSL) {
@@ -598,11 +603,19 @@ function LSL_get_avis_BAC($eleve, $anneeLSL) {
 	return $resultchargeDB->fetch_object();		
 }
 
+function LSL_matieres_Eleve($eleve, $anneeLSL) {		
+	global $mysqli;	
+	//$sql = "SELECT * FROM `` ";
+	//echo "<br />".$sql."<br />";
+	//$resultchargeDB = $mysqli->query($sql);
+	//return $resultchargeDB->fetch_object();	
+}
+
 function LSL_enregistre_avis_general_annee() {		
 	global $mysqli;
 }
 
-function getAppreciationAnnee($eleve, $anneeLSL) {		
+function LSL_get_avis_general_annee($eleve, $anneeLSL) {		
 	global $mysqli;
 	$retour = 'Appreciation annuelle …';
 	return $retour;		

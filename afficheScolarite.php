@@ -49,6 +49,14 @@ $cpt = 0;
 if ($classeChoisie) {
 ?>
 	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">
+		
+	<p style="text-align: center; margin-top: 1em;">
+		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+		<button name="enregistre" value="y" >
+			Enregistrer
+		</button>
+	</p>
+	
 	<table class="boireaus">
 		<caption>
 			<?php echo cherche_classe_APB($classeChoisie, $anneeAPB)->nom_complet ; ?>
@@ -121,8 +129,8 @@ if ('p' == lsl_get_type_lycee($classeChoisie)) { ?>
 						  maxlength="300"
 						  style="text-align: left;"
 						 */ ?>
-				<?php echo getAppreciationAnnee($eleve->ine, $anneeLSL); ?>
-				<?php /*</textarea>	 */ ?>			
+				<?php echo LSL_get_avis_general_annee($eleve->ine, $anneeLSL); ?>
+				<?php /*</textarea>	 */ ?>	
 			</td>
 		</tr>
 <?php 
@@ -130,9 +138,9 @@ $cpt*=-1;
 	}
 ?>
 	</table>
-	<p>
+	<p style="text-align: center; margin-top: 1em;">
 		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
-		<button name="enregistre" value="y">
+		<button name="enregistre" value="y" >
 			Enregistrer
 		</button>
 	</p>
