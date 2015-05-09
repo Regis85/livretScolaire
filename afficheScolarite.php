@@ -51,10 +51,12 @@ if ($classeChoisie) {
 	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">
 		
 	<p style="text-align: center; margin-top: 1em;">
+<?php if (lsl_getDroit('avisBacScolarite')) { ?>
 		<?php if (function_exists("add_token_field")) {echo add_token_field();} ?>
 		<button name="enregistre" value="y" >
 			Enregistrer
 		</button>
+<?php } ?>
 	</p>
 	
 	<table class="boireaus">
@@ -161,10 +163,11 @@ $cpt*=-1;
 ?>
 	</table>
 	<p style="text-align: center; margin-top: 1em;">
-		<?php if (function_exists("add_token_field")) {echo add_token_field();} ?>
+<?php if (lsl_getDroit('avisBacScolarite')) { ?>
 		<button name="enregistre" value="y" >
 			Enregistrer
 		</button>
+<?php } ?>
 	</p>
 <?php 
 }

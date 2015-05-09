@@ -617,7 +617,7 @@ function LSL_enregistre_avis_general_annee() {
 
 function LSL_get_avis_general_annee($eleve, $anneeLSL) {		
 	global $mysqli;
-	$retour = 'Appreciation annuelle …';
+	$retour = '';
 	return $retour;		
 }
 
