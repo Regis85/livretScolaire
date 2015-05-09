@@ -60,6 +60,13 @@ if($classesProf->num_rows) {
 			<?php echo $classeProf->nom_complet; ?>
 		</a>		
 	</p>
+<?php if ($classeProf->login_pp == $_SESSION['login']){  ?>
+	<p>
+		<a href="?pp=<?php echo $classeProf->id; ?>=<?php echo $classeProf->id; ?><?php echo add_token_in_url(); ?>">
+			<?php echo $classeProf->nom_complet; ?> Appréciation générale
+		</a>
+	</p>
+<?php } ?>
 <?php		}
 	}
 }
