@@ -60,7 +60,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<form method="post" action="index.php" id="form_LSL_competences" enctype="multipart/form-data">
 	<?php // <form action="upload.php" method="post" enctype="multipart/form-data"> ?>
 		<p>
-			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			<input type="file" name="fileToUpload" id="fileToUpload">
 			<input type="submit" name="uploadFichier" id="uploadFichier" value="télécharger">	
 		</p>
@@ -111,7 +111,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	</p>
 	<form method="post" action="index.php" id="form_LSL_correspondances" enctype="multipart/form-data" >
 		<p class="center">
-			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			Nouvelle association MEF ←→ compétence
 		</p>
 		<p>
@@ -293,7 +293,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		<p class="rouge bold">Erreur lors de l'extraction des classes, le plugin APB est-il bien installé ? </p>
 <?php } ?>
 		<p class="center" style="margin-top:1em;">			
-			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			<button type="submit" 
 					name="creeFichier" 
 					id="creeFichier" 
@@ -316,7 +316,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 				Saisie des appréciations
 			</label>
 			<input type="checkbox" 
-				   name="droitAppreciation" 
+				   name="droitAppreciation"
+				   id="droitAppreciation"
 				   <?php if (lsl_getDroit('droitAppreciation')) {echo " checked='checked' ";} ?>
 					  />
 		</p>
@@ -326,13 +327,14 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			</label>
 			<input type="checkbox" 
 				   name="droitCompetences" 
+				   id="droitCompetences"
 				   <?php if (lsl_getDroit('droitCompetences')) {echo " checked='checked' ";} ?>
 				   disabled="disabled"
 					  />
 			<span style='color:red'>non encore implémenté...</span>
 		</p>
 		<p>
-			<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			<button name="sauveDroits" id="sauveDroits" value="oui" >
 				Enregistrer les droits
 			</button>
