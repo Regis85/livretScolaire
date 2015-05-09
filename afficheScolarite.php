@@ -51,7 +51,7 @@ if ($classeChoisie) {
 	<form method="post" action="index.php" id="form_LSL_classe" enctype="multipart/form-data">
 		
 	<p style="text-align: center; margin-top: 1em;">
-		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+		<?php if (function_exists("add_token_field")) {echo add_token_field();} ?>
 		<button name="enregistre" value="y" >
 			Enregistrer
 		</button>
@@ -83,7 +83,8 @@ $cpt=1;
 			</td>
 			<td>
 
-<?php if ('terminale' == cherche_classe_APB($classeChoisie, $anneeAPB)->niveau) { ?>
+<?php if ('terminale' == cherche_classe_APB($classeChoisie, $anneeAPB)->niveau) { 
+	if (lsl_getDroit('avisBacScolarite')) { ?>
 				
 				<select name="avis[<?php echo $eleve->ine; ?>]">
 					<option value='' >
@@ -118,6 +119,27 @@ if ('p' == lsl_get_type_lycee($classeChoisie)) { ?>
 					</option>
 				</select>
 				
+<?php }  elseif (is_object(LSL_get_avis_BAC($eleve->ine, $anneeLSL))) {
+	$avisBac =  LSL_get_avis_BAC($eleve->ine, $anneeLSL);
+	switch ($avisBac->avis) {
+	case "T" :
+		echo 'Très favorable';
+		break;
+	case "F" :
+		echo 'Favorable';
+		break;
+	case "A" :
+		echo 'Assez favorable';
+		break;
+	case "D" :
+		echo 'Doit faire ses preuves';
+		break;
+	default:
+		echo '<span style="background:red;color:black;">&nbsp;&nbsp;non saisi&nbsp;&nbsp;</span>';
+	} 
+} else {
+	echo '<span style="background:red;color:black;">&nbsp;&nbsp;non saisi&nbsp;&nbsp;</span>';
+}?>	
 <?php } ?>
 				
 			</td>
@@ -139,7 +161,7 @@ $cpt*=-1;
 ?>
 	</table>
 	<p style="text-align: center; margin-top: 1em;">
-		<?php if (function_exists("add_token_field")) echo add_token_field(); ?>
+		<?php if (function_exists("add_token_field")) {echo add_token_field();} ?>
 		<button name="enregistre" value="y" >
 			Enregistrer
 		</button>

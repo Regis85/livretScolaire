@@ -370,6 +370,31 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<span style='color:red'>non encore implémenté...</span>
 		</p>
 		<p>
+			Saisie des avis bacalauréat par :
+		</p>
+		<p>
+			<label for="avisBacScolarite">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;— les comptes <em>scolarité</em>
+			</label>
+			<input type="checkbox" 
+				   name="avisBacScolarite" 
+				   id="avisBacScolarite"
+				   <?php if (lsl_getDroit('avisBacScolarite')) {echo " checked='checked' ";} ?>
+					  />
+		</p>
+		<p>
+			<label for="avisBacPP">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;— les professeurs principaux
+			</label>
+			<input type="checkbox" 
+				   name="avisBacPP" 
+				   id="avisBacPP"
+				   <?php if (lsl_getDroit('avisBacScolarite')) {echo " checked='checked' ";} ?>
+				   disabled="disabled"
+					  />
+			<span style='color:red'>non encore implémenté...</span>
+		</p>
+		<p>
 			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			<button name="sauveDroits" id="sauveDroits" value="oui" >
 				Enregistrer les droits

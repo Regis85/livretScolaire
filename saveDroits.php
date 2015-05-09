@@ -1,5 +1,5 @@
 <?php
-$droitsPossibles = array('droitAppreciation','droitCompetences');
+$droitsPossibles = array('droitAppreciation','droitCompetences','avisBacScolarite','avisBacPP');
 
 foreach ($droitsPossibles as $droit) {
 	$enregistre = 'n';
