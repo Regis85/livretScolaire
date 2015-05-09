@@ -115,7 +115,8 @@ function engagementsEleve($ine) {
 
 function avisEleve($ine) {
 	global $mysqli;
-	$sql= "SELECT * FROM `plugin_lsl_examen` WHERE `code_ine` LIKE '".$ine."'";
+	$sql= "SELECT * FROM `plugin_lsl_avis_annuelle` WHERE `code_ine` LIKE '".$ine."'";	
+	//echo "<br />".$sql." ";
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;	
 }

@@ -1,9 +1,14 @@
 <p>
 	<a href="" class="bold">Retour</a>
 </p>
+
 <p class="center rouge grand" >
-	Vous devez avoir effectué les extractions pour APB avant d'utiliser ce plugin
+	Les données utilisées sont celles du plugin APB.
+	<br />
+	Vous devez avoir effectué les extractions du 3<sup>ème</sup> trimestre 
+	avant de créer le fichier .xml à importer dans LSL.
 </p>
+
 <p class="center">
 <?php
 echo "Éditeur : ".$sxe->entete->editeur;

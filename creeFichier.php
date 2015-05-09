@@ -10,6 +10,8 @@ $niveaux = niveauConcernees($anneeSolaire, $selectClasses);
 $classes = classesConcernees($anneeSolaire, $selectClasses);
 $eleves = elevesConcernees($anneeSolaire, $selectClasses);
 
+$elevesSansAvis = 0;
+
 $eleves2 = $eleves;
 while($eleve = $eleves2->fetch_object()){
 	$lastNiveau="";
@@ -42,15 +44,20 @@ while($eleve = $eleves2->fetch_object()){
 	}
 	
 	// récupérer l'avis d"examen
-	/*
+	/* */
 	$avisEleve=avisEleve($eleve->ine);
 	if($avisEleve->num_rows > 0) {
-		$newAvisElv=$newElv->addChild('avisExamen');
-		while ($avis = $avisEleve->fetch_object()){
+		$avis = $avisEleve->fetch_object();
+		if ($avis->avis) {
+			$newAvisElv=$newElv->addChild('avisExamen');
 			$newAvisElv->addAttribute('code',$avis->avis );
+		} else {
+			$elevesSansAvis ++;
 		}
+	} else {
+		$elevesSansAvis ++;
 	}
-	*/
+	/* */
 	
 	// récupérer les scolarités
 	$scolarites = $newElv->addChild('scolarites');
@@ -209,15 +216,23 @@ unset($dom);
 echo $validate;
 
 
-
-
+if ($elevesSansAvis) {
+?>
+<p class="center grand rouge">
+	<?php echo $elevesSansAvis ?>
+	élèves non pas d'avis pour le baccalauréat.
+</p>
+<?php	
+}
 if (isset($messages)) {
 ?>
+
 <p class="center grand bold rouge" 
 	onclick="bascule('messages')" 
 	style="cursor:pointer"
 	title="Cliquez pour déplier/plier">
-	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) echo "s"; ?> manquante<?php if(count($messages) > 1) echo "s"; ?>
+	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) echo "s"; ?> 
+	de matière manquante<?php if(count($messages) > 1) echo "s"; ?>
 </p>
 <p style="text-align: center">
 	<button type="button" onclick="bascule('messages')">Afficher/Cacher les appréciations manquantes</button>
