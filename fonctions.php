@@ -197,9 +197,17 @@ function reparMoinsHuit($annee, $code_service, $totalEleve , $min = 0 , $max = 8
 	global $mysqli;
 	//APB enregistre la fin d'année
 	$annee = $annee+1;
-	$sql= "SELECT COUNT(DISTINCT ine) AS nombre FROM `plugin_archAPB_notes` "
+	/*
+	 $sql= "SELECT COUNT(DISTINCT ine) AS nombre FROM `plugin_archAPB_notes` "
 	   . "WHERE code_service = '".$code_service."' AND annee = '".$annee."' AND etat = 'S' "
 	   . " AND moyenne >= ".$min." AND moyenne < ".$max;
+	 */
+	$sql= "SELECT COUNT(DISTINCT ine) AS nombre FROM ( SELECT AVG(n.`moyenne`) AS moyennes , ine "
+	   . "FROM `plugin_archAPB_notes` n "
+	   . "WHERE n.`annee` = '".$annee."' AND n.`code_service` = '".$code_service."' "
+	   . "GROUP BY n.`ine` "
+	   . ") as P "
+	   . "WHERE P.moyennes >= ".$min." AND P.moyennes < ".$max;
 	if ($totalEleve) {
 		$resultchargeDB = $mysqli->query($sql);
 		$result = round($resultchargeDB->fetch_object()->nombre / $totalEleve * 100, 2);
@@ -207,7 +215,7 @@ function reparMoinsHuit($annee, $code_service, $totalEleve , $min = 0 , $max = 8
 		$result = 0;
 	}
 	$resultchargeDB->close();	
-	//echo "<br />".$sql;
+	// echo "<br />".$sql;
 	return $result;	
 }
 	
