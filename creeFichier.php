@@ -14,7 +14,7 @@ $eleves2 = $eleves;
 while($eleve = $eleves2->fetch_object()){
 	$lastNiveau="";
 	$newElv = $sxe->donnees->addChild('eleve');
-	$newElv->addAttribute('id', $eleve->id);
+	$newElv->addAttribute('id', LSL_get_ele_id($eleve));
 	//$newElv->addAttribute('nom', $eleve->nom);
 	//$newElv->addAttribute('prenom', $eleve->prenom);
 	

@@ -497,3 +497,27 @@ function cherche_classe_APB($id, $annee) {
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB->fetch_object();	
 }
+
+function LSL_get_ele_id($eleve) {
+	global $mysqli;
+	$retour = FALSE;	
+	
+	$sql = "SELECT ele_id FROM eleves "
+	   . "WHERE no_gep = '".$eleve->ine."' "
+	   . "AND nom = '".$eleve->nom."'   "
+	   . "AND prenom = '".$eleve->prenom."'  "
+	   . "AND naissance = '".$eleve->ddn."'  ";
+	$resultchargeDB = $mysqli->query($sql);	
+	if ($resultchargeDB->num_rows) {
+		$retour = $resultchargeDB->fetch_object()->ele_id;	
+	} else {
+		echo '<p>'.$eleve->nom.' '.$eleve->prenom.' ine '.$eleve->ine.' né le '.$eleve->ddn.' est inconnu dans la table élèves.</p>';
+	}
+	
+	
+	return($retour);
+}
+
+
+
+
