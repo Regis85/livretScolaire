@@ -139,7 +139,7 @@ while($eleve = $eleves2->fetch_object()){
 					if (!$appAnnuelle) {
 						$appAnnuelle=" ";
 						$newMessage = $eleve->nom." ".$eleve->prenom;
-						$newMessage .= " n'a pas d'appréciation pour la matière ".$evaluation->code_service;
+						$newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
 						$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
 						$messages[] = $newMessage;
 					}
@@ -191,12 +191,16 @@ $sxe->asXML($dirTemp.$nomFichier);
 
 if (isset($messages)) {
 ?>
-<h2 class="center grand bold rouge" 
+<p class="center grand bold rouge" 
 	onclick="bascule('messages')" 
 	style="cursor:pointer"
 	title="Cliquez pour déplier/plier">
 	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) echo "s"; ?> manquante<?php if(count($messages) > 1) echo "s"; ?>
-</h2>
+</p>
+<p style="text-align: center">
+	<button type="button" onclick="bascule('messages')">Afficher/Cacher les appréciations manquantes</button>
+</p>
+
 <block id="messages" style="display:none;">
 <?php	
 	foreach ($messages as $message) {
