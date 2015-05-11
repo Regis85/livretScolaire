@@ -188,6 +188,27 @@ $nomFichier = "LSL_".date("d-m-Y_H:i").".xml1".$extension;
    
 $sxe->asXML($dirTemp.$nomFichier);
 
+//===== vérifier le schéma avec import-lsl.xsd =====
+
+$file = $dirTemp.$nomFichier;
+$schema = "xsd/import-lsl.xsd";
+
+// Instanciation d’un DOMDocument
+$dom = new DOMDocument("1.0");
+
+// Charge du XML depuis un fichier
+$dom->load($file);
+
+// Validation du document XML
+$validate = $dom->schemaValidate($schema) ?
+"<p class='center grand vert'>Schema XML paraît valide !</p>" :
+"<p class='center grand rouge'>Schema XML non valide !</p>";
+unset($dom);
+// Affichage du résultat
+echo $validate;
+
+
+
 
 if (isset($messages)) {
 ?>

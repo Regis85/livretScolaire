@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by user user (RECTORAT DE GRENOBLE) -->
+<xs:schema targetNamespace="urn:ac-grenoble.fr:lsl:import" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:lsl="urn:ac-grenoble.fr:lsl:import">
+	<!-- Primary type definition -->
+	<xs:simpleType name="StringNotNull">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String120digit">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="120"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String300digitNotNull">
+		<xs:restriction base="lsl:StringNotNull">
+			<xs:maxLength value="300"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String65digit">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="65"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String50digit">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="String11digit">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="11"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="decimal2Scale">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Pourcentage">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnneeScolaire">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="2000"/>
+			<xs:maxInclusive value="9999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeAvisExamen">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="D"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodePeriode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeNiveauCompetence">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="NE"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+			<xs:enumeration value="4"/>
+			<xs:enumeration value="A1"/>
+			<xs:enumeration value="A2"/>
+			<xs:enumeration value="B1"/>
+			<xs:enumeration value="B2"/>
+			<xs:enumeration value="C1"/>
+			<xs:enumeration value="C2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Appreciation">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="300"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ModaliteElection">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="O"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="S"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CodeMatiere">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EngagementAutre">
+		<xs:restriction base="lsl:String300digitNotNull"/>
+	</xs:simpleType>
+	<xs:simpleType name="CodeEngagementAutre">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="autre"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Root node -->
+	<xs:complexType name="Lsl">
+		<xs:annotation>
+			<xs:documentation>Définition de la racine de la structure global de l'import</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="entete" type="lsl:Entete"/>
+			<xs:element name="donnees" type="lsl:Donnees"/>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:decimal" use="required" fixed="1.0"/>
+	</xs:complexType>
+	<xs:complexType name="Entete">
+		<xs:annotation>
+			<xs:documentation>Contient les méta-données requises au traitement du fichier d'import</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="editeur" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Identifiant de l'éditeur du logiciel ayant généré les données à importer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="application">
+				<xs:annotation>
+					<xs:documentation>Identifiant du logiciel ayant généré les données à importer</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="lsl:String50digit"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="etablissement">
+				<xs:annotation>
+					<xs:documentation>Code UAI de l'établissement ayant émis les données à importer</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:length value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="Donnees">
+		<xs:annotation>
+			<xs:documentation>Contient l'ensemble des données à importer dans le LSL</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="eleve" type="lsl:Eleve" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Eleve">
+		<xs:annotation>
+			<xs:documentation>Contient les informations du livret d'un élève</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="engagements" type="lsl:Engagements" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Engagements et responsabilités de l'élève au sein de l'établissement</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="codeEngagementConstraint">
+					<xs:selector xpath="engagement"/>
+					<xs:field xpath="@code"/>
+				</xs:unique>
+				<!-- engagement[code] to only occur once -->
+			</xs:element>
+			<xs:element name="avisExamen" type="lsl:AvisExamen" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Avis de l'équipe pédagogique en vue du baccalauréat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="scolarites">
+				<xs:annotation>
+					<xs:documentation>Contient l'ensemble des scolarités</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="scolarite" type="lsl:Scolarite" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Représente les évaluations et autres informations relatives à une année scolaire</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:positiveInteger" use="required">
+			<xs:annotation>
+				<xs:documentation>Identifiant sconet de l'élève</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Enseignant">
+		<xs:attribute name="nom">
+			<xs:simpleType>
+				<xs:restriction base="lsl:String65digit"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="prenom">
+			<xs:simpleType>
+				<xs:restriction base="lsl:String50digit"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Engagement">
+		<xs:attribute name="code" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="C"/>
+					<xs:enumeration value="V"/>
+					<xs:enumeration value="A"/>
+					<xs:enumeration value="E"/>
+					<xs:enumeration value="S"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Engagements">
+		<xs:annotation>
+			<xs:documentation>Engagements et responsabilités de l'élève au sein de
+				l'établissement
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="engagement" type="lsl:Engagement" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Représente les engagements de l'élève. Chacun
+						n'apparait qu'une seule fois, en première ou en terminale
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="engagement-autre" type="lsl:EngagementAutre" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Autres engagements à préciser</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Avis">
+		<xs:simpleContent>
+			<xs:extension base="lsl:String300digitNotNull">
+				<xs:attribute name="date" type="xs:date" use="optional"/>
+				<xs:attribute name="nom" type="lsl:String65digit" use="required"/>
+				<xs:attribute name="prenom" type="lsl:String50digit" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AvisExamen">
+		<xs:annotation>
+			<xs:documentation>Avis de l'équipe pédagogique en vue du baccalauréat</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="code" type="lsl:CodeAvisExamen" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StructureEvaluation">
+		<xs:attribute name="effectif" type="xs:positiveInteger"/>
+		<xs:attribute name="moyenne" type="lsl:decimal2Scale"/>
+		<xs:attribute name="repar-moins-huit" type="lsl:decimal2Scale"/>
+		<xs:attribute name="repar-huit-douze" type="lsl:decimal2Scale"/>
+		<xs:attribute name="repar-plus-douze" type="lsl:decimal2Scale"/>
+	</xs:complexType>
+	<xs:complexType name="EvaluationPeriodique">
+		<xs:attribute name="numero" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="moyenne" type="lsl:decimal2Scale" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="Competence">
+		<xs:simpleContent>
+			<xs:extension base="lsl:CodeNiveauCompetence">
+				<xs:attribute name="code">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[0-9]{4}"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="Evaluation">
+		<xs:all>
+			<xs:element name="structure" type="lsl:StructureEvaluation"/>
+			<xs:element name="annuelle" type="lsl:Appreciation"/>
+			<xs:element name="periodiques" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Représente les informations d’une évaluation d’un élève pour chaque période</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="periode" type="lsl:EvaluationPeriodique"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="competences" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="competence" type="lsl:Competence" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="competenceConstraint">
+					<xs:selector xpath="competence"/>
+					<xs:field xpath="@code"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="enseignants" minOccurs="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="enseignant" type="lsl:Enseignant" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="enseignantConstraint">
+					<xs:selector xpath="enseignant"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:all>
+		<xs:attribute name="modalite-election" type="lsl:ModaliteElection" use="required"/>
+		<xs:attribute name="code-matiere" type="lsl:CodeMatiere" use="required"/>
+		<xs:attribute name="date" type="xs:date" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="Scolarite">
+		<xs:annotation>
+			<xs:documentation>Contient les évaluations et autres informations d'une année scolaire</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="avisEngagement" type="lsl:Avis" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Observation éventuelle du CPE valorisant les éléments positifs pouvant jouer en faveur de l'élève</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avisInvestissement" type="lsl:Avis" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Avis de l'équipe pédagogique et du CPE (consigné par le professeur principal) sur l'investissement de l'élève et sa participation à la vie du lycée</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="avisChefEtab" type="lsl:Avis" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Visa et observations éventuelles du chef d'établissement</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="evaluation" type="lsl:Evaluation"/>
+			</xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="annee-scolaire" type="lsl:AnneeScolaire" use="required"/>
+		<xs:attribute name="code-periode" type="lsl:CodePeriode" use="required"/>
+	</xs:complexType>
+	<!-- Root element -->
+	<xs:element name="lsl" type="lsl:Lsl">
+		<xs:annotation>
+			<xs:documentation>Element racine de l'import</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>
+
+
+
