@@ -191,19 +191,19 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			</button>
 		</p>
 		<p class="center" style="margin-top:.5em;">
+			<button name="ouvertsProfs" 
+					id="ouvertsProfs" 
+					value="1" 
+					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
+				Ouvrir les classes aux enseignants
+			</button>
+			&nbsp;
 			<button type="submit" 
 					name="creeFichier" 
 					id="creeFichier" 
 					value="1"
 					title="Créer le fichier .xml à importer dans LSL">
 				Créer le fichier .xml
-			</button>
-			&nbsp;
-			<button name="ouvertsProfs" 
-					id="ouvertsProfs" 
-					value="1" 
-					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
-				Ouvrir les classes aux enseignants
 			</button>
 		</p>
 	
@@ -219,6 +219,21 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 				</th>
 				<th>
 					niveau
+				</th>
+				<th style="cursor:pointer" 
+					title="Sélectionner les classes à ouvrir à la saisie par les enseignants" >
+					saisie en profs
+						<img src='../../images/enabled.png' 
+							 class='icone15' 
+							 title='Cocher toutes les classes'
+							 style="cursor:pointer"
+							 onclick="CocheProfSelect(<?php echo $classes->num_rows ?>)" />
+					/
+						<img src='../../images/disabled.png' 
+							 class='icone15' 
+							 title='Décocher toutes les classes'
+							 style="cursor:pointer"
+							 onclick="DecocheProfSelect(<?php echo $classes->num_rows ?>)"  />
 				</th>
 				<th title="Sélectionner les classes à extraire dans le fichier .xml pour LSL" 
 					style="cursor:pointer" >
@@ -237,21 +252,6 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 							 title='Décocher toutes les classes'
 							 style="cursor:pointer"
 							 onclick="DecocheColonneSelect(<?php echo $classes->num_rows ?>)"  />
-				</th>
-				<th style="cursor:pointer" 
-					title="Sélectionner les classes à ouvrir à la saisie par les enseignants" >
-					saisie en profs
-						<img src='../../images/enabled.png' 
-							 class='icone15' 
-							 title='Cocher toutes les classes'
-							 style="cursor:pointer"
-							 onclick="CocheProfSelect(<?php echo $classes->num_rows ?>)" />
-					/
-						<img src='../../images/disabled.png' 
-							 class='icone15' 
-							 title='Décocher toutes les classes'
-							 style="cursor:pointer"
-							 onclick="DecocheProfSelect(<?php echo $classes->num_rows ?>)"  />
 				</th>
 			</tr>
 	<?php 
@@ -272,12 +272,6 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 				</td>
 				<td>
 					<input type="checkbox" 
-						   name="classes[<?php echo $obj->id; ?>]" 
-						   id="classe_<?php echo $id; ?>" />
-					<?php //echo $obj->id; ?>
-				</td>
-				<td>
-					<input type="checkbox" 
 						   name="classe_prof[<?php echo $obj->id; ?>]" 
 						   id="classe_prof_<?php echo $id; ?>" 
 						   <?php if (lsl_get_ouvert_prof($obj->id)){ ?>
@@ -285,6 +279,12 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 						   <?php } ?>
  <?php // TODO enregistrer automatiquement lors du click grace à une bascule ?>
 						   />
+				</td>
+				<td>
+					<input type="checkbox" 
+						   name="classes[<?php echo $obj->id; ?>]" 
+						   id="classe_<?php echo $id; ?>" />
+					<?php //echo $obj->id; ?>
 				</td>
 			
 			</tr>
@@ -304,6 +304,13 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 <?php } ?>
 		<p class="center" style="margin-top:1em;">			
 			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
+			<button name="ouvertsProfs" 
+					id="ouvertsProfs" 
+					value="1" 
+					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
+				Ouvrir les classes aux enseignants
+			</button>
+			&nbsp;		
 			<button type="submit" 
 					name="creeFichier" 
 					id="creeFichier" 
@@ -311,13 +318,6 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 					title="Créer le fichier .xml à importer dans LSL">
 				Créer le fichier .xml
 			</button>	
-			&nbsp;		
-			<button name="ouvertsProfs" 
-					id="ouvertsProfs" 
-					value="1" 
-					title="Enregistrer les classes à ouvrir à la saisie par les enseignants" >
-				Ouvrir les classes aux enseignants
-			</button>
 		</p>
 	</form>
 </fieldset>
