@@ -122,6 +122,7 @@ while($eleve = $eleves2->fetch_object()){
 					$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre);
 					$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 8, 12);
 					$plusDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 12, 21);
+					
 
 					$newStructure->addAttribute('effectif',$compteElv->nombre);
 					$newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
@@ -132,10 +133,11 @@ while($eleve = $eleves2->fetch_object()){
 					$structureEvaluation ->close();
 					
 					// TODO récupérer l'appréciation annuelle
-					$appAnnuelle="";
+					$appAnnuelle=" ";
 					// echo $annee->annee." - ".$evaluation->code_service." - ".$eleve->ine." - ";
 					$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
 					if (!$appAnnuelle) {
+						$appAnnuelle=" ";
 						$newMessage = $eleve->nom." ".$eleve->prenom;
 						$newMessage .= " n'a pas d'appréciation pour la matière ".$evaluation->code_service;
 						$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
