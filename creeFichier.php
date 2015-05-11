@@ -202,8 +202,8 @@ $dom->load($file);
 
 // Validation du document XML
 $validate = $dom->schemaValidate($schema) ?
-"<p class='center grand vert'>Schema XML paraît valide !</p>" :
-"<p class='center grand rouge'>Schema XML non valide !</p>";
+"<p class='center grand vert'>Le schéma XML paraît valide !</p>" :
+"<p class='center grand rouge'>Schéma XML non valide !</p>";
 unset($dom);
 // Affichage du résultat
 echo $validate;
