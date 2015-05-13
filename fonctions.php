@@ -193,18 +193,35 @@ function compteElvEval($annee, $code_service) {
 	return $resultchargeDB;	
 }
 
-function reparMoinsHuit($annee, $code_service, $totalEleve , $min = 0 , $max = 8) {
+/**
+ * On ne tient pas compte des élèves non notés qui ont 0. 
+ * Pour tenir compte des dispensés qui ont 0, il faut ajouter un filtre etat = 'D' 
+ * Pour tenir compte des absents… qui ont 0, il faut ajouter un filtre etat = 'N' 
+ * 
+ * @global object $mysqli
+ * @param string $annee
+ * @param string $code_service
+ * @param int $min
+ * @param int $max
+ * @return int
+ */
+function reparMoinsHuit($annee, $code_service, $min = 0 , $max = 8) {
 	global $mysqli;
 	//APB enregistre la fin d'année
 	$annee = $annee+1;
-	/*
-	 $sql= "SELECT COUNT(DISTINCT ine) AS nombre FROM `plugin_archAPB_notes` "
-	   . "WHERE code_service = '".$code_service."' AND annee = '".$annee."' AND etat = 'S' "
-	   . " AND moyenne >= ".$min." AND moyenne < ".$max;
-	 */
+	
+	$sql1= "SELECT COUNT(DISTINCT ine) AS nombre FROM ( SELECT AVG(n.`moyenne`) AS moyennes , ine "
+	   . "FROM `plugin_archAPB_notes` n "
+	   . "WHERE n.`annee` = '".$annee."' AND n.`code_service` = '".$code_service."' AND etat = 'S'  "
+	   . "GROUP BY n.`ine` "
+	   . ") as P ";
+	$resultchargeDB1 = $mysqli->query($sql1);
+	$totalEleve = $resultchargeDB1->fetch_object()->nombre;
+	$resultchargeDB1->close();	
+	
 	$sql= "SELECT COUNT(DISTINCT ine) AS nombre FROM ( SELECT AVG(n.`moyenne`) AS moyennes , ine "
 	   . "FROM `plugin_archAPB_notes` n "
-	   . "WHERE n.`annee` = '".$annee."' AND n.`code_service` = '".$code_service."' "
+	   . "WHERE n.`annee` = '".$annee."' AND n.`code_service` = '".$code_service."' AND etat = 'S'  "
 	   . "GROUP BY n.`ine` "
 	   . ") as P "
 	   . "WHERE P.moyennes >= ".$min." AND P.moyennes < ".$max;

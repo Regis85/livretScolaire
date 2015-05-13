@@ -119,8 +119,8 @@ while($eleve = $eleves2->fetch_object()){
 
 					$structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
 					$structureEval = $structureEvaluation->fetch_object();
-					$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre);
-					$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 8, 12);
+					$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
+					$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
 					//$plusDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 12, 21);
 					$plusDouze = 100-($moinsHuit + $huitDouze);
 					
