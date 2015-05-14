@@ -527,8 +527,6 @@ function LSL_get_ele_id($eleve) {
 	$resultchargeDB = $mysqli->query($sql);	
 	if ($resultchargeDB->num_rows) {
 		$retour = $resultchargeDB->fetch_object()->ele_id;	
-	} else {
-		echo '<p>'.$eleve->nom.' '.$eleve->prenom.' ine '.$eleve->ine.' né le '.$eleve->ddn.' est inconnu dans la table élèves.</p>';
 	}
 	
 	
