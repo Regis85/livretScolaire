@@ -64,6 +64,26 @@
 			  PRIMARY KEY (`id`) COMMENT 'classes ouvertes aux saisies par les professeurs'
 			) ;
 			</requete>
+			
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_avis_annuels` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `code_ine` varchar(50) NOT NULL DEFAULT '' COMMENT 'code INE des élèves',
+			  `avis` ENUM ('T', 'F', 'A', 'D') DEFAULT NULL COMMENT 'avis pour le BAC',
+			  `avisChefEtab` varchar(300) COMMENT 'appréciation annuelle des élèves par le chef d\'établissement',
+			  `login` varchar(50) COMMENT 'Login de l\'appréciateur',
+			  `date` date COMMENT 'date de  l\'appréciation',			   
+			  `annee` varchar(4) NOT NULL DEFAULT '' COMMENT 'annee LSL de l\'appréciation',
+			  `avisEngagement` varchar(300) COMMENT 'observation du CPE sur les engagements et responsabilités de l’élève.',
+			  `loginCPE` varchar(50) NOT NULL COMMENT 'login du CPE ayant enregistré l\'avis',
+			  `dateCPE` date COMMENT 'date de l\'appréciation du CPE',
+			  `avisInvestissement` varchar(300) COMMENT 'avis sur l\’investissement de l\’élève et sa participation à la vie du lycée',
+			  `loginPP` varchar(50) NOT NULL COMMENT 'login du PP ayant enregistré l\'avis',
+			  `datePP` date COMMENT 'date de l\'appréciation du PP',
+			  UNIQUE KEY `eleve` (`code_ine`, `annee`),
+			  PRIMARY KEY (`id`)
+			) ;
+			</requete>
 		    <!--
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_series` (
@@ -133,6 +153,9 @@
 			<requete>
 			   DROP TABLE IF EXISTS `plugin_lsl_classes_ouvertes`;
 			</requete>
+			<requete>
+			   DROP TABLE IF EXISTS `plugin_lsl_avis_annuels`;
+			</requete> 
 		    <!--
 			<requete>
 			   DROP TABLE `plugin_lsl_series`;
