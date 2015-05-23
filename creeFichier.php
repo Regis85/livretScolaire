@@ -9,33 +9,36 @@ $sxe->entete->etablissement = getSettingValue("gepiSchoolRne");
 $niveaux = niveauConcernees($anneeSolaire, $selectClasses);
 $classes = classesConcernees($anneeSolaire, $selectClasses);
 $eleves = elevesConcernees($anneeSolaire, $selectClasses);
+// id , ine , nom , prenom , ddn , annee , anneelsl , id_classe , code_mef //
 
 $eleves2 = $eleves;
 while($eleve = $eleves2->fetch_object()){
 	if (LSL_get_ele_id($eleve)) {
-	$lastNiveau="";
-	$newElv = $sxe->donnees->addChild('eleve');
+		$changeClasse = LSL_change_classe($eleve->ine,$anneeAPB);
+		if ($changeClasse) {
+			echo '<p>'.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB.'</p>';
+		}
+		$changeClasse = LSL_change_classe($eleve->ine,$anneeLSL);
+		if ($changeClasse) {
+			echo '<p>'.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeLSL-1).'-'.$anneeLSL.'</p>';
+		}
+		$lastNiveau="";
+		$newElv = $sxe->donnees->addChild('eleve');
 		$newElv->addAttribute('id', LSL_get_ele_id($eleve));
-		//$newElv->addAttribute('nom', $eleve->nom);
-		//$newElv->addAttribute('prenom', $eleve->prenom);
 
 		// récupérer les engagements
 		$listeEngagements = engagementsEleve($eleve->ine);
-		//$engagementAutre = engagementAutreEleve($eleve->ine);
-		//if(($listeEngagements->num_rows > 0) || ($engagementAutre->num_rows > 0)) {
 		if(($listeEngagements->num_rows > 0)) {
 			$engagements = $newElv->addChild('engagements');
 			if(($listeEngagements->num_rows > 0)) {
 				while ($engagement = $listeEngagements->fetch_object()){	
 					$os=array(1,2,3,4,5);
 					if (in_array($engagement->id_engagement, $os)){
-						// echo '<br />'.$engagement->id_engagement. " ".$engagement->code." ".$engagement->no_gep ;
 						$newEngagement = $engagements->addChild('engagement');
 						$newEngagement->addAttribute('code',$engagement->code );
 					} else {
 						$description=$engagement->description;
-						$description = substr($description,0,300);						
-						// echo '<br />engagement autre '.$engagement->id_engagement. " ".$description ;
+						$description = substr($description,0,300);	
 						$newEngagement = $engagements->addChild('engagement-autre',$description);
 					}
 				}
@@ -56,128 +59,220 @@ while($eleve = $eleves2->fetch_object()){
 		// récupérer les scolarités
 		$scolarites = $newElv->addChild('scolarites');
 		$annees = anneesEleve($eleve->ine);
-		while ($annee = $annees->fetch_object()){
+		$derniereAnnee = NULL;
+		// annee , id_classe , nom_court , nom_complet , login_pp , niveau // 
+		while ($annee = $annees->fetch_object()) {
+			if (!$derniereAnnee || $annee->niveau != $derniereAnnee) {
+				$derniereAnnee = $annee->niveau;
 
-			// On récupère le niveau
-			$niveau = "";
-			$getNiveau = getNiveau($annee->annee, $annee->id_classe);
-			$niveau = $getNiveau->fetch_object();
-			if ($niveau && $lastNiveau != $niveau->apb_niveau) {
-				$newScolarite = $scolarites->addChild('scolarite');
-				$newScolarite->addAttribute('annee-scolaire',$annee->annee);
-				$codePeriode=codePeriode($eleve->ine, $annee->annee);
-				$newScolarite->addAttribute('code-periode',$codePeriode);
+				// On récupère le niveau
+				$niveau = "";
+				$getNiveau = getNiveau($annee->annee, $annee->id_classe);
+				$niveau = $getNiveau->fetch_object();
+				// Ne pas récupérer une année redoublée
+				if ($niveau && $lastNiveau != $niveau->apb_niveau) {
+					$newScolarite = $scolarites->addChild('scolarite');
+					$newScolarite->addAttribute('annee-scolaire',$annee->annee);
+					$codePeriode=codePeriode($eleve->ine, $annee->annee);
+					$newScolarite->addAttribute('code-periode',$codePeriode);
 
-				//$newScolarite->addAttribute('niveau',$niveau->apb_niveau);
-				//$newScolarite->addAttribute('classe',$niveau->id);
+					//$newScolarite->addAttribute('niveau',$niveau->apb_niveau);
+					//$newScolarite->addAttribute('classe',$niveau->id);
 
-				$lastNiveau = $niveau->apb_niveau;
+					$lastNiveau = $niveau->apb_niveau;
 
-				// récupérer les investissements
-				/*
-				$investissements = avisInvestissement($eleve->ine, $annee->annee);
-				if ($investissements->num_rows){
-					$investissement = $investissements->fetch_object();
-					$newInvestissement = $newScolarite->addChild('avisInvestissement',$investissement->avis);
-					$newInvestissement->addAttribute('date',$investissement->date);
-					$newInvestissement->addAttribute('nom',$investissement->nom);
-					$newInvestissement->addAttribute('prenom',$investissement->prenom);
-				}
-				 */
-
-				$nbPeriode = 0;
-				if ($newScolarite["code-periode"] == "T") {
-					$nbPeriode = 3;
-				} elseif ($newScolarite["code-periode"] == "S") {
-					$nbPeriode = 2;
-				}
-
-				// TODO récupérer les avis Chef Etablissement
-				// $newScolarite->addChild('avisChefEtab');
-
-				// TODO récupérer les avis Engagement
-				// $newScolarite->addChild('avisEngagement');
-
-				// récupérer les évaluations
-				$newEvaluations = evaluations($eleve->ine,$annee->annee);
-
-				while ($evaluation = $newEvaluations->fetch_object()){
-
-					$compteEleves = compteElvEval($annee->annee, $evaluation->code_service);
-					$compteElv = $compteEleves->fetch_object();
-					if ($compteElv->nombre){
-
-						$newEval = $newScolarite->addChild('evaluation');
-						$newEval->addAttribute('modalite-election',$evaluation->modalite);
-						//$newEval->addAttribute('code-gepi',$evaluation->code_service);
-						$newEval->addAttribute('code-matiere',str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
-						//$newEval->addAttribute('libelle',  rtrim($evaluation->libelle_sconet));
-
-						// TODO récupérer les dates de validation
-						//$newEval->addAttribute('date','');
-
-						$newStructure = $newEval->addChild('structure');
-
-						$structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
-						$structureEval = $structureEvaluation->fetch_object();
-						$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
-						$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
-						//$plusDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 12, 21);
-						$plusDouze = 100-($moinsHuit + $huitDouze);
-
-
-						$newStructure->addAttribute('effectif',$compteElv->nombre);
-						$newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
-						$newStructure->addAttribute('repar-moins-huit',$moinsHuit);				
-						$newStructure->addAttribute('repar-huit-douze',$huitDouze);			
-						$newStructure->addAttribute('repar-plus-douze',$plusDouze);
-
-						$structureEvaluation ->close();
-
-						// TODO récupérer l'appréciation annuelle
-						$appAnnuelle=" ";
-						// echo $annee->annee." - ".$evaluation->code_service." - ".$eleve->ine." - ";
-						$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
-						if (!$appAnnuelle) {
-							$appAnnuelle=" ";
-							$newMessage = $eleve->nom." ".$eleve->prenom;
-							$newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
-							$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
-							$messages[] = $newMessage;
-						}
-						// echo $appAnnuelle."<br />";
-
-						$newEval->addChild('annuelle', $appAnnuelle);
-
-						$Periodiques = $newEval->addChild('periodiques');
-						$moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
-						while ($moyenne = $moyennes->fetch_object()) {
-							$trimestre = $Periodiques->addChild('periode');
-							$trimestre->addAttribute('numero', $moyenne->trimestre);
-							if ("S" == $moyenne->etat) {
-								$trimestre->addAttribute('moyenne', $moyenne->moyenne);
-							} else {
-								$trimestre->addAttribute('moyenne', -1);
-							}
-						}
-						$moyennes->close();
-						// TODO récupérer les compétences
-						// $newEval->addChild('competences');
-
-						// TODO récupérer les enseignants
-						$Enseignants = $newEval->addChild('enseignants');
-						$getEnseignants = enseignants($annee->annee, $evaluation->code_service);
-						while ($getEnseignant = $getEnseignants->fetch_object()) {
-							$Enseignant = $Enseignants->addChild('enseignant');
-
-							$Enseignant->addAttribute('nom', substr($getEnseignant->nom, 0,65));
-							$Enseignant->addAttribute('prenom', substr($getEnseignant->prenom, 0,50));
-						}
-						$getEnseignants->close();
+					// récupérer les investissements
+					/*
+					$investissements = avisInvestissement($eleve->ine, $annee->annee);
+					if ($investissements->num_rows){
+						$investissement = $investissements->fetch_object();
+						$newInvestissement = $newScolarite->addChild('avisInvestissement',$investissement->avis);
+						$newInvestissement->addAttribute('date',$investissement->date);
+						$newInvestissement->addAttribute('nom',$investissement->nom);
+						$newInvestissement->addAttribute('prenom',$investissement->prenom);
 					}
-					$compteEleves->close();				
+					 */
+
+					$nbPeriode = 0;
+					if ($newScolarite["code-periode"] == "T") {
+						$nbPeriode = 3;
+					} elseif ($newScolarite["code-periode"] == "S") {
+						$nbPeriode = 2;
+					}
+
+					// TODO récupérer les avis Chef Etablissement
+					// $newScolarite->addChild('avisChefEtab');
+
+					// TODO récupérer les avis Engagement
+					// $newScolarite->addChild('avisEngagement');
+
+					// récupérer les évaluations
+
+					//TODO → passer la formation, ne sélectionner que les matières de cette formation (changement de classe)
+					//TODO → calculer la moyenne en ne tenant compte que des matières 
+
+					$newEvaluations = evaluations($eleve->ine,$annee->annee);
+					$lastMatiere = NULL;
+					$lastService = NULL;
+			
+					while ($evaluation = $newEvaluations->fetch_object()) {
+						// TODO on limite aux $evaluation de la série
+					if ($lastService != $evaluation->code_service) {
+						$lastService = $evaluation->code_service;
+						if ($lastMatiere != str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)) {
+							$lastMatiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT);
+							$compteEleves = compteElvEval($annee->annee, $evaluation->code_service);
+							$compteElv = $compteEleves->fetch_object();
+							if ($compteElv->nombre){
+								$newEval = $newScolarite->addChild('evaluation');
+								$newEval->addAttribute('modalite-election',$evaluation->modalite);
+								$newEval->addAttribute('code-matiere',str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
+								$newStructure = $newEval->addChild('structure');
+								$structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
+								$structureEval = $structureEvaluation->fetch_object();
+								$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
+								$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
+								$plusDouze = 100-($moinsHuit + $huitDouze);
+								$newStructure->addAttribute('effectif',$compteElv->nombre);
+								$newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
+								$newStructure->addAttribute('repar-moins-huit',$moinsHuit);				
+								$newStructure->addAttribute('repar-huit-douze',$huitDouze);			
+								$newStructure->addAttribute('repar-plus-douze',$plusDouze);
+								$structureEvaluation ->close();
+								$appAnnuelle=" ";
+								$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
+								if (!$appAnnuelle) {
+									$appAnnuelle=" ";
+									$newMessage = $eleve->nom." ".$eleve->prenom;
+									$newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
+									$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
+									$messages[] = $newMessage;
+								}
+								$newEval->addChild('annuelle', $appAnnuelle);
+
+								$Periodiques = $newEval->addChild('periodiques');
+								$moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
+								while ($moyenne = $moyennes->fetch_object()) {
+									$trimestre = $Periodiques->addChild('periode');
+									$trimestre->addAttribute('numero', $moyenne->trimestre);
+									if ("S" == $moyenne->etat) {
+										$trimestre->addAttribute('moyenne', $moyenne->moyenne);
+									} else {
+										$trimestre->addAttribute('moyenne', -1);
+									}
+								}
+								$moyennes->close();
+
+								// TODO récupérer les compétences
+								// $newEval->addChild('competences');
+								$Enseignants = $newEval->addChild('enseignants');
+								$getEnseignants = enseignants($annee->annee, $evaluation->code_service);
+								while ($getEnseignant = $getEnseignants->fetch_object()) {
+									$Enseignant = $Enseignants->addChild('enseignant');
+
+									$Enseignant->addAttribute('nom', substr($getEnseignant->nom, 0,65));
+									$Enseignant->addAttribute('prenom', substr($getEnseignant->prenom, 0,50));
+								}
+								$getEnseignants->close();
+							}
+							$compteEleves->close();
+						
+						} else {
+								$moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
+								while ($moyenne = $moyennes->fetch_object()) {
+									$trimestre = $Periodiques->addChild('periode');
+									$trimestre->addAttribute('numero', $moyenne->trimestre);
+									if ("S" == $moyenne->etat) {
+										$trimestre->addAttribute('moyenne', $moyenne->moyenne);
+									} else {
+										$trimestre->addAttribute('moyenne', -1);
+									}
+								}
+							
+						}
+					}
+					}
+						/*
+
+						
+						$compteElv = $compteEleves->fetch_object();
+						if ($compteElv->nombre){
+							if($evaluation) {
+								$newEval = $newScolarite->addChild('evaluation');
+							}
+							$newEval->addAttribute('modalite-election',$evaluation->modalite);
+							//$newEval->addAttribute('code-gepi',$evaluation->code_service);
+							$newEval->addAttribute('code-matiere',str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
+							//$newEval->addAttribute('libelle',  rtrim($evaluation->libelle_sconet));
+
+							// TODO récupérer les dates de validation
+							//$newEval->addAttribute('date','');
+
+							$newStructure = $newEval->addChild('structure');
+
+							$structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
+							$structureEval = $structureEvaluation->fetch_object();
+							$moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
+							$huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
+							//$plusDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, $compteElv->nombre, 12, 21);
+							$plusDouze = 100-($moinsHuit + $huitDouze);
+
+
+							$newStructure->addAttribute('effectif',$compteElv->nombre);
+							$newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
+							$newStructure->addAttribute('repar-moins-huit',$moinsHuit);				
+							$newStructure->addAttribute('repar-huit-douze',$huitDouze);			
+							$newStructure->addAttribute('repar-plus-douze',$plusDouze);
+
+							$structureEvaluation ->close();
+
+							// TODO récupérer l'appréciation annuelle
+							$appAnnuelle=" ";
+							// echo $annee->annee." - ".$evaluation->code_service." - ".$eleve->ine." - ";
+							$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
+							if (!$appAnnuelle) {
+								$appAnnuelle=" ";
+								$newMessage = $eleve->nom." ".$eleve->prenom;
+								$newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
+								$newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
+								$messages[] = $newMessage;
+							}
+							// echo $appAnnuelle."<br />";
+
+							$newEval->addChild('annuelle', $appAnnuelle);
+
+							$Periodiques = $newEval->addChild('periodiques');
+							$moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
+							while ($moyenne = $moyennes->fetch_object()) {
+								$trimestre = $Periodiques->addChild('periode');
+								$trimestre->addAttribute('numero', $moyenne->trimestre);
+								if ("S" == $moyenne->etat) {
+									$trimestre->addAttribute('moyenne', $moyenne->moyenne);
+								} else {
+									$trimestre->addAttribute('moyenne', -1);
+								}
+							}
+							$moyennes->close();
+							// TODO récupérer les compétences
+							// $newEval->addChild('competences');
+
+							// TODO récupérer les enseignants
+							$Enseignants = $newEval->addChild('enseignants');
+							$getEnseignants = enseignants($annee->annee, $evaluation->code_service);
+							while ($getEnseignant = $getEnseignants->fetch_object()) {
+								$Enseignant = $Enseignants->addChild('enseignant');
+
+								$Enseignant->addAttribute('nom', substr($getEnseignant->nom, 0,65));
+								$Enseignant->addAttribute('prenom', substr($getEnseignant->prenom, 0,50));
+							}
+							$getEnseignants->close();
+						}
+						$compteEleves->close();				
+					}			
+					}
+					/* */
+					$newEvaluations->close();			
 				}
-				$newEvaluations->close();			
 			}
 		}
 		$annees->close();

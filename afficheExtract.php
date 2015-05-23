@@ -40,10 +40,12 @@ $eleves = elevesConcernees($anneeSolaire, $selectClasses);
 if ($eleves) {
 	$cpt=0;
 	while($eleve = $eleves->fetch_object()){
-		echo $eleve->ine." - ".$eleve->nom." - ".$eleve->prenom." - ".$eleve->ddn." - ";
-		echo $eleve->anneelsl." - ".$eleve->id_classe;
-		echo "<br />"; 
-		$cpt++;
+		if (LSL_get_ele_id($eleve)) {
+			echo $eleve->ine." - ".$eleve->nom." - ".$eleve->prenom." - ".$eleve->ddn." - ";
+			echo $eleve->anneelsl." - ".$eleve->id_classe;
+			echo "<br />"; 
+			$cpt++;
+		}
 	}
 	echo '<br />Nombre d\'élèves : '.$cpt.'<br />';
 }

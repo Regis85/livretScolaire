@@ -28,6 +28,15 @@ $APBinstalle = APBinstalle();
 
 $competences = extraitCompetences();
 $classes = extraitClasses($anneeSolaire);
+
+$formations = extraitFormations($anneeAPB);
+
+if(isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) {
+	$programmes = extraitProgrammes($_SESSION['choixFormation']);
+} else {
+	$programmes = NULL;
+}
+
 //$correspondances = extraitCorrespondances($anneeSolaire);
 
 
@@ -48,6 +57,155 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	Vous devez avoir effectué les extractions du 3<sup>ème</sup> trimestre 
 	avant de créer le fichier .xml à importer dans LSL.
 </p>
+
+<fieldset>
+	<legend>Télécharger les programmes</legend>
+	
+	<fieldset>
+		<legend>Choisissez la formation à afficher</legend>
+		<form method="post" action="index.php" id="form_LSL_select_Programme" enctype="multipart/form-data">
+			<p style="text-align:center;">
+				<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
+				<br />
+				<select name="selectClasse" onchange="submit()">
+					<option value="">Choisissez une formation</option>
+<?php while ($obj = $formations->fetch_object()) { ?>
+					<option value="<?php echo $obj->code_mef; ?>"
+<?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation'] == $obj->code_mef) { ?>
+							selected="selected"	
+<?php } ?>					
+							>
+						<?php echo $obj->code_mef; ?> - <?php echo $obj->edition; ?>
+					</option>
+<?php } ?>					
+				</select>
+				<button name="choixClasse" value="y">
+					Choisir
+				</button>
+			</p>
+		</form>
+	
+	<form method="post" action="index.php" id="form_LSL_select_Programme" enctype="multipart/form-data">
+	<table class="boireaus sortable resizable"
+		   id="tableProgrammes">
+		<tr>
+			<th>Formation</th>
+			<th>Matière</th>
+			<th>Modalité</th>
+			<th>Note obligatoire</th>
+			<th>Appreciation obligatoire</th>
+			<th>Commentaire</th>
+			<th>Supprimer</th>
+		</tr>
+	<?php 
+		$cpt =1; 
+		if ($programmes) {
+		while ($programme = $programmes->fetch_object()) {
+	?>
+		<tr class="lig<?php echo $cpt; ?>">
+			<td>
+				<?php echo $programme->formation ?> 
+			</td>
+			<td>
+				<?php echo $programme->matiere ?>
+			</td>
+			<td>
+				<?php echo $programme->Modalite ?>
+			</td>
+			<td>
+				<?php echo $programme->note ?>
+			</td>
+			<td>
+				<?php echo $programme->appreciation ?>
+			</td>
+			<td style="text-align:left;">
+				<?php echo $programme->option ?>
+			</td>
+			<td>
+				<input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" />
+			</td>
+		</tr>
+	<?php
+		$cpt*=-1;
+		}
+		}
+	?>
+			   
+	</table>	
+		<p style="text-align:center; margin-top: .5em;">
+			<button name="supprimeAssociation" value="y" >
+				Supprimer les associations cochées
+			</button>
+		</p>
+	
+	</fieldset>
+	
+	<fieldset>
+	<legend>Importer les programmes</legend>
+	<form method="post" action="index.php" id="form_LSL_Programme" enctype="multipart/form-data">	
+		<p>
+			Pour créer les programmes par MEF, importez le fichier nomenclature.xml ou un fichier avec la même structure.
+		</p>
+		<p>
+			Ce fichier peut-être compressé (ExportXML_Nomenclature.zip)
+		</p>
+		<p class="rouge">
+			Attention dans nomenclature.xml, 
+			le caractère obligatoire ou pas des notes et appréciations n'est pas renseigné.
+			Vous devez le renseigner manuellement
+		</p>
+		<p>	
+			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
+			<input type="file" name="fileToUpload" id="fileToUpload">
+			<button name="uploadProgramme" id="uploadFichier" value="y">
+				Télécharger
+			</button>
+		</p>
+	</form>
+	</fieldset>
+<?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) { ?>
+	<fieldset>
+	<legend>Créer/modifier les programmes</legend>
+	<form method="post" action="index.php" id="form_LSL_Programme" enctype="multipart/form-data">
+		<p>
+			Pour créer ou modifier une association pour le MEF : <?php echo $_SESSION['choixFormation']; ?> , 
+			saisissez la ci-dessous			
+		</p>
+		<p>
+		<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
+		MEF : <?php echo $_SESSION['choixFormation']; ?>
+		<input type="hidden" name="creerMEF" value="<?php echo $_SESSION['choixFormation']; ?>" />
+		Matière :
+		<input type="text" style="width:4em;" name="creerMatiere" />
+		Modalité :
+		<select name="creerModalite">
+			<option value="S">Obligatoire (S)</option>
+			<option value="F">Facultatif (F)</option>
+			<option value="O">Option (O)</option>
+		</select>
+		
+		Note obligatoire dans le livret :
+		<select name="creerNote">
+			<option value="y">Oui</option>
+			<option value="n">Non</option>
+		</select>
+		Appréciation obligatoire dans le livret 
+		<select name="creerAppreciation">
+			<option value="y">Oui</option>
+			<option value="n">Non</option>
+		</select>
+		<br />
+		Commentaires :
+		<input type="text" name="creerOption" />
+		<button name="creeModifie" value="y">
+			Créer/Modifier une association
+		</button>
+		</p>
+	</form>
+	</fieldset>
+	
+<?php } ?>
+</fieldset>
 
 <fieldset <?php if (!lsl_getDroit('droitCompetences')) { ?> 
 	style="display : none;"

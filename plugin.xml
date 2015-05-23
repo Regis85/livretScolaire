@@ -19,7 +19,7 @@
 			  `ouvert` varchar(1) NOT NULL DEFAULT 'n' COMMENT 'Droit ouvert',
 			  UNIQUE KEY `droit` (`droit`),
 			  PRIMARY KEY (`id`) COMMENT 'liste des droits du plugin Livrer Scolaire'
-			) ;
+			) ENGINE=MyISAM  ;
 			</requete>
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_competences` (
@@ -28,7 +28,7 @@
 			  `texte_competences` varchar(250) NOT NULL DEFAULT '' COMMENT 'Descriptif des compétences',
 			  UNIQUE KEY `code_competences` (`code_competences`),
 			  PRIMARY KEY (`id`) COMMENT 'liste des competences'
-			) ;
+			) ENGINE=MyISAM  ;
 			</requete>
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_correspondances` (
@@ -53,7 +53,7 @@
 			  `id_APB` int(11) COMMENT 'code matiere dans APB',
 			  UNIQUE KEY `matiere` ( `annee` , `id_APB` , `eleve` ),
 			  PRIMARY KEY (`id`) COMMENT 'appréciation annuelle des professeurs'
-			) ;
+			) ENGINE=MyISAM  ;
 			</requete>
 			<requete>
 			   CREATE TABLE IF NOT EXISTS `plugin_lsl_classes_ouvertes` (
@@ -62,7 +62,7 @@
 			   `ouvert` ENUM('y', 'n')  NOT NULL  COMMENT 'ouvert ou pas à la saisie par les profs' , 
 			  UNIQUE KEY `classe` ( `classe` ),
 			  PRIMARY KEY (`id`) COMMENT 'classes ouvertes aux saisies par les professeurs'
-			) ;
+			) ENGINE=MyISAM  ;
 			</requete>
 			
 			<requete>
@@ -82,7 +82,30 @@
 			  `datePP` date COMMENT 'date de l\'appréciation du PP',
 			  UNIQUE KEY `eleve` (`code_ine`, `annee`),
 			  PRIMARY KEY (`id`)
-			) ;
+			) ENGINE=MyISAM  ;
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_programmes` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `formation` varchar(11) COMMENT 'code SIECLE de la formation' ,
+			  `matiere` varchar(6) COMMENT 'code SIECLE de la matière' ,
+			  `Modalite` ENUM ('S', 'F', 'O') NOT NULL DEFAULT 'S' COMMENT 'code SIECLE de la modalité (S,F,O)' ,
+			  `note` ENUM ('y', 'n') NOT NULL DEFAULT 'y' COMMENT 'Les notes sont obligatoires ou pas (y - n)' ,
+			  `appreciation` ENUM ('y', 'n') NOT NULL DEFAULT 'y' COMMENT 'Les appréciations sont obligatoires ou pas (y - n)' ,
+			  `option` varchar(250) COMMENT 'Commentaire sur la formation' ,
+			  UNIQUE KEY `couple` (`formation`, `matiere`, `Modalite`),
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM COMMENT 'Liste des enseignements par formation';
+			</requete>
+			<requete>
+			   CREATE TABLE IF NOT EXISTS `plugin_lsl_formations` (
+			  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id unique',
+			  `formation` varchar(11) COMMENT 'code SIECLE de la formation' ,
+			  `edition` varchar(50) COMMENT 'libelle pour l\'édition' ,
+			  `libelle` varchar(50) COMMENT 'libelle long' ,
+			  UNIQUE KEY `formation`  (`formation`),
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM COMMENT 'Liste de MEF';
 			</requete>
 		    <!--
 			<requete>
@@ -155,6 +178,12 @@
 			</requete>
 			<requete>
 			   DROP TABLE IF EXISTS `plugin_lsl_avis_annuels`;
+			</requete> 
+			 <requete>
+			   DROP TABLE IF EXISTS `plugin_lsl_programmes`;
+			</requete>
+			 <requete>
+			    DROP TABLE IF EXISTS `plugin_lsl_formations`;
 			</requete> 
 		    <!--
 			<requete>

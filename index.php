@@ -90,6 +90,8 @@ require_once("../../lib/header.inc.php");
 //**************** Vérifier la présence d'APB *************
 
 
+$anneeLSL = lsl_annee(getSettingValue("gepiYear"));
+$anneeAPB = $anneeAPB = $anneeLSL+1;
 
 //**************** en administrateur *************
 if ($utilisateur->getStatut()=="professeur") {
@@ -107,7 +109,13 @@ if ($utilisateur->getStatut()=="professeur") {
 	$uploadFichier = isset($_POST['uploadFichier']) ? $_POST['uploadFichier'] : NULL ;
 	$saveDroits = isset($_POST['sauveDroits']) ? $_POST['sauveDroits'] : NULL ;
 	$ouvreProfs = isset($_POST['ouvertsProfs']) ? $_POST['ouvertsProfs'] : NULL ;
-
+	$saveProgramme = isset($_POST['uploadProgramme']) ? $_POST['uploadProgramme'] : NULL ;
+	if (isset($_POST['choixClasse']) || isset($_POST['selectClasse'])){ 
+		$_SESSION['choixFormation'] = isset($_POST['selectClasse']) ? $_POST['selectClasse'] : NULL;
+	}
+	$creeModifie = isset($_POST['creeModifie']) ? $_POST['creeModifie'] : NULL ;
+	$supprimeAssociation = isset($_POST['supprimeAssociation']) ? $_POST['supprimeAssociation'] : NULL ;
+	
 	if ($creeFichier) {
 		//**************************************************
 		//********* Création du fichier de données *********
@@ -143,6 +151,19 @@ if ($utilisateur->getStatut()=="professeur") {
 		include_once "saveOuvreProfs.php";
 		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";
+	} else if ($saveProgramme) {
+		//**************** extraire les données **************** 
+		include_once "saveProgramme.php";
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
+	} else if ($creeModifie) {
+		LSL_enregistre_programme($_POST['creerMEF'], $_POST['creerMatiere'], $_POST['creerModalite'], $_POST['creerNote'], $_POST['creerAppreciation'], rtrim($_POST['creerOption']));
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
+	} else if ($supprimeAssociation) {
+		supprimeProgramme($_POST['supprime']);
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";		
 	} else {
 		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";
@@ -152,7 +173,7 @@ if ($utilisateur->getStatut()=="professeur") {
 
 }
 
-//debug_var();
+debug_var();
 //**************** Pied de page *****************
 require_once("../../lib/footer.inc.php");
 //**************** Fin de pied de page *****************
