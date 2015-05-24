@@ -53,7 +53,8 @@ function classesConcernees($annee, $classes) {
 	$sql= "SELECT id,nom_court,nom_complet,login_pp,niveau,annee,annee-1 AS anneelsl,decoupage,id_structure_sconet,libelle_mef,traitee "
 	   . "FROM `plugin_archAPB_classes` "
 	   . "WHERE annee = ".$annee
-	   .$whereClasse;	
+	   .$whereClasse;
+	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 	return $resultchargeDB;
 }
@@ -90,10 +91,12 @@ function elevesConcernees($annee, $classes) {
 function anneesEleve($ine) {
 	global $mysqli;
 	//APB enregistre la fin d'année
-	$sql= "SELECT el.annee -1 AS annee, el.id_classe, c.nom_court , c.nom_complet , c.login_pp , c.niveau "
+	$sql= "SELECT el.annee -1 AS annee, el.id_classe, c.nom_court , c.nom_complet , c.login_pp , c.niveau , m.code_mef "
 	   . "FROM `plugin_archAPB_eleves` AS el "
 	   . "INNER JOIN `plugin_archAPB_classes` AS c "
 	   . "ON (c.annee = el.annee AND c.id = el.id_classe) "
+	   . "INNER JOIN `plugin_archAPB_eleves_mef` AS m "
+	   . "ON (m.annee = el.annee AND m.no_gep = el.ine) "
 	   . "WHERE el.ine = '".$ine."'  "
 	   . "ORDER BY annee DESC ";
 	//echo $sql."<br />";
@@ -153,6 +156,7 @@ function codePeriode($ine, $annee) {
 	return "";	
 	
 }
+
 function evaluationsBack($ine, $annee) {
 	// il faut récupérer par matière et pas par période
 	global $mysqli;
@@ -161,10 +165,11 @@ function evaluationsBack($ine, $annee) {
 	$sql= "SELECT DISTINCT `n`.code_service , `n`.annee , m.code_sconet , m.modalite , m.libelle_sconet "
 	   . " FROM `plugin_archAPB_notes` n , `plugin_archAPB_matieres` m "
 	   . "WHERE `n`.`ine` LIKE '".$ine."' AND `n`.`annee` =".$annee." AND m.id_gepi=`n`.code_service";		
-	echo $sql;
+	//echo $sql;
 	$resultchargeDB = $mysqli->query($sql);		
 	return $resultchargeDB;	
 }
+
 function evaluations($ine, $annee) {
 	// il faut récupérer par matière et pas par période
 	global $mysqli;
@@ -179,13 +184,10 @@ function evaluations($ine, $annee) {
 	   . "ON (m.id_gepi = n.code_service AND m.annee = n.annee) "
 	   . "WHERE n.ine = '".$ine."' AND n.annee = '".$annee."' "
 	   . "ORDER BY m.code_sconet ASC , n.trimestre ASC";
-	echo "<br />"."<br />".$sql;
+	//echo "<br />"."<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);		
 	return $resultchargeDB;		
 }
-
-
-
 
 function getNiveau($annee, $classe) {
 	global $mysqli;
@@ -271,8 +273,7 @@ function moyenneTrimestre($annee, $code_service, $ine) {
 	$sql= "SELECT * FROM `plugin_archAPB_notes` "
 	   . "WHERE code_service = '".$code_service."' AND annee = '".$annee."' AND ine = '".$ine."'";	
 	$resultchargeDB = $mysqli->query($sql);		
-	echo "<br />".$sql." → ".$resultchargeDB->num_rows;
-	
+	//echo "<br />".$sql." → ".$resultchargeDB->num_rows;	
 	return $resultchargeDB;		
 }
 	
@@ -457,7 +458,6 @@ function setAppreciationProf($eleve, $code, $annee, $appreciation, $prof) {
 	$sql = "INSERT INTO `plugin_lsl_eval_app` (`id` ,`annee` ,`prof` ,`appreciation` ,`id_APB` ,`eleve`) "
 	   . "VALUES (NULL , '".$annee."', '".$prof."', '".$appreciation."', '".$code."', '".$eleve."') "
 	   . "ON DUPLICATE KEY UPDATE `appreciation` = '".$appreciation."' ";
-	
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);
 }
@@ -468,7 +468,6 @@ function getLoginProfAppreciation($eleve, $code, $annee) {
 	$sql .= "WHERE id_APB = '".$code."' ";
 	$sql .= "AND annee = '".$annee."' ";
 	$sql .= "AND eleve = '".$eleve."' ";
-	
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);	
 	$retour = "";
@@ -533,7 +532,6 @@ function lsl_get_ouvert_prof($classe) {
 			$retour = TRUE;
 		}
 	}
-	
 	return $retour;	
 }
 
@@ -557,8 +555,6 @@ function LSL_get_ele_id($eleve) {
 	if ($resultchargeDB->num_rows) {
 		$retour = $resultchargeDB->fetch_object()->ele_id;	
 	}
-	
-	
 	return($retour);
 }
 
@@ -596,7 +592,8 @@ function LSL_enregistre_programme($formation, $matiere, $Modalite, $noteIn=NULL,
 	global $mysqli;
 	if (mb_strtolower($noteIn)=='n')  {$note = 'n';} else {$note = 'y';}
 	if (mb_strtolower($appreciationIn)=='n')  {$appreciation = 'n';} else {$appreciation = 'y';}
-	$sql = "INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite` ,`note` ,`appreciation` ,`option`) "
+	$sql = "INSERT INTO `plugin_lsl_programmes` "
+	   . "(`id`, `formation`, `matiere`, `Modalite` ,`note` ,`appreciation` ,`option`) "
 	   . "VALUE (NULL, '".$formation."', '".$matiere."', '".$Modalite."', '".$note."', '".$appreciation."', '".$option."') "
 	   . "ON DUPLICATE KEY UPDATE `formation`= '".$formation."' ";	
 	if (mb_strtolower($noteIn)=='n') {
@@ -665,4 +662,13 @@ function LSL_enregistre_MEF($MEF, $edition, $libelle) {
 	   . "ON  DUPLICATE KEY UPDATE `edition` = '".$edition."' , `libelle` = '".$libelle."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
+}
+
+function LSL_matiereDeSerie($MEF, $matiere) {
+	global $mysqli;
+	$retour = NULL;
+	$sql = "SELECT * FROM `plugin_lsl_programmes` WHERE `formation` = '".$MEF."' AND `matiere` = '".$matiere."' ";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);
+	return $resultchargeDB->num_rows;	
 }
