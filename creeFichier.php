@@ -123,7 +123,6 @@ while($eleve = $eleves2->fetch_object()){
 								if ($lastMatiere != str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)) {
 									// on change de matière
 									if ($periodesNotes) {
-										print_r($periodesNotes);
 										if (!in_array('1', $periodesNotes)) {
 											$trimestre = $Periodiques->addChild('periode');
 											$trimestre->addAttribute('numero', 1);
@@ -220,7 +219,6 @@ while($eleve = $eleves2->fetch_object()){
 						} else {
 							// on change de matière
 							if ($periodesNotes) {
-								print_r($periodesNotes);
 								if (!in_array('1', $periodesNotes)) {
 									$trimestre = $Periodiques->addChild('periode');
 									$trimestre->addAttribute('numero', 1);
@@ -246,7 +244,6 @@ while($eleve = $eleves2->fetch_object()){
 					$newEvaluations->close();
 					// on change de matière	
 					if ($periodesNotes) {
-						print_r($periodesNotes);
 						if (!in_array('1', $periodesNotes)) {
 							$trimestre = $Periodiques->addChild('periode');
 							$trimestre->addAttribute('numero', 1);
