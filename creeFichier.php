@@ -297,6 +297,10 @@ $sxe->asXML($dirTemp.$nomFichier);
 $file = $dirTemp.$nomFichier;
 $schema = "xsd/import-lsl.xsd";
 
+
+// active la gestion d'erreur personnalisée
+libxml_use_internal_errors(true);
+
 // Instanciation d’un DOMDocument
 $dom = new DOMDocument("1.0");
 
@@ -304,12 +308,21 @@ $dom = new DOMDocument("1.0");
 $dom->load($file);
 
 // Validation du document XML
+/*
 $validate = $dom->schemaValidate($schema) ?
 "<p class='center grand vert'>Le schéma XML paraît valide !</p>" :
 "<p class='center grand rouge'>Schéma XML non valide !</p>";
+ * 
+ */
+if (!$dom->schemaValidate($schema)) { ?>
+<p class='center grand rouge'>DOMDocument::schemaValidate() Votre fichier ".$nomFichier." n'est pas valide</p>
+<?php	    //libxml_display_errors();
+}
+
+
 unset($dom);
 // Affichage du résultat
-echo $validate;
+//echo $validate;
 
 
 

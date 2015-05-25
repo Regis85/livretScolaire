@@ -103,27 +103,13 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		while ($programme = $programmes->fetch_object()) {
 	?>
 		<tr class="lig<?php echo $cpt; ?>">
-			<td>
-				<?php echo $programme->formation ?> 
-			</td>
-			<td>
-				<?php echo $programme->matiere ?>
-			</td>
-			<td>
-				<?php echo $programme->Modalite ?>
-			</td>
-			<td>
-				<?php echo $programme->note ?>
-			</td>
-			<td>
-				<?php echo $programme->appreciation ?>
-			</td>
-			<td style="text-align:left;">
-				<?php echo $programme->option ?>
-			</td>
-			<td>
-				<input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" />
-			</td>
+			<td><?php echo $programme->formation ?></td>
+			<td><?php echo $programme->matiere ?></td>
+			<td><?php echo $programme->Modalite ?></td>
+			<td><?php echo $programme->note ?></td>
+			<td><?php echo $programme->appreciation ?></td>
+			<td style="text-align:left;"><?php echo $programme->option ?></td>
+			<td><input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" /></td>
 		</tr>
 	<?php
 		$cpt*=-1;
@@ -133,9 +119,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			   
 	</table>	
 		<p style="text-align:center; margin-top: .5em;">
-			<button name="supprimeAssociation" value="y" >
-				Supprimer les associations cochées
-			</button>
+			<button name="supprimeAssociation" value="y" >Supprimer les associations cochées</button>
 		</p>
 	
 	</fieldset>
@@ -157,12 +141,15 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		<p>	
 			<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 			<input type="file" name="fileToUpload" id="fileToUpload">
-			<button name="uploadProgramme" id="uploadFichier" value="y">
-				Télécharger
-			</button>
+			<button name="uploadProgramme" id="uploadFichier" value="y">Télécharger</button>
 		</p>
 	</form>
 	</fieldset>
+	
+ <?php if (!$formations->num_rows) {  ?>
+	 <p class="center rouge grand bold" >Vous devez initialiser le module avec votre nomenclature.xml ou un fichier équivalent</p>
+<?php } else { ?>
+
 <?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) { ?>
 	<fieldset>
 	<legend>Créer/modifier les programmes</legend>
@@ -481,6 +468,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 </fieldset>
 
 	<?php
+}
 }
 ?>
 <fieldset>
