@@ -165,6 +165,7 @@ while($eleve = $eleves2->fetch_object()){
 									$compteElv = $compteEleves->fetch_object();
 									if ($compteElv->nombre){
 										$newEval = $newScolarite->addChild('evaluation');
+										//TODO : rechercher la modalité dans les tables LSL
 										$newEval->addAttribute('modalite-election',$evaluation->modalite);
 										$newEval->addAttribute('code-matiere',str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
 										$newStructure = $newEval->addChild('structure');
