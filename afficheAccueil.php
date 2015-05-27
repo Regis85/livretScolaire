@@ -124,6 +124,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	
 	</fieldset>
 	
+ <?php /* ?>
 	<fieldset>
 	<legend>Importer les programmes</legend>
 	<form method="post" action="index.php" id="form_LSL_Programme" enctype="multipart/form-data">	
@@ -145,6 +146,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		</p>
 	</form>
 	</fieldset>
+ <?php /* */ ?>
 	
  <?php if (!$formations->num_rows) {  ?>
 	 <p class="center rouge grand bold" >Vous devez initialiser le module avec votre nomenclature.xml ou un fichier équivalent</p>
@@ -422,14 +424,15 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 						   <?php if (lsl_get_ouvert_prof($obj->id)){ ?>
 						   checked="checked"
 						   <?php } ?>
- <?php // TODO enregistrer automatiquement lors du click grace à une bascule ?>
 						   />
 				</td>
 				<td>
+					<?php if(formationValide($obj->id,$anneeAPB)){ ?>
 					<input type="checkbox" 
 						   name="classes[<?php echo $obj->id; ?>]" 
-						   id="classe_<?php echo $id; ?>" />
-					<?php //echo $obj->id; ?>
+						   id="classe_<?php echo $id; ?>"
+						   />
+						   <?php } ?> 
 				</td>
 			
 			</tr>

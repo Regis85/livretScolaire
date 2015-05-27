@@ -632,9 +632,8 @@ function supprimeProgramme($idFormation) {
 	$resultchargeDB = $mysqli->query($sql);
 }
  
-function extraitFormations($annee) {
-	global $mysqli;
-	
+function extraitFormations($annee, $id = NULL) {
+	global $mysqli;	
 	$sql = "SELECT t2.*, f.edition, f.libelle "
 	   . "FROM plugin_lsl_formations AS f "
 	   . "INNER JOIN ("
@@ -644,15 +643,17 @@ function extraitFormations($annee) {
 	   . "FROM plugin_archAPB_classes AS c "
 	   . "INNER JOIN plugin_archAPB_mefs_classes AS m  "
 	   . "ON (c.id_structure_sconet = m.id_structure_sconet AND m.annee = c.annee) "
-	   . "WHERE c.`annee` = '".$annee."' "
-	   . ") t1 "
+	   . "WHERE c.`annee` = '".$annee."' ";
+	if ($id) {
+		$sql .= " AND c.`id` = '".$id."' ";
+	}
+	$sql .= ") t1 "
 	   . "GROUP BY t1.code_mef "
 	   . ") t2 "
 	   . "ON (t2.code_mef = f.formation )  ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB;	
-	
+	return $resultchargeDB;		
 }
 
 function LSL_enregistre_MEF($MEF, $edition, $libelle) {
@@ -671,4 +672,27 @@ function LSL_matiereDeSerie($MEF, $matiere) {
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 	return $resultchargeDB->num_rows;	
+}
+ 
+function formationValide($id,$annee) {	
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_formations` AS f "
+	   . "INNER JOIN "
+	   . "("
+	   . "SELECT c.* , m.code_mef FROM `plugin_archAPB_classes` AS c "
+	   . "INNER JOIN `plugin_archAPB_mefs_classes` AS m "
+	   . "ON (m.annee = c.annee AND m.id_structure_sconet = c.id_structure_sconet) "
+	   . "WHERE c.`id` = '".$id."' AND c.annee = '".$annee."'  "
+	   . ") t1 "
+	   . "ON t1.code_mef = f.formation ";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);
+	return $resultchargeDB->num_rows;
+}
+
+function trimestreNote($trimestre,$annee,$code_service) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_archAPB_notes` "
+	   . "WHERE  code_service = '".$code_service."' , trimestre = '".$trimestre."' , annee = '".$annee."' ";
+	
 }

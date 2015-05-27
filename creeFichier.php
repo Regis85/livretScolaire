@@ -115,6 +115,14 @@ while($eleve = $eleves2->fetch_object()){
 			
 					while ($evaluation = $newEvaluations->fetch_object()) {
 						// TODO on limite aux $evaluation de la série
+						//NON-RECONNU
+						if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
+							//var_dump($evaluation);
+							echo "<p class='red'>L'enseignement ".$evaluation->code_service." n'est pas reconnu";
+							echo " pour l'année ".$annee->annee."-".($annee->annee+1).".";
+							echo " Vous devez régler ce problème, les notes ne sont pas exportées.</p>";
+						}
+						
 						if (LSL_matiereDeSerie($annee->code_mef, str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT))) {
 							//echo 'La matière '.$annee->code_mef.'est bien enseignée';
 
@@ -123,21 +131,29 @@ while($eleve = $eleves2->fetch_object()){
 								if ($lastMatiere != str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)) {
 									// on change de matière
 									if ($periodesNotes) {
+										// On vérifie si le trimestre est renseigné pour des élèves, 
+										// si oui, on met à -1 pour cet élève
 										if (!in_array('1', $periodesNotes)) {
-											$trimestre = $Periodiques->addChild('periode');
-											$trimestre->addAttribute('numero', 1);
-											$trimestre->addAttribute('moyenne', -1);
+											if(trimestreNote('1',$annee->annee,$lastService)) {
+												$trimestre = $Periodiques->addChild('periode');
+												$trimestre->addAttribute('numero', 1);
+												$trimestre->addAttribute('moyenne', -1);
+											}									
 										}
 										if (!in_array('2', $periodesNotes)) {
-											$trimestre = $Periodiques->addChild('periode');
-											$trimestre->addAttribute('numero', 2);
-											$trimestre->addAttribute('moyenne', -1);
+											if(trimestreNote('2',$annee->annee,$lastService)) {
+												$trimestre = $Periodiques->addChild('periode');
+												$trimestre->addAttribute('numero', 2);
+												$trimestre->addAttribute('moyenne', -1);
+											}									
 										}
 										if ($newScolarite["code-periode"] == "T") {
 											if (!in_array('3', $periodesNotes)) {
-												$trimestre = $Periodiques->addChild('periode');
-												$trimestre->addAttribute('numero', 3);
-												$trimestre->addAttribute('moyenne', -1);
+												if(trimestreNote('3',$annee->annee,$lastService)) {
+													$trimestre = $Periodiques->addChild('periode');
+													$trimestre->addAttribute('numero', 3);
+													$trimestre->addAttribute('moyenne', -1);
+												}									
 											}
 										}
 										$periodesNotes = NULL;
@@ -219,21 +235,29 @@ while($eleve = $eleves2->fetch_object()){
 						} else {
 							// on change de matière
 							if ($periodesNotes) {
+								// On vérifie si le trimestre est renseigné pour des élèves, 
+								// si oui, on met à -1 pour cet élève
 								if (!in_array('1', $periodesNotes)) {
-									$trimestre = $Periodiques->addChild('periode');
-									$trimestre->addAttribute('numero', 1);
-									$trimestre->addAttribute('moyenne', -1);
+									if(trimestreNote('1',$annee->annee,$lastService)) {
+										$trimestre = $Periodiques->addChild('periode');
+										$trimestre->addAttribute('numero', 1);
+										$trimestre->addAttribute('moyenne', -1);
+									}									
 								}
 								if (!in_array('2', $periodesNotes)) {
-									$trimestre = $Periodiques->addChild('periode');
-									$trimestre->addAttribute('numero', 2);
-									$trimestre->addAttribute('moyenne', -1);
+									if(trimestreNote('2',$annee->annee,$lastService)) {
+										$trimestre = $Periodiques->addChild('periode');
+										$trimestre->addAttribute('numero', 2);
+										$trimestre->addAttribute('moyenne', -1);
+									}									
 								}
 								if ($newScolarite["code-periode"] == "T") {
 									if (!in_array('3', $periodesNotes)) {
-										$trimestre = $Periodiques->addChild('periode');
-										$trimestre->addAttribute('numero', 3);
-										$trimestre->addAttribute('moyenne', -1);
+										if(trimestreNote('3',$annee->annee,$lastService)) {
+											$trimestre = $Periodiques->addChild('periode');
+											$trimestre->addAttribute('numero', 3);
+											$trimestre->addAttribute('moyenne', -1);
+										}									
 									}
 								}
 								$periodesNotes = NULL;
@@ -243,26 +267,34 @@ while($eleve = $eleves2->fetch_object()){
 					}
 					$newEvaluations->close();
 					// on change de matière	
-					if ($periodesNotes) {
-						if (!in_array('1', $periodesNotes)) {
-							$trimestre = $Periodiques->addChild('periode');
-							$trimestre->addAttribute('numero', 1);
-							$trimestre->addAttribute('moyenne', -1);
-						}
-						if (!in_array('2', $periodesNotes)) {
-							$trimestre = $Periodiques->addChild('periode');
-							$trimestre->addAttribute('numero', 2);
-							$trimestre->addAttribute('moyenne', -1);
-						}
-						if ($newScolarite["code-periode"] == "T") {
-							if (!in_array('3', $periodesNotes)) {
-								$trimestre = $Periodiques->addChild('periode');
-								$trimestre->addAttribute('numero', 3);
-								$trimestre->addAttribute('moyenne', -1);
-							}
-						}
-						$periodesNotes = NULL;
-					}		
+							if ($periodesNotes) {
+								// On vérifie si le trimestre est renseigné pour des élèves, 
+								// si oui, on met à -1 pour cet élève
+								if (!in_array('1', $periodesNotes)) {
+									if(trimestreNote('1',$annee->annee,$lastService)) {
+										$trimestre = $Periodiques->addChild('periode');
+										$trimestre->addAttribute('numero', 1);
+										$trimestre->addAttribute('moyenne', -1);
+									}									
+								}
+								if (!in_array('2', $periodesNotes)) {
+									if(trimestreNote('2',$annee->annee,$lastService)) {
+										$trimestre = $Periodiques->addChild('periode');
+										$trimestre->addAttribute('numero', 2);
+										$trimestre->addAttribute('moyenne', -1);
+									}									
+								}
+								if ($newScolarite["code-periode"] == "T") {
+									if (!in_array('3', $periodesNotes)) {
+										if(trimestreNote('3',$annee->annee,$lastService)) {
+											$trimestre = $Periodiques->addChild('periode');
+											$trimestre->addAttribute('numero', 3);
+											$trimestre->addAttribute('moyenne', -1);
+										}									
+									}
+								}
+								$periodesNotes = NULL;
+							}	
 				}
 			}
 		}

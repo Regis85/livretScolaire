@@ -1,0 +1,4199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+   <mefs>
+	 <MEF CODE_MEF="21133104110">
+	    <FORMATION>1-ST2S</FORMATION>
+	    <LIBELLE_LONG>1-ST2S SC. & TECHNO. SANTE & SOCIAL</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21133104110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21133104112">
+	    <FORMATION>1ST2SE</FORMATION>
+	    <LIBELLE_LONG>1ST2S SC. & TECHNO. SANTE & SOCIAL EURO</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21133104110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21233104110">
+	    <FORMATION>T-ST2S</FORMATION>
+	    <LIBELLE_LONG>T-ST2S SC. & TECHNO. SANTE & SOCIAL</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21233104110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21233104112">
+	    <FORMATION>T-ST2SE</FORMATION>
+	    <LIBELLE_LONG>T-ST2S SC. & TECHNO. SANTE & SOCIAL EURO</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21233104110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21113403110">
+	    <FORMATION>1STD2A</FORMATION>
+	    <LIBELLE_LONG>1STD2A SC.&TEC.DESIGN-ARTS APPLIQ</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21113403110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120003110">
+	    <FORMATION>1ère STI2D</FORMATION>
+	    <LIBELLE_LONG>1ère STI2D ARCHITECTURE ET CONSTRUCTION</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120005110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120004110">
+	    <FORMATION>1ère STI2D</FORMATION>
+	    <LIBELLE_LONG>1ère STI2D ENERGIES ET ENVIRONNEMENT</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120005110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120005110">
+	    <FORMATION>1ère STI2D</FORMATION>
+	    <LIBELLE_LONG>1ère STI2D INNOVATION TECHNOLOGIQUE ET ECO-CONCEPT.</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120005110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120006110">
+	    <FORMATION>1ère STI2D</FORMATION>
+	    <LIBELLE_LONG>1ère STI2D SYSTEMES D'INFORMATION ET NUMERIQUE</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120005110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120007110">
+	    <FORMATION>1STL</FORMATION>
+	    <LIBELLE_LONG>1-STL BIOTECHNOLOGIES</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120007110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21120008110">
+	    <FORMATION>1STL</FORMATION>
+	    <LIBELLE_LONG>1-STL SCIENCES PHYSIQUES ET CHIMIQUES EN LABO.</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21120008110</MEF_RATTACHEMENT>
+	 </MEF>
+	 <MEF CODE_MEF="21131016110">
+	    <FORMATION>1-STMG</FORMATION>
+	    <LIBELLE_LONG>1-STMG SC. & TECHNO. MANAGEMENT GESTION</LIBELLE_LONG>
+	    <MEF_RATTACHEMENT>21131016110</MEF_RATTACHEMENT>
+	 </MEF>
+   </mefs>
+   
+   <rattachements>
+	 <rattachement formation="21133104110">
+	    <matiere>
+		  <column name="id">6159</column>
+		  <column name="matiere">061300</column>
+		  <column name="Modalite">S</column>
+		  <column name="note">y</column>
+		  <column name="appreciation">y</column>
+		  <column name="option">MATHEMATIQUES</column>
+	    </matiere>
+	    <matiere>
+		  <column name="id">6160</column>
+		  <column name="matiere">069400</column>
+		  <column name="Modalite">S</column>
+		  <column name="note">y</column>
+		  <column name="appreciation">y</column>
+		  <column name="option">SCIENCES PHYSIQUES ET CHIMIQUES</column>
+	    </matiere>
+	    <matiere>
+		  <column name="id">6161</column>
+		  <column name="matiere">020700</column>
+		  <column name="Modalite">S</column>
+		  <column name="note">y</column>
+		  <column name="appreciation">y</column>
+		  <column name="option">FRANCAIS</column>
+	    </matiere>
+	    <matiere>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6162</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6163</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6164</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">307600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENC. &amp; TECHNIQ. SANITAIRES &amp; SOCIALES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6165</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">307700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">BIOLOGIE &amp; PHYSIOPATHOLOGIE HUMAINES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6166</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">007500</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ACTIVITES INTER-DISCIPLINAIRES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6167</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6168</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6169</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6170</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6171</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6172</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6173</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6174</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6175</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6176</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6177</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6178</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6179</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6180</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6181</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6182</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6183</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6184</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6185</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6186</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6187</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6188</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6189</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6190</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6191</column>
+	   <column name="formation">21133104110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6192</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">010300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHILOSOPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6193</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6194</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6195</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">069400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES PHYSIQUES ET CHIMIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6196</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6197</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">040600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE 1ère 2013-2014</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6198</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">307600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENC. &amp; TECHNIQ. SANITAIRES &amp; SOCIALES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6199</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">307700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">BIOLOGIE &amp; PHYSIOPATHOLOGIE HUMAINES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6200</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6201</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6202</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6203</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6204</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6205</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6206</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6207</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6208</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6209</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6210</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6211</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6212</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6213</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6214</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6215</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6216</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6217</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6218</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6219</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6220</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6221</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6222</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6223</column>
+	   <column name="formation">21233104112</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6224</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">010300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHILOSOPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6225</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6226</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6227</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">069400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES PHYSIQUES ET CHIMIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6228</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6229</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">040600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE 1ère 2013-2014</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6230</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">307600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENC. &amp; TECHNIQ. SANITAIRES &amp; SOCIALES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6231</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">307700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">BIOLOGIE &amp; PHYSIOPATHOLOGIE HUMAINES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6232</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6233</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6234</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6235</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6236</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6237</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6238</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6239</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6240</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6241</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6242</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6243</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6244</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6245</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6246</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6247</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6248</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6249</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6250</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6251</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6252</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6253</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6254</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6255</column>
+	   <column name="formation">21233104110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6256</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6257</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6258</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6259</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6260</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6261</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">279700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DESIGN ET ARTS APPLIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6262</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">501000</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DESIGN ET ARTS APPLIQUES EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6263</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6264</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6265</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6266</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6267</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6268</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6269</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6270</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6271</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6272</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6273</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6274</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6275</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6276</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6277</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6278</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6279</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6280</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6281</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6282</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6283</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6284</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6285</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6286</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6287</column>
+	   <column name="formation">21113403110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6288</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6289</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6290</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6291</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6292</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6293</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">073700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMTS TECHNOLOGIQUES TRANSVERSAUX</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6294</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6295</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">175200</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ARCHITECTURE ET CONSTRUCTION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6296</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6297</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6298</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6299</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6300</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6301</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6302</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6303</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6304</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6305</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6306</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6307</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6308</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6309</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6310</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6311</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6312</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6313</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6314</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6315</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6316</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6317</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6318</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6319</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6320</column>
+	   <column name="formation">21120003110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6321</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6322</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6323</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6324</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6325</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6326</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">073700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMTS TECHNOLOGIQUES TRANSVERSAUX</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6327</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6328</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">181700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENERGIES ET ENVIRONNEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6329</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6330</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6331</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6332</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6333</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6334</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6335</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6336</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6337</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6338</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6339</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6340</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6341</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6342</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6343</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6344</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6345</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6346</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6347</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6348</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6349</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6350</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6351</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6352</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6353</column>
+	   <column name="formation">21120004110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6354</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6355</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6356</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6357</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6358</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6359</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">073700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMTS TECHNOLOGIQUES TRANSVERSAUX</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6360</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6361</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">073600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">INNOVATION TECHNOLOGIQUE ET ECO-CONCEPT.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6362</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6363</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6364</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6365</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6366</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6367</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6368</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6369</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6370</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6371</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6372</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6373</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6374</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6375</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6376</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6377</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6378</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6379</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6380</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6381</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6382</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6383</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6384</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6385</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6386</column>
+	   <column name="formation">21120005110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6387</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6388</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6389</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6390</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6391</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6392</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">073700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMTS TECHNOLOGIQUES TRANSVERSAUX</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6393</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6394</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">242000</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">SYSTEMES D'INFORMATION ET NUMERIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6395</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6396</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6397</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6398</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6399</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6400</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6401</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6402</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6403</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">104100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6404</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6405</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6406</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6407</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6408</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6409</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6410</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6411</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6412</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6413</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6414</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6415</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6416</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6417</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6418</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6419</column>
+	   <column name="formation">21120006110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6420</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6421</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6422</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6423</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6424</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6425</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">308600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHIMIE, BIOCHIMIE, SCIENCES DU VIVANT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6426</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">308700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MESURE ET INSTRUMENTATION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6427</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6428</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">313100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">BIOTECHNOLOGIES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6429</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6430</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6431</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6432</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6433</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6434</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6435</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6436</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6437</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6438</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6439</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6440</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6441</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6442</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6443</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6444</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6445</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6446</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6447</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6448</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6449</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6450</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6451</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6452</column>
+	   <column name="formation">21120007112</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6453</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6454</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6455</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6456</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6457</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6458</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">308600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHIMIE, BIOCHIMIE, SCIENCES DU VIVANT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6459</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">308700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MESURE ET INSTRUMENTATION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6460</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6461</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">313100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">BIOTECHNOLOGIES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6462</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6463</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6464</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6465</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6466</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6467</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6468</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6469</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6470</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6471</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6472</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6473</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6474</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6475</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6476</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6477</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6478</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6479</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6480</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6481</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6482</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6483</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6484</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6485</column>
+	   <column name="formation">21120007110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6486</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6487</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6488</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6489</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6490</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6491</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">308600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHIMIE, BIOCHIMIE, SCIENCES DU VIVANT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6492</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">308700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MESURE ET INSTRUMENTATION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6493</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6494</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">069700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES PHYSIQUES ET CHIMIQUES EN LABO.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6495</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6496</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6497</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6498</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6499</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6500</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6501</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6502</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6503</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6504</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6505</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6506</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6507</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6508</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6509</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6510</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6511</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6512</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6513</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6514</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6515</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6516</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6517</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6518</column>
+	   <column name="formation">21120008112</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6519</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6520</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">062300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PHYSIQUE-CHIMIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6521</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6522</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6523</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6524</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">308600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHIMIE, BIOCHIMIE, SCIENCES DU VIVANT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6525</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">308700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MESURE ET INSTRUMENTATION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6526</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">501100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ENSEIGNEMENT TECHNOLOGIQUE EN LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6527</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">069700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES PHYSIQUES ET CHIMIQUES EN LABO.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6528</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6529</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6530</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6531</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6532</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6533</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6534</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6535</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6536</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6537</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6538</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6539</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6540</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6541</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6542</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6543</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6544</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6545</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6546</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6547</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6548</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6549</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6550</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6551</column>
+	   <column name="formation">21120008110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6552</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6553</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6554</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6555</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6556</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">435400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES DE GESTION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6557</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">381000</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ECONOMIE ET DROIT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6558</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">434300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MANAGEMENT DES ORGANISATIONS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6559</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6560</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6561</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6562</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6563</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6564</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6565</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6566</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6567</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6568</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6569</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6570</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031413</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV3  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6571</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6572</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031403</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV3</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6573</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6574</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6575</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6576</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6577</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6578</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6579</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6580</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6581</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6582</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6583</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6584</column>
+	   <column name="formation">21131016112</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6585</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">061300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MATHEMATIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6586</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">020700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">FRANCAIS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6587</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">043700</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE-GEOGRAPHIE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6588</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6589</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">435400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">SCIENCES DE GESTION</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6590</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">381000</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ECONOMIE ET DROIT</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6591</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">434300</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MANAGEMENT DES ORGANISATIONS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6592</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">100100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">EDUCATION PHYSIQUE ET SPORTIVE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6593</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">090100</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARTS PLASTIQUES</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6594</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">285200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CINEMA-AUDIOVISUEL</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6595</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">082500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">DANSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6596</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">275700</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">HISTOIRE DES ARTS</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6597</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">083200</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">MUSIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6598</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">278500</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">THEATRE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6599</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">278000</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ATELIER ARTISTIQUE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6600</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030201</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV1</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6601</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">033112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">TURC LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6602</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">032412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ISLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6603</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031413</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV3  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6604</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6605</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031403</column>
+	   <column name="Modalite">F</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">RUSSE LV3</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6606</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031212</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">NEERLANDAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6607</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031112</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">PORTUGAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6608</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">031012</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">JAPONAIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6609</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030902</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ITALIEN LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6610</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030602</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ESPAGNOL LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6611</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030412</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6612</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030402</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">CHINOIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6613</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030312</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ARABE LV2  CORRESP.</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6614</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030202</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ANGLAIS LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6615</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">030102</column>
+	   <column name="Modalite">O</column>
+	   <column name="note">y</column>
+	   <column name="appreciation">y</column>
+	   <column name="option">ALLEMAND LV2</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6616</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">008400</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">VIE DE CLASSE</column>
+    </table>
+    <table name="plugin_lsl_programmes">
+	   <column name="id">6617</column>
+	   <column name="formation">21131016110</column>
+	   <column name="matiere">006600</column>
+	   <column name="Modalite">S</column>
+	   <column name="note">n</column>
+	   <column name="appreciation">n</column>
+	   <column name="option">ACCOMPAGNEMENT PERSONNALISE</column>
+    </table>
+</root>
