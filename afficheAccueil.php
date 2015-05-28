@@ -147,6 +147,11 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	</form>
 	</fieldset>
  <?php /* */ ?>
+	<p style="margin:1em; font-size: larger;">
+		La plupart des matières qui doivent apparaître dans le livret scolaire sont prédéfinies 
+		mais il vous appartient de vérifier que toutes les langues vivantes enseignées dans votre établissement 
+		sont bien présentes et au besoin d'ajouter celles qui manquent.
+	</p>
 	
  <?php if (!$formations->num_rows) {  ?>
 	 <p class="center rouge grand bold" >Vous devez initialiser le module avec votre nomenclature.xml ou un fichier équivalent</p>
