@@ -696,3 +696,17 @@ function trimestreNote($trimestre,$annee,$code_service) {
 	   . "WHERE  code_service = '".$code_service."' , trimestre = '".$trimestre."' , annee = '".$annee."' ";
 	
 }
+
+function LSL_modalite($matiere, $formation) {
+	global $mysqli;
+	$retour = FALSE;
+	$sql = "SELECT 	Modalite FROM `plugin_lsl_programmes` "
+	   . "WHERE  matiere = '".$matiere."' AND formation = '".$formation."' ";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);
+	if ($resultchargeDB->num_rows) {
+		$retour= $resultchargeDB->fetch_object()->Modalite;
+	}
+	
+	return $retour;
+}

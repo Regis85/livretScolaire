@@ -18,8 +18,8 @@ while($eleve = $eleves2->fetch_object()){
 		if ($changeClasse) {
 			echo '<p>'.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB.'</p>';
 		}
-		$changeClasse = LSL_change_classe($eleve->ine,$anneeLSL);
-		if ($changeClasse) {
+		$changeClasseLSL = LSL_change_classe($eleve->ine,$anneeLSL);
+		if ($changeClasseLSL) {
 			echo '<p>'.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeLSL-1).'-'.$anneeLSL.'</p>';
 		}
 		$lastNiveau="";
@@ -37,8 +37,7 @@ while($eleve = $eleves2->fetch_object()){
 						$newEngagement = $engagements->addChild('engagement');
 						$newEngagement->addAttribute('code',$engagement->code );
 					} else {
-						$description=$engagement->description;
-						$description = substr($description,0,300);	
+						$description=substr($engagement->description,0,300);
 						$newEngagement = $engagements->addChild('engagement-autre',$description);
 					}
 				}
@@ -62,11 +61,11 @@ while($eleve = $eleves2->fetch_object()){
 		$derniereAnnee = NULL;
 		// annee , id_classe , nom_court , nom_complet , login_pp , niveau // 
 		while ($annee = $annees->fetch_object()) {
+			//var_dump($annee);
 			if (!$derniereAnnee || $annee->niveau != $derniereAnnee) {
 				$derniereAnnee = $annee->niveau;
 
 				// On récupère le niveau
-				$niveau = "";
 				$getNiveau = getNiveau($annee->annee, $annee->id_classe);
 				$niveau = $getNiveau->fetch_object();
 				// Ne pas récupérer une année redoublée
@@ -115,7 +114,6 @@ while($eleve = $eleves2->fetch_object()){
 			
 					while ($evaluation = $newEvaluations->fetch_object()) {
 						// TODO on limite aux $evaluation de la série
-						//NON-RECONNU
 						if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
 							//var_dump($evaluation);
 							echo "<p class='red'>L'enseignement ".$evaluation->code_service." n'est pas reconnu";
@@ -166,8 +164,13 @@ while($eleve = $eleves2->fetch_object()){
 									if ($compteElv->nombre){
 										$newEval = $newScolarite->addChild('evaluation');
 										//TODO : rechercher la modalité dans les tables LSL
-										$newEval->addAttribute('modalite-election',$evaluation->modalite);
-										$newEval->addAttribute('code-matiere',str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
+										$code_matiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT);
+										$modalite = LSL_modalite($code_matiere, $annee->code_mef);
+										if (!$modalite) {
+											$modalite = $evaluation->modalite;
+										}
+										$newEval->addAttribute('modalite-election',$modalite);
+										$newEval->addAttribute('code-matiere',$code_matiere);
 										$newStructure = $newEval->addChild('structure');
 										$structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
 										$structureEval = $structureEvaluation->fetch_object();
@@ -180,7 +183,7 @@ while($eleve = $eleves2->fetch_object()){
 										$newStructure->addAttribute('repar-huit-douze',$huitDouze);			
 										$newStructure->addAttribute('repar-plus-douze',$plusDouze);
 										$structureEvaluation ->close();
-										$appAnnuelle=" ";
+										//$appAnnuelle=" ";
 										$appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
 										if (!$appAnnuelle) {
 											$appAnnuelle=" ";
@@ -366,7 +369,7 @@ if (isset($messages)) {
 	onclick="bascule('messages')" 
 	style="cursor:pointer"
 	title="Cliquez pour déplier/plier">
-	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) echo "s"; ?> manquante<?php if(count($messages) > 1) echo "s"; ?>
+	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) {echo "s";} ?> manquante<?php if(count($messages) > 1) {echo "s";} ?>
 </p>
 <p style="text-align: center">
 	<button type="button" onclick="bascule('messages')">Afficher/Cacher les appréciations manquantes</button>
