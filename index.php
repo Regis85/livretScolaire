@@ -115,6 +115,7 @@ if ($utilisateur->getStatut()=="professeur") {
 	}
 	$creeModifie = isset($_POST['creeModifie']) ? $_POST['creeModifie'] : NULL ;
 	$supprimeAssociation = isset($_POST['supprimeAssociation']) ? $_POST['supprimeAssociation'] : NULL ;
+	$rattachement = isset($_POST['rattachement']) ? $_POST['rattachement'] : NULL ;
 	
 	if ($creeFichier) {
 		//**************************************************
@@ -163,7 +164,11 @@ if ($utilisateur->getStatut()=="professeur") {
 	} else if ($supprimeAssociation) {
 		supprimeProgramme($_POST['supprime']);
 		//**************** extraire les données **************** 
-		include_once "afficheAccueil.php";		
+		include_once "afficheAccueil.php";	
+	} else if ($rattachement) {
+		LSL_enregistre_MEF($_POST['MEF'], $_POST['edition'], $_POST['libelle'], $_POST['MEF_rattachement'], $_POST['annee']);
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
 	} else {
 		//**************** extraire les données **************** 
 		include_once "afficheAccueil.php";

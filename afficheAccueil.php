@@ -94,13 +94,13 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<th>Modalité</th>
 			<th>Note obligatoire</th>
 			<th>Appreciation obligatoire</th>
-			<th>Commentaire</th>
+			<th>Libellé</th>
 			<th>Supprimer</th>
 		</tr>
 	<?php 
 		$cpt =1; 
 		if ($programmes) {
-		while ($programme = $programmes->fetch_object()) {
+			while ($programme = $programmes->fetch_object()) {
 	?>
 		<tr class="lig<?php echo $cpt; ?>">
 			<td><?php echo $programme->formation ?></td>
@@ -117,7 +117,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		</tr>
 	<?php
 		$cpt*=-1;
-		}
+			}
+			reset($programmes);
 		}
 	?>
 			   
@@ -158,14 +159,24 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	</p>
 	
  <?php if (!$formations->num_rows) {  ?>
-	 <p class="center rouge grand bold" >Vous devez initialiser le module avec votre nomenclature.xml ou un fichier équivalent</p>
+	 <p class="center rouge grand bold" >
+		 Vous devez initialiser le module, désinstallez puis réinstallez le plugin. 
+		 Attention, les appréciations sonr perdues lors de cette manœuvre.
+	 </p>
+	 <p class="center rouge grand bold" >
+		 Vous pouvez aussi mettre à jour la structure des tables au besoin,
+		 puis récupérer et exécuter les requêtes d'initialisation dans mod_plugins/livretscolaire/plugin.xml.
+	 </p>
+	 <p class="center rouge grand bold" >		 
+		 Ceci permet d'initialiser sans détruire les données.
+	 </p>
 <?php } else { ?>
 
-<?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) { ?>
+<?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation'] && LSL_est_maitre($_SESSION['choixFormation'])) { ?>
 	<fieldset>
 	<legend>Créer/modifier les programmes</legend>
 	<form method="post" action="index.php" id="form_LSL_Programme" enctype="multipart/form-data">
-		<p>
+		<p class="center">
 			Pour créer ou modifier une association pour le MEF : <?php echo $_SESSION['choixFormation']; ?> , 
 			saisissez la ci-dessous			
 		</p>
@@ -173,36 +184,69 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
 		MEF : <?php echo $_SESSION['choixFormation']; ?>
 		<input type="hidden" name="creerMEF" value="<?php echo $_SESSION['choixFormation']; ?>" />
-		Matière :
+		— Matière :
 		<input type="text" style="width:4em;" name="creerMatiere" />
-		Modalité :
+		— Modalité :
 		<select name="creerModalite">
 			<option value="S">Obligatoire (S)</option>
 			<option value="F">Facultatif (F)</option>
 			<option value="O">Option (O)</option>
 		</select>
 		
-		Note obligatoire dans le livret :
+		— Note obligatoire dans le livret :
 		<select name="creerNote">
 			<option value="y">Oui</option>
 			<option value="n">Non</option>
 		</select>
-		Appréciation obligatoire dans le livret 
+		— Appréciation obligatoire dans le livret 
 		<select name="creerAppreciation">
 			<option value="y">Oui</option>
 			<option value="n">Non</option>
 		</select>
 		<br />
-		Commentaires :
+		— Commentaires :
 		<input type="text" name="creerOption" />
-		<button name="creeModifie" value="y">
-			Créer/Modifier une association
-		</button>
+		</p>
+		<p class="center">
+			<button name="creeModifie" value="y">
+				Créer/Modifier une association
+			</button>
 		</p>
 	</form>
 	</fieldset>
-	
+
+	<fieldset>
+		<legend>Créer/modifier un rattachement de MEF</legend>
+		<form method="post" action="index.php" id="form_LSL_Rattachement" enctype="multipart/form-data">
+			<p class="center">
+			Pour créer ou modifier un rattachement au MEF : <?php echo $_SESSION['choixFormation']; ?> , 
+			saisissez le ci-dessous.
+			</p>
+			<p>
+				<?php if (function_exists("add_token_field")) {echo add_token_field(); } ?>
+				MEF de rattachement : <?php echo $_SESSION['choixFormation']; ?>
+				<input type="hidden" name="MEF_rattachement" value="<?php echo $_SESSION['choixFormation']; ?>" />
+				— Année :
+				<input type="text" name="annee" size="4"/>
+				— MEF à rattacher : 
+				<input type="text" name="MEF" size="11"/>
+				<br/>
+				— Code édition : 
+				<input type="text" name="edition"/>
+				<br/>
+				— Libellé :  
+				<input type="text" name="libelle"/>
+			</p>
+			<p class="center">
+				<button name="rattachement" value="y">
+					Créer/Modifier un rattachement
+				</button>
+			</p>
+				
+		</form>
+	</fieldset>
 <?php } ?>
+	
 </fieldset>
 
 <fieldset <?php if (!lsl_getDroit('droitCompetences')) { ?> 

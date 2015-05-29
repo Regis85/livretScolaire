@@ -196,7 +196,6 @@ function getNiveau($annee, $classe) {
 	$sql= "SELECT * FROM `plugin_archAPB_apb_niveau` WHERE `id` =".$classe." AND `annee` = ".$annee." " ;
 	$resultchargeDB = $mysqli->query($sql);		
 	//echo $sql;
-	$chargeDB = '';	
 	
 	return $resultchargeDB;	
 }
@@ -411,19 +410,6 @@ function maxTrimNotes($eleve=NULL) {
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);
 	return $resultchargeDB->fetch_object()->trimestre;		
-}	
-
-
-function afficheAppreciationMatiere($ine) {	
-	global $mysqli;
-	$sql = "SELECT * FROM `plugin_lsl_eval_app` AS a ";
-	$sql .= "WHERE a.ine = '".$ine."' ";
-	$sql .= "AND a.annee =  '".$annee."'";
-	$sql .= "AND a.annee =  '".$annee."'";
-	
-	//echo "<br />".$sql."<br />";
-	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB;		
 }
 
 function getMatiere($code, $annee, $champ = 'libelle') {
@@ -684,10 +670,10 @@ function extraitFormations($anneeAPB, $id = NULL) {
 	return $resultchargeDB;		
 }
 
-function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement) {
+function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement, $annee) {
 	global $mysqli;
-	$sql = "INSERT INTO `plugin_lsl_formations` (`id` , `MEF` , `edition` , `libelle` , `MEF_rattachement` )"
-	   . "VALUE (NULL , '".$MEF."', '".$edition."', '".$libelle."', '".$MEF_rattachement."') "
+	$sql = "INSERT INTO `plugin_lsl_formations` (`id` , `MEF` , `edition` , `libelle` , `MEF_rattachement`, `annee` )"
+	   . "VALUE (NULL , '".$MEF."', '".$edition."', '".$libelle."', '".$MEF_rattachement."', '".$annee."') "
 	   . "ON  DUPLICATE KEY UPDATE `edition` = '".$edition."' , `libelle` = '".$libelle."' , `MEF_rattachement` = '".$MEF_rattachement."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
@@ -766,26 +752,33 @@ function LSL_get_MEF_classe($id_structure_sconet,$annee) {
 }
 
 function display_xml_error($error) {
-    //$return = str_repeat('-', $error->column) . "<br />";
-    $return = "";
-	
 	switch ($error->code) {
 		case 1871:
-			$return .= "Erreur ".$error->code." → une classe n'est pas reconnue, la scolarité correspondante est vide";
+			$return = "Erreur ".$error->code." → une classe n'est pas reconnue, la scolarité correspondante est vide";
 			break;
 		default :	
 			switch ($error->level) {
 				case LIBXML_ERR_WARNING:
-					$return .= "Attention ".$error->code." : ";
+					$return = "Attention ".$error->code." : ";
 					break;
 				 case LIBXML_ERR_ERROR:
-					$return .= "Erreur ".$error->code." : ";
+					$return = "Erreur ".$error->code." : ";
 					break;
 				case LIBXML_ERR_FATAL:
-					$return .= "Erreur Fatale ".$error->code." : ";
+					$return = "Erreur Fatale ".$error->code." : ";
 					break;
 			}
 			$return .= trim($error->message);
 	}
     return $return."<hr />";
 }
+
+function LSL_est_maitre($MEF) {
+	global $mysqli;
+	$sql = "SELECT * FROM `plugin_lsl_formations` WHERE MEF_rattachement = '".$MEF."'";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);	
+	return $resultchargeDB->num_rows;	
+}
+
+
