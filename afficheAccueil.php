@@ -89,7 +89,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 	<table class="boireaus sortable resizable"
 		   id="tableProgrammes">
 		<tr>
-			<th>Formation</th>
+			<th>MEF de rattachement</th>
 			<th>Matière</th>
 			<th>Modalité</th>
 			<th>Note obligatoire</th>
@@ -109,7 +109,11 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<td><?php echo $programme->note ?></td>
 			<td><?php echo $programme->appreciation ?></td>
 			<td style="text-align:left;"><?php echo $programme->option ?></td>
-			<td><input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" /></td>
+			<td>
+<?php if ($_SESSION['choixFormation'] == $programme->formation) { ?>	
+				<input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" />
+<?php } ?>
+			</td>
 		</tr>
 	<?php
 		$cpt*=-1;

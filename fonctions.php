@@ -631,9 +631,21 @@ function LSL_enregistre_programme($formation, $matiere, $Modalite, $noteIn=NULL,
 
 function extraitProgrammes($formation = NULL) {
 	global $mysqli;
+	
+	if ($formation) {
+		$mef_rattachement = $formation;
+		$sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` = '".$formation."' ";
+		//echo "<br />".$sql1;
+		$resultchargeDB1 = $mysqli->query($sql1);
+		if ($resultchargeDB1->num_rows) {
+			$mef_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
+		}
+	}
+	
+	
 	$sql = "SELECT * FROM `plugin_lsl_programmes` ";
 	if ($formation) {
-		$sql .= "WHERE `formation` = '".$formation."' ";
+		$sql .= "WHERE `formation` = '".$mef_rattachement."' ";
 	}
 	$sql .= "ORDER BY `formation` ASC, `matiere` ASC ";
 	//echo "<br />".$sql;
@@ -650,7 +662,7 @@ function supprimeProgramme($idFormation) {
  
 function extraitFormations($anneeAPB, $id = NULL) {
 	global $mysqli;	
-	$sql = "SELECT t2.*, f.edition, f.libelle "
+	$sql = "SELECT t2.*, f.edition, f.libelle, f.MEF_rattachement "
 	   . "FROM plugin_lsl_formations AS f "
 	   . "INNER JOIN ("
 	   . "SELECT t1.code_mef, t1.niveau "
@@ -666,24 +678,34 @@ function extraitFormations($anneeAPB, $id = NULL) {
 	$sql .= ") t1 "
 	   . "GROUP BY t1.code_mef "
 	   . ") t2 "
-	   . "ON (t2.code_mef = f.formation )  ";
+	   . "ON (t2.code_mef = f.MEF )  ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
 }
 
-function LSL_enregistre_MEF($MEF, $edition, $libelle) {
+function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement) {
 	global $mysqli;
-	$sql = "INSERT INTO `plugin_lsl_formations` (`id` , `formation` , `edition` , `libelle` )"
-	   . "VALUE (NULL , '".$MEF."', '".$edition."', '".$libelle."') "
-	   . "ON  DUPLICATE KEY UPDATE `edition` = '".$edition."' , `libelle` = '".$libelle."' ";
+	$sql = "INSERT INTO `plugin_lsl_formations` (`id` , `MEF` , `edition` , `libelle` , `MEF_rattachement` )"
+	   . "VALUE (NULL , '".$MEF."', '".$edition."', '".$libelle."', '".$MEF_rattachement."') "
+	   . "ON  DUPLICATE KEY UPDATE `edition` = '".$edition."' , `libelle` = '".$libelle."' , `MEF_rattachement` = '".$MEF_rattachement."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 }
 
 function LSL_matiereDeSerie($MEF, $matiere) {
 	global $mysqli;
-	$sql = "SELECT * FROM `plugin_lsl_programmes` WHERE `formation` = '".$MEF."' AND `matiere` = '".$matiere."' ";
+	
+		$MEF_rattachement = $MEF;
+		$sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` = '".$MEF."' ";
+		//echo "<br />".$sql1;
+		$resultchargeDB1 = $mysqli->query($sql1);
+		if ($resultchargeDB1->num_rows) {
+			$MEF_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
+		}
+	
+	
+	$sql = "SELECT * FROM `plugin_lsl_programmes` WHERE `formation` = '".$MEF_rattachement."' AND `matiere` = '".$matiere."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 	return $resultchargeDB->num_rows;	
@@ -697,7 +719,7 @@ function formationValide($id,$annee) {
 	   . "ON (m.annee = c.annee AND m.id_structure_sconet = c.id_structure_sconet) "
 	   . "WHERE c.`id` = '".$id."' AND c.annee = '".$annee."'  "
 	   . ") t1 "
-	   . "ON t1.code_mef = f.formation ";
+	   . "ON t1.code_mef = f.MEF ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 	return $resultchargeDB->num_rows;
