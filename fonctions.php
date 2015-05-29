@@ -185,7 +185,7 @@ function evaluations($ine, $annee) {
 	   . "WHERE n.ine = '".$ine."' AND n.annee = '".$annee."' "
 	   . "ORDER BY m.code_sconet ASC , n.trimestre ASC";
 	//echo "<br />"."<br />".$sql;
-	$resultchargeDB = $mysqli->query($sql);		
+	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
 }
 
@@ -426,14 +426,30 @@ function afficheAppreciationMatiere($ine) {
 	return $resultchargeDB;		
 }
 
-function getMatiere($code, $annee) {
+function getMatiere($code, $annee, $champ = 'libelle') {
 	global $mysqli;
 	$sql = "SELECT * FROM `plugin_archAPB_matieres`  ";
 	$sql .= "WHERE id_gepi = '".$code."' ";
 	$sql .= "AND  annee  = '".$annee."' ";
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB->fetch_object()->libelle_sconet;	
+	switch ($champ) {
+		case 'nom_complet' :
+			$retour = $resultchargeDB->fetch_object()->nom_complet;
+			break;
+		case 'modalite' :
+			$retour = $resultchargeDB->fetch_object()->modalite;
+			break;
+		case 'login_prof' :
+			$retour = $resultchargeDB->fetch_object()->login_prof;
+			break;
+		case 'libelle' :
+			$retour = $resultchargeDB->fetch_object()->libelle_sconet;
+			break;
+		default :
+			$retour = $resultchargeDB->fetch_object();
+	}
+	return 	$retour;
 }
 
 function getAppreciationProf($eleve, $code, $annee) {
@@ -632,7 +648,7 @@ function supprimeProgramme($idFormation) {
 	$resultchargeDB = $mysqli->query($sql);
 }
  
-function extraitFormations($annee, $id = NULL) {
+function extraitFormations($anneeAPB, $id = NULL) {
 	global $mysqli;	
 	$sql = "SELECT t2.*, f.edition, f.libelle "
 	   . "FROM plugin_lsl_formations AS f "
@@ -643,7 +659,7 @@ function extraitFormations($annee, $id = NULL) {
 	   . "FROM plugin_archAPB_classes AS c "
 	   . "INNER JOIN plugin_archAPB_mefs_classes AS m  "
 	   . "ON (c.id_structure_sconet = m.id_structure_sconet AND m.annee = c.annee) "
-	   . "WHERE c.`annee` = '".$annee."' ";
+	   . "WHERE c.`annee` = '".$anneeAPB."' ";
 	if ($id) {
 		$sql .= " AND c.`id` = '".$id."' ";
 	}
@@ -667,7 +683,6 @@ function LSL_enregistre_MEF($MEF, $edition, $libelle) {
 
 function LSL_matiereDeSerie($MEF, $matiere) {
 	global $mysqli;
-	$retour = NULL;
 	$sql = "SELECT * FROM `plugin_lsl_programmes` WHERE `formation` = '".$MEF."' AND `matiere` = '".$matiere."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
@@ -676,9 +691,7 @@ function LSL_matiereDeSerie($MEF, $matiere) {
  
 function formationValide($id,$annee) {	
 	global $mysqli;
-	$sql = "SELECT * FROM `plugin_lsl_formations` AS f "
-	   . "INNER JOIN "
-	   . "("
+	$sql = "SELECT * FROM `plugin_lsl_formations` AS f INNER JOIN ("
 	   . "SELECT c.* , m.code_mef FROM `plugin_archAPB_classes` AS c "
 	   . "INNER JOIN `plugin_archAPB_mefs_classes` AS m "
 	   . "ON (m.annee = c.annee AND m.id_structure_sconet = c.id_structure_sconet) "
@@ -692,9 +705,15 @@ function formationValide($id,$annee) {
 
 function trimestreNote($trimestre,$annee,$code_service) {
 	global $mysqli;
+	$retour = FALSE;
 	$sql = "SELECT * FROM `plugin_archAPB_notes` "
-	   . "WHERE  code_service = '".$code_service."' , trimestre = '".$trimestre."' , annee = '".$annee."' ";
-	
+	   . "WHERE  code_service = '".$code_service."' AND trimestre = '".$trimestre."' AND annee = '".$annee."' ";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);
+	if ($resultchargeDB->num_rows) {
+		$retour = TRUE;
+	}
+	return $retour;	
 }
 
 function LSL_modalite($matiere, $formation) {
@@ -707,6 +726,44 @@ function LSL_modalite($matiere, $formation) {
 	if ($resultchargeDB->num_rows) {
 		$retour= $resultchargeDB->fetch_object()->Modalite;
 	}
-	
 	return $retour;
+}
+
+function LSL_get_MEF_classe($id_structure_sconet,$annee) {
+	global $mysqli;
+	$retour=NULL;
+	$sql = "SELECT * FROM `plugin_archAPB_mefs_classes` "
+	   . "WHERE annee = '".$annee."' AND id_structure_sconet = '".$id_structure_sconet."' ";
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);	
+	if ($resultchargeDB->num_rows) {
+		$retour = $resultchargeDB->fetch_object();	
+	}
+	return $retour;
+	
+}
+
+function display_xml_error($error) {
+    //$return = str_repeat('-', $error->column) . "<br />";
+    $return = "";
+	
+	switch ($error->code) {
+		case 1871:
+			$return .= "Erreur ".$error->code." → une classe n'est pas reconnue, la scolarité correspondante est vide";
+			break;
+		default :	
+			switch ($error->level) {
+				case LIBXML_ERR_WARNING:
+					$return .= "Attention ".$error->code." : ";
+					break;
+				 case LIBXML_ERR_ERROR:
+					$return .= "Erreur ".$error->code." : ";
+					break;
+				case LIBXML_ERR_FATAL:
+					$return .= "Erreur Fatale ".$error->code." : ";
+					break;
+			}
+			$return .= trim($error->message);
+	}
+    return $return."<hr />";
 }

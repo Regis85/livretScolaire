@@ -107,6 +107,8 @@
 			  PRIMARY KEY (`id`)
 			) ENGINE=MyISAM COMMENT 'Liste de MEF';
 			</requete>
+
+<!-- 1ère ST2S européen → code de rattachement : 21133104110 -->
 			<requete>		
 INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) VALUES
 (NULL, '21133104112', '061300', 'S', 'y', 'y', 'MATHEMATIQUES'),
@@ -142,7 +144,48 @@ INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `
 (NULL, '21133104112', '030202', 'O', 'y', 'y', 'ANGLAIS LV2'),
 (NULL, '21133104112', '030102', 'O', 'y', 'y', 'ALLEMAND LV2'),
 (NULL, '21133104112', '008400', 'S', 'n', 'n', 'VIE DE CLASSE'),
-(NULL, '21133104112', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE'),
+(NULL, '21133104112', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE');
+			</requete>
+<!-- 1ère ST2S → 2011-2012 → code de rattachement : 21133104110 -->
+			<requete>		
+INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) VALUES
+(NULL, '21133103110', '061300', 'S', 'y', 'y', 'MATHEMATIQUES'),
+(NULL, '21133103110', '069400', 'S', 'y', 'y', 'SCIENCES PHYSIQUES ET CHIMIQUES'),
+(NULL, '21133103110', '020700', 'S', 'y', 'y', 'FRANCAIS'),
+(NULL, '21133103110', '043700', 'S', 'y', 'y', 'HISTOIRE-GEOGRAPHIE'),
+(NULL, '21133103110', '040600', 'S', 'y', 'y', 'HISTOIRE-GEOGRAPHIE 1ère 2013-2014'),
+(NULL, '21133103110', '100100', 'S', 'y', 'y', 'EDUCATION PHYSIQUE ET SPORTIVE'),
+(NULL, '21133103110', '307600', 'S', 'y', 'y', 'SCIENC. ET TECHNIQ. SANITAIRES ET SOCIALES'),
+(NULL, '21133103110', '307700', 'S', 'y', 'y', 'BIOLOGIE ET PHYSIOPATHOLOGIE HUMAINES'),
+(NULL, '21133103110', '007500', 'S', 'n', 'y', 'ACTIVITES INTER-DISCIPLINAIRES'),
+(NULL, '21133103110', '100100', 'F', 'y', 'y', 'EDUCATION PHYSIQUE ET SPORTIVE'),
+(NULL, '21133103110', '090100', 'F', 'y', 'y', 'ARTS PLASTIQUES'),
+(NULL, '21133103110', '285200', 'F', 'y', 'y', 'CINEMA-AUDIOVISUEL'),
+(NULL, '21133103110', '082500', 'F', 'y', 'y', 'DANSE'),
+(NULL, '21133103110', '275700', 'F', 'y', 'y', 'HISTOIRE DES ARTS'),
+(NULL, '21133103110', '083200', 'F', 'y', 'y', 'MUSIQUE'),
+(NULL, '21133103110', '278500', 'F', 'y', 'y', 'THEATRE'),
+(NULL, '21133103110', '278000', 'F', 'n', 'y', 'ATELIER ARTISTIQUE'),
+(NULL, '21133103110', '104100', 'F', 'n', 'y', 'EDUC. PHYSIQUE ET SPORTIVE DE COMPLEMENT'),
+(NULL, '21133103110', '030201', 'O', 'y', 'y', 'ANGLAIS LV1'),
+(NULL, '21133103110', '033112', 'O', 'y', 'y', 'TURC LV2  CORRESP.'),
+(NULL, '21133103110', '032412', 'O', 'y', 'y', 'ISLANDAIS LV2  CORRESP.'),
+(NULL, '21133103110', '031412', 'O', 'y', 'y', 'RUSSE LV2  CORRESP.'),
+(NULL, '21133103110', '031212', 'O', 'y', 'y', 'NEERLANDAIS LV2  CORRESP.'),
+(NULL, '21133103110', '031112', 'O', 'y', 'y', 'PORTUGAIS LV2  CORRESP.'),
+(NULL, '21133103110', '031012', 'O', 'y', 'y', 'JAPONAIS LV2  CORRESP.'),
+(NULL, '21133103110', '030902', 'O', 'y', 'y', 'ITALIEN LV2'),
+(NULL, '21133103110', '030602', 'O', 'y', 'y', 'ESPAGNOL LV2'),
+(NULL, '21133103110', '030412', 'O', 'y', 'y', 'CHINOIS LV2  CORRESP.'),
+(NULL, '21133103110', '030402', 'O', 'y', 'y', 'CHINOIS LV2'),
+(NULL, '21133103110', '030312', 'O', 'y', 'y', 'ARABE LV2  CORRESP.'),
+(NULL, '21133103110', '030202', 'O', 'y', 'y', 'ANGLAIS LV2'),
+(NULL, '21133103110', '030102', 'O', 'y', 'y', 'ALLEMAND LV2'),
+(NULL, '21133103110', '008400', 'S', 'n', 'n', 'VIE DE CLASSE'),
+(NULL, '21133103110', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE');
+			</requete>
+			<requete>		
+INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) VALUES
 (NULL, '21133104110', '061300', 'S', 'y', 'y', 'MATHEMATIQUES'),
 (NULL, '21133104110', '069400', 'S', 'y', 'y', 'SCIENCES PHYSIQUES ET CHIMIQUES'),
 (NULL, '21133104110', '020700', 'S', 'y', 'y', 'FRANCAIS'),
@@ -176,7 +219,10 @@ INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `
 (NULL, '21133104110', '030202', 'O', 'y', 'y', 'ANGLAIS LV2'),
 (NULL, '21133104110', '030102', 'O', 'y', 'y', 'ALLEMAND LV2'),
 (NULL, '21133104110', '008400', 'S', 'n', 'n', 'VIE DE CLASSE'),
-(NULL, '21133104110', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE'),
+(NULL, '21133104110', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE');
+			</requete>
+			<requete>		
+INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) VALUES
 (NULL, '21233104112', '010300', 'S', 'y', 'y', 'PHILOSOPHIE'),
 (NULL, '21233104112', '100100', 'S', 'y', 'y', 'EDUCATION PHYSIQUE ET SPORTIVE'),
 (NULL, '21233104112', '061300', 'S', 'y', 'y', 'MATHEMATIQUES'),
@@ -207,7 +253,10 @@ INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `
 (NULL, '21233104112', '030202', 'O', 'y', 'y', 'ANGLAIS LV2'),
 (NULL, '21233104112', '030102', 'O', 'y', 'y', 'ALLEMAND LV2'),
 (NULL, '21233104112', '008400', 'S', 'n', 'n', 'VIE DE CLASSE'),
-(NULL, '21233104112', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE'),
+(NULL, '21233104112', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE');
+			</requete>
+			<requete>		
+INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) VALUES
 (NULL, '21233104110', '010300', 'S', 'y', 'y', 'PHILOSOPHIE'),
 (NULL, '21233104110', '100100', 'S', 'y', 'y', 'EDUCATION PHYSIQUE ET SPORTIVE'),
 (NULL, '21233104110', '061300', 'S', 'y', 'y', 'MATHEMATIQUES'),

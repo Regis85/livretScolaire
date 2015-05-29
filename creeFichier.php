@@ -113,16 +113,29 @@ while($eleve = $eleves2->fetch_object()){
 					$periodesNotes = NULL;
 			
 					while ($evaluation = $newEvaluations->fetch_object()) {
+						/*
+						if ('2011' == $annee->annee) {
+							var_dump($evaluation);
+							echo '<br><br>';
+						}
+						 /* 
+						 */
+						
 						// TODO on limite aux $evaluation de la série
 						if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
 							//var_dump($evaluation);
-							echo "<p class='red'>L'enseignement ".$evaluation->code_service." n'est pas reconnu";
+							$getMatiere = getMatiere($evaluation->code_service,$annee->annee+1,'nom_complet');
+							echo "<p class='red'>L'enseignement ".$evaluation->code_service." → ";
+							echo $getMatiere.", n'est pas reconnu";
 							echo " pour l'année ".$annee->annee."-".($annee->annee+1).".";
 							echo " Vous devez régler ce problème, les notes ne sont pas exportées.</p>";
+							echo "<p class='red'>Ce problème peut rendre invalide votre fichier d'export</p>";
+							continue;
 						}
 						
 						if (LSL_matiereDeSerie($annee->code_mef, str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT))) {
 							//echo 'La matière '.$annee->code_mef.'est bien enseignée';
+						
 
 							if ($lastService != $evaluation->code_service) {
 								$lastService = $evaluation->code_service;
@@ -351,8 +364,16 @@ $validate = $dom->schemaValidate($schema) ?
  * 
  */
 if (!$dom->schemaValidate($schema)) { ?>
-<p class='center grand rouge'>DOMDocument::schemaValidate() Votre fichier ".$nomFichier." n'est pas valide</p>
+<p class='center grand rouge'>Validation du schema d'export → Votre fichier <?php echo $nomFichier; ?> n'est pas valide</p>
 <?php	    //libxml_display_errors();
+
+	$errors = libxml_get_errors();
+	
+    foreach ($errors as $error) {
+        echo display_xml_error($error);
+    }
+
+
 }
 
 
