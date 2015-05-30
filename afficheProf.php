@@ -143,12 +143,23 @@ if($classesProf->num_rows) {
 
 							echo " ".getMatiere($noteActive->code_service,$anneeAPB)." "; 
 						}
-						$nbNotes++;
-						$moyenne += floatval($noteActive->moyenne);
-						echo "-".$noteActive->moyenne."-";
+						echo "-";
+						if("D" == $noteActive->etat) {
+							echo "Dispensé";
+						} elseif ("N" == $noteActive->etat) {
+							echo "Non noté";
+						} else {
+							echo $noteActive->moyenne;
+							$nbNotes++;
+							$moyenne += floatval($noteActive->moyenne);
+						}
+						echo "-";
 						$exMatiere = $noteActive->code_service;
 					}
-					echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." "; ?>
+					if (0 != $nbNotes) {
+						echo " moyenne = ".number_format($moyenne/$nbNotes, 2, ',', ' ')." ";
+					}
+					 ?>
 				<?php	} ?>
 				</td>
 				<td style="text-align: left;">

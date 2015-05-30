@@ -501,8 +501,8 @@ function getAppreciationProf($eleve, $code, $annee) {
 function setAppreciationProf($eleve, $code, $annee, $appreciation, $prof) {
 	global $mysqli;
 	$sql = "INSERT INTO `plugin_lsl_eval_app` (`id` ,`annee` ,`prof` ,`appreciation` ,`id_APB` ,`eleve`) "
-	   . "VALUES (NULL , '".$annee."', '".$prof."', '".$appreciation."', '".$code."', '".$eleve."') "
-	   . "ON DUPLICATE KEY UPDATE `appreciation` = '".$appreciation."' ";
+	   . "VALUES (NULL , '".$annee."', '".$prof."', '".trim($appreciation)."', '".$code."', '".$eleve."') "
+	   . "ON DUPLICATE KEY UPDATE `appreciation` = '".trim($appreciation)."' ";
 	//echo "<br />".$sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);
 }
