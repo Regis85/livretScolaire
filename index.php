@@ -71,8 +71,9 @@ $dirTemp .= get_user_temp_directory()."/";
 
 include_once "fonctions.php";
 
-$anneeSolaire=  apb_annee(getSettingValue("gepiYear"));
+$anneeSolaire=  lsl_annee(getSettingValue("gepiYear"));
 //echo $anneeSolaire;
+
 //********************************************
 //******************* TODO *******************
 //********************************************

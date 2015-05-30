@@ -1,22 +1,27 @@
 <?php
 
-// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10 ou 2009-2010 …)
-function apb_annee($_annee) {
-	//$expl = preg_split("/[^0-9]/", $_annee);
-	$expl = preg_split("/[^0-9]/", $_annee);
-	return $expl[0];
-}
-
-// Renvoie la première partie de l'année au format complet (2009/2010 ou 2009/10 ou 2009-2010 …)
+/**
+ * Renvoie la première partie de l'année au format complet (2009 pour 2009/2010 ou 2009/10 ou 2009-2010 …)
+ * 
+ * @param String $_annee L'année scolaire
+ * @return String
+ */
 function lsl_annee($_annee) {
 	//$expl = preg_split("/[^0-9]/", $_annee);
 	$expl = preg_split("/[^0-9]/", $_annee);
 	return $expl[0];
 }
 
+/**
+ * Recherche dans APB les niveaux concernés par le livret
+ * 
+ * @global object $mysqli
+ * @param String $annee L'année dans LSL
+ * @param array() $classes les classes concernées
+ * @return mysqli_result le résultat de la requête
+ */
 function niveauConcernees($annee, $classes) {
 	global $mysqli;
-	//APB enregistre la fin d'année lsl travaille avec début
 	$annee = $annee+1;
 	$whereClasse = " AND (";
 	$cpt=0;
@@ -35,9 +40,33 @@ function niveauConcernees($annee, $classes) {
 	return $resultchargeDB;
 }
 
+/**
+ * Recherche dans APB le niveau d'une classe
+ * 
+ * @global object $mysqli
+ * @param String $annee L'année dans LSL
+ * @param String $classe la classes concernée
+ * @return mysqli_result le résultat de la requête
+ */
+function getNiveau($annee, $classe) {
+	global $mysqli;
+	$annee = $annee+1;
+	$sql= "SELECT * FROM `plugin_archAPB_apb_niveau` WHERE `id` =".$classe." AND `annee` = ".$annee." " ;
+	$resultchargeDB = $mysqli->query($sql);		
+	//echo $sql;	
+	return $resultchargeDB;	
+}
+
+/**
+ * Recherche dans APB les données des classes concernées par le livret
+ * 
+ * @global object $mysqli
+ * @param String $annee l'année LSL concernée
+ * @param array() $classes les classes concernées
+ * @return mysqli_result le résultat de la requête
+ */
 function classesConcernees($annee, $classes) {
 	global $mysqli;
-	//APB enregistre la fin d'année lsl travaille avec début
 	$annee = $annee+1;
 	$whereClasse = " AND (";
 	$cpt=0;
@@ -59,9 +88,15 @@ function classesConcernees($annee, $classes) {
 	return $resultchargeDB;
 }
 
+/**
+ * 
+ * @global object $mysqli
+ * @param String $annee l'année LSL concernée
+ * @param array() $classes les classes concernées
+ * @return mysqli_result le résultat de la requête
+ */
 function elevesConcernees($annee, $classes) {
 	global $mysqli;
-	//APB enregistre la fin d'année lsl travaille avec début
 	$annee = $annee+1;
 	$whereClasse = " AND (";
 	$cpt=0;
@@ -73,7 +108,6 @@ function elevesConcernees($annee, $classes) {
 		$whereClasse .= " id_classe ='".$key."' ";
 	}
 	$whereClasse .= ")";
-	   
 	// on ne selectionne que les élèves qui sont en 1ère ou term cette année
 	$sql= "SELECT el.id,el.ine,el.nom,el.prenom,el.ddn,el.annee,el.annee-1 AS anneelsl,el.id_classe,m.code_mef "
 	   . "FROM `plugin_archAPB_eleves` AS el "
@@ -82,15 +116,19 @@ function elevesConcernees($annee, $classes) {
 	   .$annee
 	   .$whereClasse
 	   . " ORDER BY el.nom ASC , el.prenom ASC ,el.id ASC ,el.id_classe ASC , annee ASC ";
-	// id 	ine 	nom 	prenom 	ddn 	annee 	anneelsl 	id_classe 	code_mef //
 	//echo $sql."<br />";
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;
 }
 
+/**
+ * 
+ * @global object $mysqli
+ * @param type $ine
+ * @return mysqli_result le résultat de la requête
+ */
 function anneesEleve($ine) {
 	global $mysqli;
-	//APB enregistre la fin d'année
 	$sql= "SELECT el.annee -1 AS annee, el.id_classe, c.nom_court , c.nom_complet , c.login_pp , c.niveau , m.code_mef "
 	   . "FROM `plugin_archAPB_eleves` AS el "
 	   . "INNER JOIN `plugin_archAPB_classes` AS c "
@@ -109,7 +147,7 @@ function anneesEleve($ine) {
  * 
  * @global object $mysqli connexion à la base
  * @param text $ine INE de l'élève
- * @return object les engagements trouvés pour l'élève
+ * @return mysqli_result les engagements trouvés pour l'élève
  */
 function engagementsEleve($ine) {
 	global $mysqli;
@@ -122,6 +160,13 @@ function engagementsEleve($ine) {
 	return $resultchargeDB;	
 }
 
+/**
+ * Retourne les avis pour l'examen
+ * 
+ * @global object $mysqli
+ * @param String $ine INE de l'élàve
+ * @return mysqli_result Les avis pour l'examen
+ */
 function avisEleve($ine) {
 	global $mysqli;
 	$sql= "SELECT * FROM `plugin_lsl_examen` WHERE `code_ine` LIKE '".$ine."'";
@@ -129,6 +174,14 @@ function avisEleve($ine) {
 	return $resultchargeDB;	
 }
 
+/**
+ * Les investissements de l'élève au sein de l'établissement
+ * 
+ * @global object $mysqli
+ * @param String $ine INE de l'élàve
+ * @param String $annee LSL de l'investissements
+ * @return mysqli_result Les investissements de l'élève
+ */
 function avisInvestissement($ine, $annee) {
 	global $mysqli;
 	$sql= "SELECT * FROM `plugin_lsl_investissement` "
@@ -137,9 +190,19 @@ function avisInvestissement($ine, $annee) {
 	return $resultchargeDB;	
 }
 
+/**
+ * Retourne le code du découpage de l'année
+ * 
+ * 
+ * S → semestre
+ * T → trimestre
+ * @global object $mysqli
+ * @param String $ine INE de l'élève
+ * @param String $annee année LSL de la période
+ * @return string
+ */
 function codePeriode($ine, $annee) {
 	global $mysqli;
-	//APB enregistre la fin d'année
 	$annee = $annee+1;
 	$sql= "SELECT cl.decoupage FROM `plugin_archAPB_classes` AS cl , `plugin_archAPB_eleves` AS elv "
 	   . "WHERE elv.ine LIKE '".$ine."' AND cl.annee LIKE '".$annee."' AND elv.id_classe LIKE cl.id";
@@ -153,27 +216,19 @@ function codePeriode($ine, $annee) {
 			return "T";
 		}		
 	}	
-	return "";	
-	
+	return "";
 }
 
-function evaluationsBack($ine, $annee) {
-	// il faut récupérer par matière et pas par période
-	global $mysqli;
-	//APB enregistre la fin d'année
-	$annee = $annee+1;
-	$sql= "SELECT DISTINCT `n`.code_service , `n`.annee , m.code_sconet , m.modalite , m.libelle_sconet "
-	   . " FROM `plugin_archAPB_notes` n , `plugin_archAPB_matieres` m "
-	   . "WHERE `n`.`ine` LIKE '".$ine."' AND `n`.`annee` =".$annee." AND m.id_gepi=`n`.code_service";		
-	//echo $sql;
-	$resultchargeDB = $mysqli->query($sql);		
-	return $resultchargeDB;	
-}
-
+/**
+ * Retourne les évaluations d'un élève pour une année
+ * 
+ * @global object $mysqli
+ * @param String $ine INE de l'élève
+ * @param String $annee année LSL de la période
+ * @return mysqli_result Les évaluations de l'élève
+ */
 function evaluations($ine, $annee) {
-	// il faut récupérer par matière et pas par période
 	global $mysqli;
-	//APB enregistre la fin d'année
 	$annee = $annee+1;
 	$sql= "SELECT DISTINCT n.code_service , n.ine , n.etat , n.moyenne , n.trimestre , n.annee , n.appreciation , "
 	   . "m.code_sconet , m.libelle_sconet , m.modalite , login_prof , e.code_mef "
@@ -187,17 +242,6 @@ function evaluations($ine, $annee) {
 	//echo "<br />"."<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
-}
-
-function getNiveau($annee, $classe) {
-	global $mysqli;
-	//APB enregistre la fin d'année
-	$annee = $annee+1;
-	$sql= "SELECT * FROM `plugin_archAPB_apb_niveau` WHERE `id` =".$classe." AND `annee` = ".$annee." " ;
-	$resultchargeDB = $mysqli->query($sql);		
-	//echo $sql;
-	
-	return $resultchargeDB;	
 }
 
 function structureEval($annee, $code_service) {
@@ -236,7 +280,6 @@ function compteElvEval($annee, $code_service) {
  */
 function reparMoinsHuit($annee, $code_service, $min = 0 , $max = 8) {
 	global $mysqli;
-	//APB enregistre la fin d'année
 	$annee = $annee+1;
 	
 	$sql1= "SELECT COUNT(DISTINCT ine) AS nombre FROM ( SELECT AVG(n.`moyenne`) AS moyennes , ine "
