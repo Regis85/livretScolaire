@@ -756,10 +756,11 @@ function formationValide($id,$annee) {
 
 function trimestreNote($trimestre,$annee,$code_service) {
 	global $mysqli;
+	$annee=$annee+1;
 	$retour = FALSE;
 	$sql = "SELECT * FROM `plugin_archAPB_notes` "
 	   . "WHERE  code_service = '".$code_service."' AND trimestre = '".$trimestre."' AND annee = '".$annee."' ";
-	//echo "<br />".$sql;
+	// echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
 	if ($resultchargeDB->num_rows) {
 		$retour = TRUE;
