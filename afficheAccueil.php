@@ -110,7 +110,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<td><?php echo $programme->appreciation ?></td>
 			<td style="text-align:left;"><?php echo $programme->option ?></td>
 			<td>
-<?php if ($_SESSION['choixFormation'] == $programme->formation) { ?>	
+					
+<?php if (($_SESSION['choixFormation'] == $programme->formation) && LSL_peut_supprimer($programme->matiere, $programme->Modalite)) { ?>	
 				<input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" />
 <?php } ?>
 			</td>

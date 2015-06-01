@@ -825,4 +825,10 @@ function LSL_est_maitre($MEF) {
 	return $resultchargeDB->num_rows;	
 }
 
-
+function LSL_peut_supprimer($id, $modalite) {
+	$retour = FALSE;
+	if ((('03' == substr($id, 0, 2)) && ('1' != substr($id, -1, 1))) || ('F' == $modalite)){
+		$retour = TRUE;
+	}
+	return $retour;
+}
