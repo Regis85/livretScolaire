@@ -99,6 +99,44 @@ if ($utilisateur->getStatut()=="professeur") {
 	require_once("afficheProf.php");
 	
 } elseif ($utilisateur->getStatut()=="scolarite") {
+	if (isset($_POST['choixClasse']) || isset($_POST['selectClasse'])){ 
+		$_SESSION['choixFormation'] = isset($_POST['selectClasse']) ? $_POST['selectClasse'] : NULL;
+	}
+	$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
+	$saveDroits = isset($_POST['sauveDroits']) ? $_POST['sauveDroits'] : NULL ;
+	$ouvreProfs = isset($_POST['ouvertsProfs']) ? $_POST['ouvertsProfs'] : NULL ;
+	
+	if ($creeFichier) {
+		//**************************************************
+		//********* Création du fichier de données *********
+		//**************************************************
+
+		if (!isset($_POST['classes']) or !count($_POST['classes'])){ 
+?>
+<p class='center rouge grand bold'>
+	Vous devez choisir au moins une classe
+</p>
+<?php
+			include_once "afficheAccueil.php";
+		} else {
+			$selectClasses = $_POST['classes'];
+			include_once "creeFichier.php";
+			//**************** extraire les données **************** 
+			include_once "afficheExtract.php";
+		}	
+	} else if ($ouvreProfs) {
+		include_once "saveOuvreProfs.php";
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
+	} else if ($saveDroits) {
+		include_once "saveDroits.php";
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
+	} else {
+		//**************** extraire les données **************** 
+		include_once "afficheAccueil.php";
+	}
+	
 	
 } elseif ($utilisateur->getStatut()=="cpe") {
 	

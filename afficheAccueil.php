@@ -111,7 +111,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<td style="text-align:left;"><?php echo $programme->option ?></td>
 			<td>
 					
-<?php if (($_SESSION['choixFormation'] == $programme->formation) && LSL_peut_supprimer($programme->matiere, $programme->Modalite)) { ?>	
+<?php if ('administrateur' == $_SESSION['statut'] 
+   && (($_SESSION['choixFormation'] == $programme->formation) && LSL_peut_supprimer($programme->matiere, $programme->Modalite)) ){ ?>	
 				<input type="checkbox" name="supprime" value="<?php echo $programme->id ?>" />
 <?php } ?>
 			</td>
@@ -122,11 +123,14 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			reset($programmes);
 		}
 	?>
-			   
-	</table>	
+   
+	</table>
+		
+<?php if ('administrateur' == $_SESSION['statut']){ ?>		
 		<p style="text-align:center; margin-top: .5em;">
 			<button name="supprimeAssociation" value="y" >Supprimer les associations cochées</button>
 		</p>
+<?php } ?>
 	
 	</fieldset>
 	
@@ -172,7 +176,8 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 		 Ceci permet d'initialiser sans détruire les données.
 	 </p>
 <?php } else { ?>
-
+	
+<?php if ('administrateur' == $_SESSION['statut']){ ?>		
 <?php if (isset($_SESSION['choixFormation']) && $_SESSION['choixFormation'] && LSL_est_maitre($_SESSION['choixFormation'])) { ?>
 	<fieldset>
 	<legend>Créer/modifier les programmes</legend>
@@ -232,7 +237,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 				— MEF à rattacher : 
 				<input type="text" name="MEF" size="11"/>
 				<br/>
-				— Code édition : 
+				— Édition : 
 				<input type="text" name="edition"/>
 				<br/>
 				— Libellé :  
@@ -246,6 +251,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 				
 		</form>
 	</fieldset>
+<?php } ?>
 <?php } ?>
 	
 </fieldset>
