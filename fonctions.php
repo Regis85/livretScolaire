@@ -712,6 +712,57 @@ function extraitFormations($anneeAPB, $id = NULL) {
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;		
 }
+ 
+function MaJFormations($formations) {
+	global $mysqli;
+	global $anneeLSL;
+
+	foreach ($formations as $formation) {
+		if ($formation ["code_mef"] == $formation["MEF_rattachement"]) {
+			$sql = "SELECT DISTINCT * FROM `nomenclatures_valeurs` "
+			   . "WHERE `type` = 'mef' AND `nom` = 'mef_rattachement' "
+			   . "AND `valeur` = '".$formation ["code_mef"]."' "
+			   . "AND `code` != '".$formation ["code_mef"]."' ";
+	//echo "<br />".$sql;
+			$resultChargeMEFs = $mysqli->query($sql);
+			if ($resultChargeMEFs->num_rows) {
+				$type = 'mef';
+				$MEF_rattachement = $formation ["code_mef"] ;
+				   
+				while ($mefCharge = $resultChargeMEFs->fetch_object() ) {
+					$type = 'mef';
+					$code = $MEF = $mefCharge->code;
+					$nom = 'libelle_edition';
+					$edition = getValeurNomenclature($type, $code, $nom);					
+					
+					$nom = 'libelle_long';
+					$libelle = getValeurNomenclature($type, $code, $nom);					
+					
+					$nom = 'formation';	
+					$libelle_long = getValeurNomenclature($type, $code, $nom);
+					
+					LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement, $anneeLSL);
+					
+				}
+			}
+		}		
+	}	
+}
+
+function getValeurNomenclature($type, $code, $nom) {
+	global $mysqli;
+	$filtre = "";
+	$retour = "";
+	$filtre .= " WHERE `type` = '".$type."' ";
+	$filtre .= " AND `code` = '".$code."' ";
+	$filtre .= " AND `nom` = '".$nom."' ";
+	
+	$sql = "SELECT DISTINCT * FROM `nomenclatures_valeurs` ".$filtre;
+	//echo "<br />".$sql;
+	$resultchargeDB = $mysqli->query($sql);	
+	$retour = $resultchargeDB->fetch_object()->valeur;
+	return $retour;		
+}
 
 function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement, $annee) {
 	global $mysqli;

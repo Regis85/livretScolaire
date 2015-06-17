@@ -37,8 +37,10 @@ if(isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) {
 	$programmes = NULL;
 }
 
-//$correspondances = extraitCorrespondances($anneeSolaire);
-
+//Mise à jour plugin_lsl_formations à partir de nomenclatures_valeurs 
+if($formations) {
+	MaJFormations($formations);
+}
 
 
 if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
