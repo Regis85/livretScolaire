@@ -497,12 +497,11 @@ INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `
 (NULL, '21131016110', '008400', 'S', 'n', 'n', 'VIE DE CLASSE'),
 (NULL, '21131016110', '006600', 'S', 'n', 'n', 'ACCOMPAGNEMENT PERSONNALISE');
 			</requete>
-
-<!-- Liste des rattachements -->	
+ 
+<!-- Liste des MEF de rattachements -->	
 			<requete>
 INSERT INTO `plugin_lsl_formations` (`id`, `MEF`, `edition`, `libelle`, `MEF_rattachement`, `annee`) VALUES
 (NULL, '21133104110', '1-st2s sc. et techno. sante ET social', '1-ST2S SC. ET TECHNO. SANTE ET SOCIAL', '21133104110', '2014'),
-(NULL, '21133104112', '1st2se sc. et techno. sante ET social européen', '1ST2S SC. ET TECHNO. SANTE ET SOCIAL EURO', '21133104110', '2014'),
 (NULL, '21233104110', 'T-st2s sc. et techno. sante ET social', 'T-ST2S SC. ET TECHNO. SANTE ET SOCIAL', '21233104110', '2014'),
 (NULL, '21113403110', '1-std2a', '1STD2A SC.ET TEC.DESIGN-ARTS APPLIQ', '21113403110', '2014'),
 (NULL, '21120003110', '1-sti2d AC', '1-STI2D ARCHITECTURE ET CONSTRUCTION', '21120003110', '2014'),
@@ -510,10 +509,8 @@ INSERT INTO `plugin_lsl_formations` (`id`, `MEF`, `edition`, `libelle`, `MEF_rat
 (NULL, '21120005110', '1-sti2d ITEC', '1-STI2D INNOVATION TECHNOLOGIQUE ET ECO-CONCEPT.', '21120005110', '2014'),
 (NULL, '21120006110', '1-sti2d SIN', '1-STI2D SYSTEMES D\'INFORMATION ET NUMERIQUE', '21120006110', '2014'),
 (NULL, '21120007110', '1- stl biotechnologies', '1-STL BIOTECHNOLOGIES', '21120007110', '2014'),
-(NULL, '21120007112', '1- stl biotechnologies europeen', '1-STL BIOTECHNOLOGIES EUROPEEN', '21120007110', '2014'),
 (NULL, '21120008110', '1- stl techno de laboratoire', '1ERE STL - TECHNO DE LABORATOIRE', '21120008110', '2014'),
-(NULL, '21131016110', '1-stmg sc. et techno. management gestion', '1-STMG SC. ET TECHNO. MANAGEMENT GESTION', '21131016110', '2014'),
-(NULL, '21131016112', '1-stmg sc. et techno. management gestion européen', '1-STMG SC. ET TECHNO. MANAG. GEST. EURO', '21131016110', '2014');
+(NULL, '21131016110', '1-stmg sc. et techno. management gestion', '1-STMG SC. ET TECHNO. MANAGEMENT GESTION', '21131016110', '2014');
 			</requete>
 			
 		    <!--
