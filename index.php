@@ -60,6 +60,13 @@ if ($utilisateur == null) {
 //debug_var();
 $ecritLog = FALSE;
 
+
+if($ecritLog && ($utilisateur->getStatut()=="administrateur")) {
+    include_once 'lib/imprimeLog.php';
+} else {
+    include_once 'lib/nImprimePasLog.php';
+}
+
 //********************************************
 //**************** Constantes *****************
 //********************************************
@@ -146,11 +153,6 @@ if ($utilisateur->getStatut()=="professeur") {
 	
 } elseif ($utilisateur->getStatut()=="administrateur") {
     
-    if($ecritLog) {
-        include_once 'lib/imprimeLog.php';
-    } else {
-        include_once 'lib/nImprimePasLog.php';
-    }
 
     $fichierLog = ouvreLog();
 

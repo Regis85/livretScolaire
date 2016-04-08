@@ -16,13 +16,13 @@ while($eleve = $eleves2->fetch_object()){
     if (LSL_get_ele_id($eleve)) {
         $changeClasse = LSL_change_classe($eleve->ine,$anneeAPB);
         if ($changeClasse) {
-            $affiche = $eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
+            $affiche = 'Dans APB '.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
             echo '<p>'.$affiche.'</p>';
             ecrit($affiche."\n");
         }
         $changeClasseLSL = LSL_change_classe($eleve->ine,$anneeLSL);
         if ($changeClasseLSL) {
-            $affiche = $eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
+            $affiche = 'Dans LSL '.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
             echo '<p>'.$affiche.'</p>';
             ecrit($affiche."\n");
         }

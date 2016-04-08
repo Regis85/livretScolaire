@@ -1013,41 +1013,47 @@ function LSL_get_MEF_classe($id_structure_sconet,$annee) {
 }
 
 function display_xml_error($error) {
-	switch ($error->code) {
-		case 1871:
-			$return = "Erreur ".$error->code." → une classe n'est pas reconnue, la scolarité correspondante est vide";
-			break;
-		default :	
-			switch ($error->level) {
-				case LIBXML_ERR_WARNING:
-					$return = "Attention ".$error->code." : ";
-					break;
-				 case LIBXML_ERR_ERROR:
-					$return = "Erreur ".$error->code." : ";
-					break;
-				case LIBXML_ERR_FATAL:
-					$return = "Erreur Fatale ".$error->code." : ";
-					break;
-			}
-			$return .= trim($error->message);
-	}
+    switch ($error->code) {
+        case 1871:
+            $return = "Erreur XML ".$error->code." → des données ne sont pas reconnues ou trouvées, la scolarité correspondante est vide";
+            $return .= "<br />".$error->message;
+            $return .= "<br />Vous devez chercher cette erreur et la supprimer manuellement dans le fichier .xml";
+            $return .= "<br />Rechercher &lt;scolarite annee-scolaire=\"2015\" code-periode=\"T\"/&gt "
+                    . "pour trouver cette scolarité en 2015-2016";
+            $return .= "<br />Vous pouvez aussi chercher pourquoi cet élève n'a pas de notes et au besoin le supprimer de APB";
+            break;
+        default :	
+            switch ($error->level) {
+                case LIBXML_ERR_WARNING:
+                    $return = "Attention ".$error->code." : ";
+                    $return .= "<br />".$error->message;
+                    break;
+                 case LIBXML_ERR_ERROR:
+                    $return = "Erreur ".$error->code." : ";
+                     break;
+                case LIBXML_ERR_FATAL:
+                    $return = "Erreur Fatale ".$error->code." : ";
+                    break;
+            }
+            $return .= trim($error->message);
+    }
     return $return."<hr />";
 }
 
 function LSL_est_maitre($MEF) {
-	global $mysqli;
-	$sql = "SELECT * FROM `plugin_lsl_formations` WHERE MEF_rattachement = '".$MEF."'";
-	//echo "<br />".$sql;
-	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB->num_rows;	
+    global $mysqli;
+    $sql = "SELECT * FROM `plugin_lsl_formations` WHERE MEF_rattachement = '".$MEF."'";
+    //echo "<br />".$sql;
+    $resultchargeDB = $mysqli->query($sql);	
+    return $resultchargeDB->num_rows;	
 }
 
 function LSL_peut_supprimer($id, $modalite) {
-	$retour = FALSE;
-	if ((('03' == substr($id, 0, 2)) && ('1' != substr($id, -1, 1))) || ('F' == $modalite)){
-		$retour = TRUE;
-	}
-	return $retour;
+    $retour = FALSE;
+    if ((('03' == substr($id, 0, 2)) && ('1' != substr($id, -1, 1))) || ('F' == $modalite)){
+            $retour = TRUE;
+    }
+    return $retour;
 }
 
 function PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite) {
