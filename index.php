@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -57,6 +58,7 @@ if ($utilisateur == null) {
 
 
 //debug_var();
+$ecritLog = FALSE;
 
 //********************************************
 //**************** Constantes *****************
@@ -69,7 +71,7 @@ $dirTemp .= get_user_temp_directory()."/";
 //**************** Fonctions *****************
 //********************************************
 
-include_once "fonctions.php";
+include_once "lib/fonctions.php";
 
 $anneeSolaire=  lsl_annee(getSettingValue("gepiYear"));
 //echo $anneeSolaire;
@@ -83,8 +85,10 @@ $anneeSolaire=  lsl_annee(getSettingValue("gepiYear"));
 $titre_page = "Livret scolaire";
 $tbs_librairies[]= "script.js";
 
-if (!suivi_ariane($_SERVER['PHP_SELF'],"Livret scolaire"))
-   echo "erreur lors de la création du fil d'ariane";
+if (!suivi_ariane($_SERVER['PHP_SELF'],"Livret scolaire")) {
+    echo "erreur lors de la création du fil d'ariane";
+}
+   
    
 require_once("../../lib/header.inc.php");
 
@@ -141,7 +145,14 @@ if ($utilisateur->getStatut()=="professeur") {
 } elseif ($utilisateur->getStatut()=="cpe") {
 	
 } elseif ($utilisateur->getStatut()=="administrateur") {
+    
+    if($ecritLog) {
+        include_once 'lib/imprimeLog.php';
+    } else {
+        include_once 'lib/nImprimePasLog.php';
+    }
 
+    $fichierLog = ouvreLog();
 
 	//**************** FIN EN-TETE *************
 	$creeFichier = isset($_POST['creeFichier']) ? $_POST['creeFichier'] : NULL ;
@@ -157,23 +168,24 @@ if ($utilisateur->getStatut()=="professeur") {
 	$rattachement = isset($_POST['rattachement']) ? $_POST['rattachement'] : NULL ;
 	
 	if ($creeFichier) {
-		//**************************************************
-		//********* Création du fichier de données *********
-		//**************************************************
+            //**************************************************
+            //********* Création du fichier de données *********
+            //**************************************************
 
-		if (!isset($_POST['classes']) or !count($_POST['classes'])){ 
+            if (!isset($_POST['classes']) or !count($_POST['classes'])){
 ?>
 <p class='center rouge grand bold'>
 	Vous devez choisir au moins une classe
 </p>
 <?php
-			include_once "afficheAccueil.php";
+		include_once "afficheAccueil.php";
 		} else {
-			$selectClasses = $_POST['classes'];
-			include_once "creeFichier.php";
-			//**************** extraire les données **************** 
-			include_once "afficheExtract.php";
-		}
+                    $selectClasses = $_POST['classes'];
+                    debutExtract();
+                    include_once "creeFichier.php";
+                    //**************** extraire les données **************** 
+                    include_once "afficheExtract.php";
+            }
 
 	} else if ($uploadFichier) {
 		//********************************************************
@@ -210,10 +222,9 @@ if ($utilisateur->getStatut()=="professeur") {
 		include_once "afficheAccueil.php";
 	} else {
 		//**************** extraire les données **************** 
+		include_once "metAJour.php";
 		include_once "afficheAccueil.php";
 	}
-
-
 
 }
 

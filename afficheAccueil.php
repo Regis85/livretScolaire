@@ -41,7 +41,7 @@ if(isset($_SESSION['choixFormation']) && $_SESSION['choixFormation']) {
 if($formations) {
 	MaJFormations($formations);
 }
-
+$formations = extraitFormations($anneeAPB);
 
 if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 ?>

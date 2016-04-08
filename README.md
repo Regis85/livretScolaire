@@ -16,3 +16,16 @@ Après avoir effectué les extractions pour APB, vous pouvez (pourrez) générer
                          → le plugin affiche les appréciations années manquantes
    - Coté CPE → Rien pour l'instant
    - Coté scolarité → Rien pour l'instant
+
+version 0.2.1
+    - En se connectant en administrateur, la base est mise à jour avec le fichier fournit par l'équipe LSL (xml/lsl-nomenclatures)
+    - Correction d'une erreur si le nom ou le prénom contenait une apostrophe
+    - Les langues sont toutes gérées avec le code 030000, le nom de la langue est trouvé dans APB
+
+version 0.2.2
+    - On récupère tous les enseignants pour chaque enseignement
+
+version 0.2.3
+    - suppression de l'initialisation des tables dans plugin.xml
+    
+
