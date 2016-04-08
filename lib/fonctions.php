@@ -763,7 +763,7 @@ function LSL_change_classe($ine, $annee) {
 	$sql = "SELECT t3.* "
                 . "FROM ( SELECT t2 . * , count( * ) AS COMPTEUR2 "
                      . "FROM ( SELECT t1 . * , count( * ) AS COMPTEUR "
-                          . "FROM (SELECT n.code_service, n.ine, n.etat, n.modalite, n.annee, n.appreciation, m.code_sconet, m.libelle_sconet "
+                          . "FROM (SELECT n.code_service, n.ine, n.etat, m.modalite, n.annee, n.appreciation, m.code_sconet, m.libelle_sconet "
                                . "FROM `plugin_archAPB_notes` AS n "
                                . "INNER JOIN `plugin_archAPB_matieres` AS m "
                                . "ON n.code_service = m.id_gepi AND n.`annee` = m.`annee` "
@@ -773,7 +773,7 @@ function LSL_change_classe($ine, $annee) {
                           . "GROUP BY t1.code_service "
                           . "ORDER BY t1.code_sconet "
                      . ")t2 "
-                     . "GROUP BY t2.code_sconet "
+                     . "GROUP BY t2.code_sconet , t2.modalite "
                      . "ORDER BY t2.code_sconet "
                 . ")t3 "
                 . "WHERE t3.COMPTEUR2 >1";
@@ -781,6 +781,7 @@ function LSL_change_classe($ine, $annee) {
 	$resultchargeDB = $mysqli->query($sql);	
 	if ($resultchargeDB->num_rows) {
 		$retour = TRUE;
+                //echo "<br />".$sql."<br />";
 	}
 	return $retour;
 }
