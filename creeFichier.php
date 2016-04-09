@@ -61,6 +61,7 @@ while($eleve = $eleves2->fetch_object()){
             //var_dump($annee);
             //echo '<br />';
             ecrit("\n-----------------".$annee->annee."-----------------\n");
+            
             if (!$derniereAnnee || $annee->niveau != $derniereAnnee) {
                 // on change d'année
                 $derniereAnnee = $annee->niveau;
@@ -91,6 +92,7 @@ while($eleve = $eleves2->fetch_object()){
                     $lastMatiere = NULL;
                     $lastService = NULL;
                     $periodesNotes = NULL;
+                    ecrit("nombre d'évaluation : ".$newEvaluations->num_rows."\n");
 
                     while ($evaluation = $newEvaluations->fetch_object()) {
 
@@ -222,6 +224,9 @@ while($eleve = $eleves2->fetch_object()){
                         $periodesNotes = NULL;
 		    }	
 		}
+                else {
+                    ecrit("redoublant");
+                }
 	    }
 	}
 		$annees->close();

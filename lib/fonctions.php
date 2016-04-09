@@ -934,17 +934,24 @@ function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement, $annee)
 	   . "ON  DUPLICATE KEY UPDATE `edition` = '".$edition."' , `libelle` = '".$libelle."' , `MEF_rattachement` = '".$MEF_rattachement."' ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);
+        return $resultchargeDB;
 }
 
 function LSL_matiereDeSerie($MEF, $matiere) {
     global $mysqli;
 
         $MEF_rattachement = $MEF;
-        $sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` = '".$MEF."' ";
+        // on recherche un MEF sans tenir compte du dernier caractère qui indique les options
+        $MEFCherche = substr ( $MEF , 0 , 10 );
+        
+        $sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` LIKE '".$MEFCherche."%' ";
         //echo "<br />".$sql1;
         $resultchargeDB1 = $mysqli->query($sql1);
         if ($resultchargeDB1->num_rows) {
-                $MEF_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
+            $MEF_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
+        } else {
+            ecrit($MEF." n'a pas été trouvée dans plugin_lsl_formations\n");
+            ecrit($sql1."\n");
         }
 
     if(substr($matiere,0,3) == "030") {
