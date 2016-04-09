@@ -27,5 +27,7 @@ version 0.2.2
 
 version 0.2.3
     - suppression de l'initialisation des tables dans plugin.xml
+    - correction de la recherche des enseignements
+
     
 
