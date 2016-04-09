@@ -226,24 +226,24 @@ function codePeriode($ine, $annee) {
  * 
  * @global object $mysqli
  * @param String $ine INE de l'élève
- * @param String $annee année LSL de la période
+ * @param String $anneeLSL année LSL de la période
  * @return mysqli_result Les évaluations de l'élève
  */
-function evaluations($ine, $annee) {
-	global $mysqli;
-	$annee = $annee+1;
-	$sql= "SELECT DISTINCT n.code_service , n.ine , n.etat , n.moyenne , n.trimestre , n.annee , n.appreciation , "
-	   . "m.code_sconet , m.libelle_sconet , m.modalite , login_prof , e.code_mef "
-	   . "FROM `plugin_archAPB_notes` AS n "
-	   . "INNER JOIN `plugin_archAPB_eleves_mef` AS e "
-	   . "ON (e.no_gep = n.ine AND e.annee = n.annee) "
-	   . "INNER JOIN `plugin_archAPB_matieres` AS m "
-	   . "ON (m.id_gepi = n.code_service AND m.annee = n.annee) "
-	   . "WHERE n.ine = '".$ine."' AND n.annee = '".$annee."' "
-	   . "ORDER BY m.code_sconet ASC , n.trimestre ASC";
-	//echo "<br />"."<br />".$sql;
-	$resultchargeDB = $mysqli->query($sql);	
-	return $resultchargeDB;		
+function evaluations($ine, $anneeLSL) {
+    global $mysqli;
+    $annee = $anneeLSL+1;
+    $sql= "SELECT DISTINCT n.code_service , n.ine , n.etat , n.moyenne , n.trimestre , n.annee , n.appreciation , "
+       . "m.code_sconet , m.libelle_sconet , m.modalite , login_prof , e.code_mef "
+       . "FROM `plugin_archAPB_notes` AS n "
+       . "INNER JOIN `plugin_archAPB_eleves_mef` AS e "
+       . "ON (e.no_gep = n.ine AND e.annee = n.annee) "
+       . "INNER JOIN `plugin_archAPB_matieres` AS m "
+       . "ON (m.id_gepi = n.code_service AND m.annee = n.annee) "
+       . "WHERE n.ine = '".$ine."' AND n.annee = '".$annee."' "
+       . "ORDER BY m.code_sconet ASC , n.trimestre ASC";
+    //echo "<br />"."<br />".$sql;
+    $resultchargeDB = $mysqli->query($sql);	
+    return $resultchargeDB;		
 }
 
 /**
@@ -839,7 +839,7 @@ function extraitProgrammes($formation = NULL) {
 	if ($formation) {
 		$sql .= "WHERE `formation` = '".$mef_rattachement."' ";
 	}
-	$sql .= "ORDER BY `formation` ASC, `matiere` ASC ";
+	$sql .= "ORDER BY `formation` ASC,`annee` DESC, `matiere` ASC ";
 	//echo "<br />".$sql;
 	$resultchargeDB = $mysqli->query($sql);	
 	return $resultchargeDB;	

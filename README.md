@@ -28,6 +28,8 @@ version 0.2.2
 version 0.2.3
     - suppression de l'initialisation des tables dans plugin.xml
     - correction de la recherche des enseignements
+version 0.2.4
+    - Ajout de l'année dans la table plugin_lsl_programmes
 
     
 

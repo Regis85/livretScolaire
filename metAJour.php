@@ -32,6 +32,13 @@ if (!file_exists($fichierXML)) {
             . "CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'libelle long';";
     //echo $sql.'<br /><br />';
     $resultchargeDB = $mysqli->query($sql);
+    $sql = "ALTER TABLE `plugin_lsl_programmes` "
+            . "ADD `annee` VARCHAR(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Session concernée' AFTER `option`;";
+    //echo $sql.'<br /><br />';
+    $resultchargeDB2 = $mysqli->query($sql);
+    $sql = "ALTER TABLE `gepiSTMG`.`plugin_lsl_programmes` "
+            . "DROP INDEX `couple`, ADD UNIQUE `couple` (`formation`, `matiere`, `Modalite`, `annee`);";
+    $resultchargeDB3 = $mysqli->query($sql);
     
     $xml = simplexml_load_file($fichierXML);
     $nbAnnees= $xml->anneeScolaire->count();
@@ -60,8 +67,8 @@ if (!file_exists($fichierXML)) {
                 $modalite = $matieres['modaliteElection'];
                 $note = $matieres['presenceEvaluationPeriodique']=="true" ? "y" : "n";
                 $appreciation = "y";
-                $sql = "INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`) "
-                . "VALUES (NULL, \"$codeMef\", \"$codeBcn\", \"$modalite\", \"$note\", \"$appreciation\", \"$matiere\") "
+                $sql = "INSERT INTO `plugin_lsl_programmes` (`id`, `formation`, `matiere`, `Modalite`, `note`, `appreciation`, `option`, `annee`) "
+                . "VALUES (NULL, \"$codeMef\", \"$codeBcn\", \"$modalite\", \"$note\", \"$appreciation\", \"$matiere\", \"$annee\") "
                 . "ON DUPLICATE KEY UPDATE `note`= \"$note\", `appreciation`= \"$appreciation\", `option`= \"$matiere\" ";
                 //echo $sql.'<br />';
                 $resultchargeDB = $mysqli->query($sql);

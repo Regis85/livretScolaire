@@ -98,13 +98,12 @@ while($eleve = $eleves2->fetch_object()){
 
                         // TODO on limite aux $evaluation de la série
                         if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
-                            //var_dump($evaluation);
                             $getMatiere = getMatiere($evaluation->code_service,$annee->annee+1,'nom_complet');
                             echo "<p class='red'>L'enseignement ".$evaluation->code_service." → ";
                             echo $getMatiere.", n'est pas reconnu";
                             echo " pour l'année ".$annee->annee."-".($annee->annee+1).".";
                             echo " Vous devez régler ce problème, les notes ne sont pas exportées.</p>";
-                            echo "<p class='red'>Ce problème peut rendre invalide votre fichier d'export</p>";
+                            echo "<p class='red'>La matière n'est peut-être pas à exporter pour cette année.</p>";
                             continue;
                         }
 

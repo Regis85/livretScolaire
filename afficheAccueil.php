@@ -110,7 +110,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
 			<td><?php echo $programme->Modalite ?></td>
 			<td><?php echo $programme->note ?></td>
 			<td><?php echo $programme->appreciation ?></td>
-			<td style="text-align:left;"><?php echo $programme->option ?></td>
+			<td style="text-align:left;"><?php echo $programme->annee ?> → <?php echo $programme->option ?></td>
 			<td>
 					
 <?php if ('administrateur' == $_SESSION['statut'] 
