@@ -7,7 +7,7 @@
 	<licence>GNU/GPL</licence>
 	<auteurCourriel> </auteurCourriel>
 	<auteurSite> </auteurSite>
-	<version>0.2.4</version>
+	<version>0.2.5</version>
 	<versiongepi>1.6.8</versiongepi>
 	<description>Livret Scolaire lycée</description>
 	<installation>
@@ -93,7 +93,8 @@
 			  `note` ENUM ('y', 'n') NOT NULL DEFAULT 'y' COMMENT 'Les notes sont obligatoires ou pas (y - n)' ,
 			  `appreciation` ENUM ('y', 'n') NOT NULL DEFAULT 'y' COMMENT 'Les appréciations sont obligatoires ou pas (y - n)' ,
 			  `option` varchar(250) COMMENT 'Commentaire sur la formation' ,
-			  UNIQUE KEY `couple` (`formation`, `matiere`, `Modalite`),
+                            `annee` varchar(4) COMMENT 'Annee sur la formation' ,
+			  UNIQUE KEY `couple` (`formation`, `annee`, `matiere`, `Modalite`),
 			  PRIMARY KEY (`id`)
 			) ENGINE=MyISAM COMMENT 'Liste des enseignements par formation';
 			</requete>

@@ -58,7 +58,8 @@ if ($utilisateur == null) {
 
 
 //debug_var();
-$ecritLog = TRUE;
+$ecritLog = FALSE;
+// $ecritLog = TRUE;
 
 
 if($ecritLog && ($utilisateur->getStatut()=="administrateur")) {

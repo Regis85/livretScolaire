@@ -168,7 +168,7 @@ if (!$APBinstalle || 0 == $APBinstalle->num_rows ) {
  <?php if (!$formations->num_rows) {  ?>
 	 <p class="center rouge grand bold" >
 		 Vous devez initialiser le module, désinstallez puis réinstallez le plugin. 
-		 Attention, les appréciations sonr perdues lors de cette manœuvre.
+		 Attention, les appréciations sont perdues lors de cette manœuvre.
 	 </p>
 	 <p class="center rouge grand bold" >
 		 Vous pouvez aussi mettre à jour la structure des tables au besoin,

@@ -240,8 +240,8 @@ function evaluations($ine, $anneeLSL) {
        . "INNER JOIN `plugin_archAPB_matieres` AS m "
        . "ON (m.id_gepi = n.code_service AND m.annee = n.annee) "
        . "WHERE n.ine = '".$ine."' AND n.annee = '".$annee."' "
-       . "ORDER BY m.code_sconet ASC , n.trimestre ASC";
-    //echo "<br />"."<br />".$sql;
+       . "ORDER BY n.code_service ASC, m.code_sconet ASC, m.modalite ASC, n.trimestre ASC";
+    // echo "<br />"."<br />".$sql;
     $resultchargeDB = $mysqli->query($sql);	
     return $resultchargeDB;		
 }
@@ -342,7 +342,7 @@ function moyenneTrimestre($anneeLSL, $code_service, $ine) {
 	$sql= "SELECT * FROM `plugin_archAPB_notes` "
 	   . "WHERE code_service = '".$code_service."' AND annee = '".$annee."' AND ine = '".$ine."'";	
 	$resultchargeDB = $mysqli->query($sql);		
-	//echo "<br />".$sql." → ".$resultchargeDB->num_rows;	
+	//echo "<br />".$sql." → ".$resultchargeDB->num_rows."<br />";	
 	return $resultchargeDB;		
 }
 
@@ -937,30 +937,35 @@ function LSL_enregistre_MEF($MEF, $edition, $libelle, $MEF_rattachement, $annee)
         return $resultchargeDB;
 }
 
-function LSL_matiereDeSerie($MEF, $matiere) {
+function LSL_matiereDeSerie($MEF, $matiere, $annee, $modalite) {
     global $mysqli;
 
-        $MEF_rattachement = $MEF;
-        // on recherche un MEF sans tenir compte du dernier caractère qui indique les options
-        $MEFCherche = substr ( $MEF , 0 , 10 );
-        
-        $sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` LIKE '".$MEFCherche."%' ";
-        //echo "<br />".$sql1;
-        $resultchargeDB1 = $mysqli->query($sql1);
-        if ($resultchargeDB1->num_rows) {
-            $MEF_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
-        } else {
-            ecrit($MEF." n'a pas été trouvée dans plugin_lsl_formations\n");
-            ecrit($sql1."\n");
-        }
+    $MEF_rattachement = $MEF;
+    // on recherche un MEF sans tenir compte du dernier caractère qui indique les options
+    $MEFCherche = substr ( $MEF , 0 , 10 );
+
+    $sql1 = "SELECT * FROM `plugin_lsl_formations` WHERE `MEF` LIKE '".$MEFCherche."%' ";
+    //echo "<br />".$sql1;
+    $resultchargeDB1 = $mysqli->query($sql1);
+    if ($resultchargeDB1->num_rows) {
+        $MEF_rattachement = $resultchargeDB1->fetch_object()->MEF_rattachement;
+    } else {
+        ecrit($MEF." n'a pas été trouvée dans plugin_lsl_formations\n");
+        ecrit($sql1."\n");
+    }
 
     if(substr($matiere,0,3) == "030") {
         // Si c'est une langue, le code commence par 030 et seul 030000 rst dans plugin_lsl_programmes
         $matiere = "030%";
     }
-    $sql = "SELECT * FROM `plugin_lsl_programmes` WHERE `formation` = '".$MEF_rattachement."' AND `matiere` LIKE '".$matiere."' ";
+    $sql = "SELECT * FROM `plugin_lsl_programmes` "
+            . "WHERE `formation` = '".$MEF_rattachement."' "
+            . "AND `matiere` LIKE '".$matiere."' "
+            . "AND `Modalite` Like '".$modalite."' "
+            . "AND `annee` = '".$annee."' ";
     //echo "<br />".$sql;
     $resultchargeDB = $mysqli->query($sql);
+        //echo "<br />".$sql."<br />";
     return $resultchargeDB->num_rows;	
 }
  
@@ -1066,7 +1071,7 @@ function LSL_peut_supprimer($id, $modalite) {
 function PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite) {
     // On vérifie si le trimestre est renseigné pour des élèves, 
     // si oui, on met à -1 pour cet élève
-    PeriodeNonNotee(2, $periodesNotes, $annee, $lastService, $Periodiques);
+    PeriodeNonNotee(1, $periodesNotes, $annee, $lastService, $Periodiques);
     PeriodeNonNotee(2, $periodesNotes, $annee, $lastService, $Periodiques);
     if ($newScolarite["code-periode"] == "T") {
         PeriodeNonNotee(3, $periodesNotes, $annee, $lastService, $Periodiques);
@@ -1086,3 +1091,14 @@ function PeriodeNonNotee($periode, $periodesNotes, $annee, $lastService, $Period
     }
     
 }
+
+function EstSectionEuro($code_sconet) {
+    $retour = FALSE;
+    if ("03" === substr($code_sconet, 0, 2) && "9" === substr($code_sconet, 5)) {
+        $retour = TRUE;
+    }
+    return $retour;
+}
+
+
+

@@ -17,13 +17,14 @@ while($eleve = $eleves2->fetch_object()){
         $changeClasse = LSL_change_classe($eleve->ine,$anneeAPB);
         if ($changeClasse) {
             $affiche = 'Dans APB '.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
+            $affiche .= ' ou vous avez plusieurs enseignements pour une matière. Vous devriez vérifier les remontées de cet élève';
             echo '<p>'.$affiche.'</p>';
             ecrit($affiche."\n");
         }
         $changeClasseLSL = LSL_change_classe($eleve->ine,$anneeLSL);
         if ($changeClasseLSL) {
             $affiche = 'Dans LSL '.$eleve->ine.' cet élève a changé de classe ou de groupe en cours d\'année '.($anneeAPB-1).'-'.$anneeAPB;
-            echo '<p>'.$affiche.'</p>';
+            //echo '<p>'.$affiche.'</p>';
             ecrit($affiche."\n");
         }
         $lastNiveau="";
@@ -95,125 +96,149 @@ while($eleve = $eleves2->fetch_object()){
                     ecrit("nombre d'évaluation : ".$newEvaluations->num_rows."\n");
 
                     while ($evaluation = $newEvaluations->fetch_object()) {
+                        /* *
+                        if ($eleve->id == '1413136') {
+                            var_dump ($eleve);
+                            echo '<br /><br />';
+                            var_dump ($evaluation);
+                            echo '<br /><br />';
+                          }   
+                         /*
+                         * 
+                         */
+                        $sectionEuro = EstSectionEuro(str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT));
+                        if(!$sectionEuro) {
 
-                        // TODO on limite aux $evaluation de la série
-                        if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
-                            $getMatiere = getMatiere($evaluation->code_service,$annee->annee+1,'nom_complet');
-                            echo "<p class='red'>L'enseignement ".$evaluation->code_service." → ";
-                            echo $getMatiere.", n'est pas reconnu";
-                            echo " pour l'année ".$annee->annee."-".($annee->annee+1).".";
-                            echo " Vous devez régler ce problème, les notes ne sont pas exportées.</p>";
-                            echo "<p class='red'>La matière n'est peut-être pas à exporter pour cette année.</p>";
-                            continue;
-                        }
+                            // TODO on limite aux $evaluation de la série
+                            if ('0' == $evaluation->code_sconet || 0 == intval($evaluation->code_sconet)) {
+                                $getMatiere = getMatiere($evaluation->code_service,$annee->annee+1,'nom_complet');
+                                echo "<p class='red'>L'enseignement ".$evaluation->code_service." → ";
+                                echo $getMatiere.", n'est pas reconnu";
+                                echo " pour l'année ".$annee->annee."-".($annee->annee+1).".";
+                                echo " Vous devez régler ce problème, les notes ne sont pas exportées.</p>";
+                                echo "<p class='red'>La matière n'est peut-être pas à exporter pour cette année.</p>";
+                                continue;
+                            }
+                            //var_dump($evaluation);
+                            if (LSL_matiereDeSerie($annee->code_mef, str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT),$annee->annee, $evaluation->modalite)) {
+                                //echo 'La matière '.$annee->code_mef.'est bien enseignée';
+                                ecrit("La matière ".str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)." → ".$evaluation->modalite
+                                        . " est bien enseignée en ".$annee->code_mef." en ".$annee->annee."-".($annee->annee+1)."\n");
+                                ecrit(count($periodesNotes)."\n");
 
-                        if (LSL_matiereDeSerie($annee->code_mef, str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT))) {
-                            //echo 'La matière '.$annee->code_mef.'est bien enseignée';
-                            ecrit("La matière ".str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)." "
-                                    . "est bien enseignée en ".$annee->code_mef." en ".$annee->annee."-".($annee->annee+1)."\n");
-                            ecrit(count($periodesNotes)."\n");
-
-                            if ($lastService != $evaluation->code_service) {
-                                $lastService = $evaluation->code_service;
-                                if ($lastMatiere != str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT)) {
-                                    // on change de matière
-                                    $periodesNotes;
-                                    if ($periodesNotes) {
-                                        // On vérifie si le trimestre est renseigné pour des élèves, 
-                                        // si oui, on met à -1 pour cet élève
-                                        PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite);
-                                    }
-                                    $periodesNotes = NULL;
-
-                                    $lastMatiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT);
-                                    $compteEleves = compteElvEval($annee->annee, $evaluation->code_service);
-                                    $compteElv = $compteEleves->fetch_object();
-                                    if ($compteElv->nombre){
-                                        $newEval = $newScolarite->addChild('evaluation');
-                                        //TODO : rechercher la modalité dans les tables LSL
-                                        $code_matiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT);
-                                        $modalite = LSL_modalite($code_matiere, $annee->code_mef);
-                                        if (!$modalite) {
-                                                $modalite = $evaluation->modalite;
+                                if ($lastService != $evaluation->code_service) {
+                                    $lastService = $evaluation->code_service;
+                                    if ($lastMatiere != str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT).$evaluation->modalite) {
+                                        //echo $evaluation->modalite;
+                                        // on change de matière
+                                        $periodesNotes;
+                                        if ($periodesNotes) {
+                                            // On vérifie si le trimestre est renseigné pour des élèves, 
+                                            // si oui, on met à -1 pour cet élève
+                                            PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite);
                                         }
-                                        $newEval->addAttribute('modalite-election',$modalite);
-                                        $newEval->addAttribute('code-matiere',$code_matiere);
-                                        $newStructure = $newEval->addChild('structure');
-                                        $structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
-                                        $structureEval = $structureEvaluation->fetch_object();
-                                        $moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
-                                        $huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
-                                        $plusDouze = 100-($moinsHuit + $huitDouze);
-                                        $newStructure->addAttribute('effectif',$compteElv->nombre);
-                                        $newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
-                                        $newStructure->addAttribute('repar-moins-huit',$moinsHuit);				
-                                        $newStructure->addAttribute('repar-huit-douze',$huitDouze);			
-                                        $newStructure->addAttribute('repar-plus-douze',$plusDouze);
-                                        $structureEvaluation ->close();
-                                        //$appAnnuelle=" ";
-                                        $appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
-                                        if (!$appAnnuelle) {
-                                            $appAnnuelle=" ";
-                                            $newMessage = $eleve->nom." ".$eleve->prenom;
-                                            $newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
-                                            $newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
-                                            $messages[] = $newMessage;
-                                        }
-                                        $newEval->addChild('annuelle', $appAnnuelle);
+                                        $periodesNotes = NULL;
 
-                                        $Periodiques = $newEval->addChild('periodiques');
+                                        $lastMatiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT).$evaluation->modalite;
+                                        $compteEleves = compteElvEval($annee->annee, $evaluation->code_service);
+                                        $compteElv = $compteEleves->fetch_object();
+                                        if ($compteElv->nombre){
+                                            $newEval = $newScolarite->addChild('evaluation');
+                                            //TODO : rechercher la modalité dans les tables LSL
+                                            $code_matiere = str_pad($evaluation->code_sconet, 6, '0', STR_PAD_LEFT);
+                                            /*
+                                            $modalite = LSL_modalite($code_matiere, $annee->code_mef);
+                                            if (!$modalite) {
+                                                    $modalite = $evaluation->modalite;
+                                            }
+                                             * 
+                                             */
+                                            $modalite = $evaluation->modalite;
+                                            $newEval->addAttribute('modalite-election',$modalite);
+                                            $newEval->addAttribute('code-matiere',$code_matiere);
+                                            $newStructure = $newEval->addChild('structure');
+                                            $structureEvaluation = structureEval($annee->annee, $evaluation->code_service);
+                                            $structureEval = $structureEvaluation->fetch_object();
+                                            $moinsHuit = reparMoinsHuit($annee->annee, $evaluation->code_service);
+                                            $huitDouze = reparMoinsHuit($annee->annee, $evaluation->code_service, 8, 12);
+                                            $plusDouze = 100-($moinsHuit + $huitDouze);
+                                            $newStructure->addAttribute('effectif',$compteElv->nombre);
+                                            $newStructure->addAttribute('moyenne',round($structureEval->moyenne,2));				
+                                            $newStructure->addAttribute('repar-moins-huit',$moinsHuit);				
+                                            $newStructure->addAttribute('repar-huit-douze',$huitDouze);			
+                                            $newStructure->addAttribute('repar-plus-douze',$plusDouze);
+                                            $structureEvaluation ->close();
+                                            //$appAnnuelle=" ";
+                                            $appAnnuelle=getAppreciationProf($eleve->ine, $evaluation->code_service, $annee->annee+1);
+                                            if (!$appAnnuelle) {
+                                                $appAnnuelle="&#160;";
+                                                $newMessage = $eleve->nom." ".$eleve->prenom;
+                                                $newMessage .= " n'a pas d'appréciation pour la matière ".getMatiere($evaluation->code_service, $annee->annee+1);
+                                                $newMessage .= " pour l'année ".$annee->annee."-".($annee->annee+1) ;
+                                                $messages[] = $newMessage;
+                                            }
+                                            $newEval->addChild('annuelle', $appAnnuelle);
+
+                                            $Periodiques = $newEval->addChild('periodiques');
+                                            $moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
+                                            //var_dump($moyennes);
+                                            while ($moyenne = $moyennes->fetch_object()) {
+                                                $periodesNotes[] = $moyenne->trimestre;
+                                                $trimestre = $Periodiques->addChild('periode');
+                                                $trimestre->addAttribute('numero', $moyenne->trimestre);
+                                                if ("S" == $moyenne->etat) {
+                                                        $trimestre->addAttribute('moyenne', $moyenne->moyenne);
+                                                } else {
+                                                        $trimestre->addAttribute('moyenne', -1);
+                                                }
+                                            }
+                                            $moyennes->close();
+
+                                            // TODO récupérer les compétences
+                                            // $newEval->addChild('competences');
+                                            $newEnseignants = $newEval->addChild('enseignants');
+                                            $enseignantsPassees = getEnseignantsPassees($annee->annee, $evaluation->code_service, $newEnseignants);
+                                            if (!$enseignantsPassees) {
+                                                $getEnseignants = Enseignants($annee->annee, $evaluation->code_service);
+                                                while ($getEnseignant = $getEnseignants->fetch_object()) {
+                                                    CreeNoeudProf ($getEnseignant->nom, $getEnseignant->prenom);
+                                                }
+                                                $getEnseignants->close();
+                                            }
+                                        }
+                                        $compteEleves->close();
+
+                                    } else {
+                                        /*
                                         $moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
                                         while ($moyenne = $moyennes->fetch_object()) {
                                             $periodesNotes[] = $moyenne->trimestre;
                                             $trimestre = $Periodiques->addChild('periode');
                                             $trimestre->addAttribute('numero', $moyenne->trimestre);
                                             if ("S" == $moyenne->etat) {
-                                                    $trimestre->addAttribute('moyenne', $moyenne->moyenne);
+                                                $trimestre->addAttribute('moyenne', $moyenne->moyenne);
                                             } else {
-                                                    $trimestre->addAttribute('moyenne', -1);
+                                                $trimestre->addAttribute('moyenne', -1);
                                             }
                                         }
-                                        $moyennes->close();
-
-                                        // TODO récupérer les compétences
-                                        // $newEval->addChild('competences');
-                                        $newEnseignants = $newEval->addChild('enseignants');
-                                        $enseignantsPassees = getEnseignantsPassees($annee->annee, $evaluation->code_service, $newEnseignants);
-                                        if (!$enseignantsPassees) {
-                                            $getEnseignants = Enseignants($annee->annee, $evaluation->code_service);
-                                            while ($getEnseignant = $getEnseignants->fetch_object()) {
-                                                CreeNoeudProf ($getEnseignant->nom, $getEnseignant->prenom);
-                                            }
-                                            $getEnseignants->close();
-                                        }
-                                    }
-                                    $compteEleves->close();
-
-                                } else {
-                                    $moyennes = moyenneTrimestre($annee->annee, $evaluation->code_service, $eleve->ine);
-                                    while ($moyenne = $moyennes->fetch_object()) {
-                                        $periodesNotes[] = $moyenne->trimestre;
-                                        $trimestre = $Periodiques->addChild('periode');
-                                        $trimestre->addAttribute('numero', $moyenne->trimestre);
-                                        if ("S" == $moyenne->etat) {
-                                            $trimestre->addAttribute('moyenne', $moyenne->moyenne);
-                                        } else {
-                                            $trimestre->addAttribute('moyenne', -1);
-                                        }
+                                         * 
+                                         */
                                     }
                                 }
-                            }
-                        } else {
-                            // on change de matière
-                            if ($periodesNotes) {
-                                // On vérifie si le trimestre est renseigné pour des élèves, 
-                                // si oui, on met à -1 pour cet élève
-                                PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite);
-                                $periodesNotes = NULL;
-                            }
+                            } else {
+                                // on change de matière
+                                if ($periodesNotes) {
+                                    // On vérifie si le trimestre est renseigné pour des élèves, 
+                                    // si oui, on met à -1 pour cet élève
+                                    PeriodeNExistePas($Periodiques, $periodesNotes, $annee, $lastService, $newScolarite);
+                                    $periodesNotes = NULL;
+                                }
 
+                            }
                         }
+                    
                     }
+                    
                     $newEvaluations->close();
                     // on change de matière	
                     if ($periodesNotes) {
@@ -303,7 +328,9 @@ if (isset($messages)) {
 	onclick="bascule('messages')" 
 	style="cursor:pointer"
 	title="Cliquez pour déplier/plier">
-	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) {echo "s";} ?> manquante<?php if(count($messages) > 1) {echo "s";} ?>
+	<?php echo count($messages); ?> appréciation<?php if(count($messages) > 1) {echo "s";} ?> manquante<?php if(count($messages) > 1) {echo "s";} ?> 
+        <br />
+        votre fichier .xml n'est pas valide, toutes les appréciations doivent être renseignées.
 </p>
 <p style="text-align: center">
 	<button type="button" onclick="bascule('messages')">Afficher/Cacher les appréciations manquantes</button>
